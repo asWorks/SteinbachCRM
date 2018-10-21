@@ -1,0 +1,9 @@
+C1.WPF.DataGrid.C1DataGrid, C1.WPF.DataGrid.4
+C1.WPF.DateTimeEditors.C1DateTimePicker, C1.WPF.DateTimeEditors.4
+C1.WPF.RichTextBox.C1RichTextBox, C1.WPF.RichTextBox.4
+C1.WPF.Schedule.C1Calendar, C1.WPF.Schedule.4
+C1.WPF.Schedule.C1Scheduler, C1.WPF.Schedule.4
+GrapeCity.ActiveReports.Export.Excel.Section.XlsExport,GrapeCity.ActiveReports.Export.Excel.v8
+GrapeCity.ActiveReports.Export.Pdf.Section.PdfExport, GrapeCity.ActiveReports.Export.Pdf.v8, Version=8.0.133.0, Culture=neutral, PublicKeyToken=cc4967777c49a3ff
+GrapeCity.ActiveReports.PageReport, GrapeCity.ActiveReports.v8, Version=8.0.133.0, Culture=neutral, PublicKeyToken=cc4967777c49a3ff
+GrapeCity.ActiveReports.Viewer.Wpf.Viewer, GrapeCity.ActiveReports.Viewer.Wpf.v8, Version=8.0.133.0, Culture=neutral, PublicKeyToken=cc4967777c49a3ff

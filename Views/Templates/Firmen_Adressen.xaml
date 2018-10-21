@@ -1,0 +1,141 @@
+﻿<UserControl x:Class="SteinbachCRM.Templates.Firmen_Adressen"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:my="clr-namespace:CommonTools.UserControls;assembly=CommonTools"
+             xmlns:cal="clr-namespace:Caliburn.Micro;assembly=Caliburn.Micro"
+             xmlns:con="clr-namespace:CommonTools.Converter;assembly=CommonTools"
+			 xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
+             mc:Ignorable="d"
+             x:Name="UserControlInstance"
+             Loaded="UserControl_Loaded" 
+             Height="Auto" Width="Auto" >
+    <UserControl.Resources>
+        <CollectionViewSource x:Key="EintraegeLandLookup" />
+        <CollectionViewSource x:Key="TypLookup" />
+        <con:BooleanVisibilityValueConverter x:Key="BoolToVisible"/>
+        
+        <Style TargetType="StackPanel">
+            <Setter Property="Background" Value="{Binding Path=BackGround}"/>
+        </Style>
+        <Style TargetType="ListView" >
+            <Setter Property="Background" Value="{Binding Path=BackGround}"/>
+        </Style>
+        <Style TargetType="{x:Type my:LabelAndCheckbox}">
+            <Setter Property="TextBlockWidth" Value="123"/>
+            <Setter Property="StackPanelOrientation" Value="Horizontal"/>
+            <Setter Property="TextBlockFontFamily" Value="Calibri"/>
+            <Setter Property="TextBlockFontSize" Value="14"/>
+            <Setter Property="TextBlockMargin" Value="5,3"/>
+            <Setter Property="CheckBoxMargin" Value="5,5"/>
+        </Style>
+        <Style TargetType="{x:Type my:LabelAndText}">
+            <Setter Property="TextBoxWidth" Value="200"/>
+            <Setter Property="TextBoxMargin" Value="5,3,5,3"/>
+            <Setter Property="StackPanelOrientation" Value="Horizontal"/>
+            <Setter Property="TextBoxTextAlignment" Value="Left"/>
+            <Setter Property="TextBlockWidth" Value="120"/>
+            <Setter Property="TextBlockFontFamily" Value="Calibri"/>
+            <Setter Property="TextBlockFontSize" Value="14"/>
+            <Setter Property="ValueFontFamily" Value="Calibri"/>
+            <Setter Property="ValueFontSize" Value="14"/>
+            <Setter Property="TextBlockHorizontalAlignment" Value="Left"/>
+            <Setter Property="TextBlockMargin" Value="7,0"/>
+            <Setter Property="TextBoxAcceptsReturn" Value="True"/>
+        </Style>
+        <Style TargetType="{x:Type my:LabelAndText}" x:Key="FullLine">
+            <Setter Property="TextBoxWidth" Value="888"/>
+            <Setter Property="TextBoxMargin" Value="5,3,5,3"/>
+            <Setter Property="StackPanelOrientation" Value="Horizontal"/>
+            <Setter Property="TextBoxTextAlignment" Value="Left"/>
+            <Setter Property="TextBlockWidth" Value="120"/>
+            <Setter Property="TextBlockFontFamily" Value="Calibri"/>
+            <Setter Property="TextBlockFontSize" Value="14"/>
+            <Setter Property="ValueFontFamily" Value="Calibri"/>
+            <Setter Property="ValueFontSize" Value="14"/>
+            <Setter Property="TextBlockHorizontalAlignment" Value="Left"/>
+            <Setter Property="TextBlockMargin" Value="7,0"/>
+            <Setter Property="TextBoxAcceptsReturn" Value="True"/>
+        </Style>
+        <Style TargetType="{x:Type my:LabelAndFilteredComboBox}">
+            <Setter Property="StackPanelOrientation" Value="Horizontal"/>
+            <Setter Property="TextBlockWidth" Value="120"/>
+            <Setter Property="TextBlockFontFamily" Value="Calibri"/>
+            <Setter Property="TextBlockFontSize" Value="14"/>
+            <Setter Property="TextBlockHorizontalAlignment" Value="Left"/>
+            <Setter Property="CBoxBackground" Value="GhostWhite"/>
+            <Setter Property="CBoxWidth" Value="200"/>
+            <Setter Property="CBoxHeight" Value="23"/>
+            <Setter Property="ComboBoxMargin" Value="5,3"/>
+            <Setter Property="TextBoxMargin" Value="5,3"/>
+            <Setter Property="TextBlockMargin" Value="7,0"/>
+        </Style>
+        <Style TargetType="Button">
+            <Setter Property="Width" Value="120"/>
+            <Setter Property="HorizontalAlignment" Value="Left"/>
+            <Setter Property="Margin" Value="20,10"/>
+            <Setter Property="Background" Value="Lavender"/>
+        </Style>
+        <Style TargetType="Border">
+            <Setter Property="BorderThickness" Value="2"/>
+            <Setter Property="BorderBrush" Value="Blue"/>
+            <Setter Property="CornerRadius" Value="8"/>
+            <Setter Property="Margin" Value="10,10"/>
+        </Style>
+    </UserControl.Resources>
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="Auto"/>
+        </Grid.ColumnDefinitions>
+        <StackPanel>
+            <StackPanel Orientation="Horizontal">
+                 <my:LabelAndText  TextBlockText="Standortbez. :" TextBoxText="{Binding Path=Standort,Mode=TwoWay}"/>
+                 <my:LabelAndFilteredComboBox TextBlockText="Typ :" CBoxItemssource="{Binding Source={StaticResource TypLookup}}"
+                                        CBoxSelectedValue="{Binding Path=Typ,Mode=TwoWay}" CBoxIsSynchronizedWithCurrentItem="False"
+                                        CBoxSelectedValuePath="ai_int"       
+                                        CBoxDisplayMemberPath="Eintrag" />
+            </StackPanel>
+          
+           
+            <StackPanel Visibility="{Binding Path=isVisible,Converter={StaticResource BoolToVisible}}" >
+                <my:LabelAndText  TextBlockText="Gesellschaft Name :" TextBoxText="{Binding Path=ZusatzInfo,Mode=TwoWay}" Style="{StaticResource FullLine}"
+                                  Visibility="{Binding Path=isVisible,Converter={StaticResource BoolToVisible}}"/>
+                <my:LabelAndText  TextBlockText="Zusatzinfo :" TextBoxText="{Binding Path=ZusatzInfo2,Mode=TwoWay}" Style="{StaticResource FullLine}"
+                                  Visibility="{Binding Path=isVisible,Converter={StaticResource BoolToVisible}}"/>
+                <my:LabelAndText  TextBlockText="Zusatzinfo2 :" TextBoxText="{Binding Path=ZusatzInfo3,Mode=TwoWay}" Style="{StaticResource FullLine}"
+                                  Visibility="{Binding Path=isVisible,Converter={StaticResource BoolToVisible}}"/>
+              
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+
+                <my:LabelAndText TextBlockText="{Binding Path=StrasseCaption}" TextBoxText="{Binding Path=Straße,Mode=TwoWay}"/>
+                <my:LabelAndText TextBlockText="Postleitzahl :" TextBoxText="{Binding Path=PLZ,Mode=TwoWay}"/>
+                <my:LabelAndText TextBlockText="Ort :" TextBoxText="{Binding Path=Ort,Mode=TwoWay}"></my:LabelAndText>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <my:LabelAndFilteredComboBox TextBlockText="Land :" CBoxItemssource="{Binding Source={StaticResource EintraegeLandLookup}}"
+                                        CBoxSelectedValue="{Binding Path=Land,Mode=TwoWay}" CBoxIsSynchronizedWithCurrentItem="False"
+                                        CBoxSelectedValuePath="Eintrag"       
+                                        CBoxDisplayMemberPath="Eintrag" />
+
+                <my:LabelAndText  TextBlockText="VAT Nr. :" TextBoxText="{Binding Path=VAT,Mode=TwoWay}" 
+                                  Visibility="{Binding Path=isVisible,Converter={StaticResource BoolToVisible}}"/>
+            </StackPanel>
+            <StackPanel>
+                <my:LabelAndCheckbox   TextBlockText="Standardadresse" CheckBoxChecked="{Binding Path=Hauptadresse,Mode=TwoWay}" 
+                                   cal:Message.Attach="[Event ThisCheckBoxChecked] =[Action CheckBoxHauptadresseChecked ($source) ]" />
+            </StackPanel>
+           
+        </StackPanel>
+        <StackPanel Grid.Column="1">
+            <!--<my:LabelAndCheckbox   TextBlockText="Geschäftlich" CheckBoxChecked="{Binding Path=TypGeschaeftlich,Mode=TwoWay}" />
+            <my:LabelAndCheckbox   TextBlockText="Rechnungsadresse" CheckBoxChecked="{Binding Path=TypRechnungsadresse,Mode=TwoWay}" />
+            <my:LabelAndCheckbox   TextBlockText="Lieferadresse" CheckBoxChecked="{Binding Path=TypLieferadresse,Mode=TwoWay}" />-->
+            <!--<my:LabelAndCheckbox   TextBlockText="Standardadresse" CheckBoxChecked="{Binding Path=Hauptadresse,Mode=TwoWay}" 
+                                   cal:Message.Attach="[Event ThisCheckBoxChecked] =[Action CheckBoxHauptadresseChecked ($source) ]" />-->
+        </StackPanel>
+    </Grid>
+</UserControl>

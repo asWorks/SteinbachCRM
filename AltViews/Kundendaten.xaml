@@ -1,0 +1,84 @@
+﻿<Page x:Class="SteinbachCRM.Views.Kundendaten"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      mc:Ignorable="d" 
+      d:DesignHeight="500" d:DesignWidth="664"
+    Title="Kundendaten" xmlns:my="http://schemas.componentone.com/winfx/2006/xaml"
+      Loaded="Page_Loaded">
+    
+    <Page.Resources>
+        <CollectionViewSource x:Key="FirmaViewSource"/>
+        <CollectionViewSource x:Key="PersonViewSource" Source="{Binding Source={StaticResource FirmaViewSource},Path= 'Kunden_Personen'}"/>
+        <CollectionViewSource x:Key="PhoneViewSource" Source="{Binding Source={StaticResource PersonViewSource}, Path='Kunden_Telefon'}"/>
+        <CollectionViewSource x:Key="PhoneFirmenViewSource" Source="{Binding Source={StaticResource FirmaViewSource}, Path='Kunden_Telefon'}"/>
+
+    </Page.Resources>
+
+    <Grid>
+        <TabControl Height="Auto" HorizontalAlignment="Left" Margin="57,25,0,0" Name="tabControl1" VerticalAlignment="Top" Width="554">
+            <TabItem Header="Firmendaten" x:Name="tabFirma">
+                
+            </TabItem>
+            <TabItem Header="Algemein" Name="tabAllgemein">
+                <Grid DataContext="{StaticResource FirmaViewSource}" Height="Auto">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="108*" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                      
+                    </Grid.ColumnDefinitions>
+                    <StackPanel Orientation="Horizontal">
+                    <Label Content="Nachname" Height="28" HorizontalAlignment="Left" Margin="10,15,0,0" Name="label1" VerticalAlignment="Top" Width="200" />
+                        <TextBox Text="{Binding Path=name}" />
+                    </StackPanel>
+                    <ScrollViewer Grid.Row="1">
+                        <my:C1DataGrid  ItemsSource="{Binding Source= {StaticResource PersonViewSource}}" Name="c1GridPersonen" Margin="10,10" AutoGenerateColumns="False" MinHeight="100" Height="Auto" DeletingRows="c1GridUnterartikel_DeletingRows" RowsDeleted="c1GridUnterartikel_RowsDeleted" CanUserAddRows="False" CanUserGroup="False" SelectionChanged="c1GridPersonen_SelectionChanged">
+                            <my:C1DataGrid.Columns>
+                                <my:DataGridTextColumn Header="Nachname" Binding="{Binding Nachname,Mode=TwoWay}" Width="90"/>
+                                <my:DataGridTextColumn Header="Vorname" Binding="{Binding Vorname,Mode=TwoWay}" Width="90"/>
+                                <my:DataGridTextColumn Header="Funktion" Binding="{Binding Funktion,Mode=TwoWay}" />
+                            </my:C1DataGrid.Columns>
+                        </my:C1DataGrid>
+                    </ScrollViewer>
+                    <ScrollViewer Grid.Row="2">
+                        <my:C1DataGrid  ItemsSource="{Binding Source= {StaticResource PhoneViewSource}}" Name="c1GridUnterartikel" Margin="10,10" AutoGenerateColumns="False" MinHeight="100" Height="Auto" DeletingRows="c1GridUnterartikel_DeletingRows" RowsDeleted="c1GridUnterartikel_RowsDeleted" CanUserAddRows="True" CanUserGroup="False" SelectionChanged="c1GridUnterartikel_SelectionChanged">
+                            <my:C1DataGrid.Columns>
+                                <my:DataGridTextColumn Header="Bezeichnung" Binding="{Binding Bezeichnung,Mode=TwoWay}" Width="90"/>
+                                <my:DataGridTextColumn Header="Vorwahl" Binding="{Binding Vorwahl,Mode=TwoWay}" Width="90"/>
+                                <my:DataGridTextColumn Header="Telefonnummer" Binding="{Binding Telefonnummer,Mode=TwoWay}" />
+                            </my:C1DataGrid.Columns>
+                        </my:C1DataGrid>
+                    </ScrollViewer>
+                    <ScrollViewer Grid.Row="3">
+                        <my:C1DataGrid  ItemsSource="{Binding Source= {StaticResource PhoneFirmenViewSource}}" Name="c1GridTelefon" Margin="10,10" AutoGenerateColumns="False" MinHeight="100" Height="Auto" DeletingRows="c1GridUnterartikel_DeletingRows" RowsDeleted="c1GridUnterartikel_RowsDeleted" CanUserAddRows="False" CanUserGroup="False">
+                            <my:C1DataGrid.Columns>
+                                <my:DataGridTextColumn Header="Bezeichnung" Binding="{Binding Bezeichnung,Mode=TwoWay}" Width="90"/>
+                                <my:DataGridTextColumn Header="Vorwahl" Binding="{Binding Vorwahl,Mode=TwoWay}" Width="90"/>
+                                <my:DataGridTextColumn Header="Telefonnummer" Binding="{Binding Telefonnummer,Mode=TwoWay}" />
+                            </my:C1DataGrid.Columns>
+                        </my:C1DataGrid>
+                    </ScrollViewer>
+                    <StackPanel Grid.Row="4" Orientation="Horizontal">
+                   <Button  Content="Speichern" Click="Button_Click" />
+                        <Button  x:Name="AddPersonTelefon" Content="Tel. Person + " Click="AddPersonTelefon_Click"   />
+                        <Button  x:Name="AddPerson" Content="Person + " Click="AddPerson_Click"/>
+                        <Button  x:Name="AddPersonFirma" Content="Tel. Firma + " Click="AddPersonFirma_Click"/>
+
+                    </StackPanel>
+                </Grid>
+            </TabItem>
+            <TabItem Header="Buchhaltung" Name="tabBuchhaltung">
+                <Grid>
+                    <Label Content="Kontonummer" Height="28" Margin="89,68,203,0" Name="label2" VerticalAlignment="Top" />
+                </Grid>
+            </TabItem>
+
+        </TabControl>
+    </Grid>
+</Page>

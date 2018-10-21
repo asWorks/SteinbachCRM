@@ -1,0 +1,112 @@
+﻿<UserControl x:Class="SteinbachCRM.Views.Firmen_TelefonView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+           xmlns:my="clr-namespace:CommonTools.UserControls;assembly=CommonTools"
+              xmlns:cal="clr-namespace:Caliburn.Micro;assembly=Caliburn.Micro"
+			 xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
+             mc:Ignorable="d"
+             x:Name="UserControlInstance"
+             Loaded="UserControl_Loaded" d:DesignHeight="71" d:DesignWidth="1020">
+    <UserControl.Resources>
+        <CollectionViewSource x:Key="EintraegeTelefonTypLookup" />
+        <CollectionViewSource x:Key="StandortLookup" />
+        
+        <Style TargetType="StackPanel">
+            <Setter Property="Background" Value="{Binding Path=Background}"/>
+        </Style>
+        <Style TargetType="ListView" >
+            <Setter Property="Background" Value="Lavender"/>
+        </Style>
+        <Style TargetType="{x:Type my:LabelAndCheckbox}">
+            <Setter Property="TextBlockWidth" Value="110"/>
+            <Setter Property="StackPanelOrientation" Value="Horizontal"/>
+            <Setter Property="TextBlockFontFamily" Value="Calibri"/>
+            <Setter Property="TextBlockFontSize" Value="14"/>
+            <Setter Property="TextBlockMargin" Value="5,5"/>
+            <Setter Property="CheckBoxMargin" Value="5,5"/>
+        </Style>
+        <Style TargetType="{x:Type my:LabelAndText}">
+            <Setter Property="TextBoxWidth" Value="140"/>
+            <Setter Property="TextBoxMargin" Value="5,3,5,3"/>
+            <Setter Property="StackPanelOrientation" Value="Vertical"/>
+            <Setter Property="TextBoxTextAlignment" Value="Left"/>
+            <Setter Property="TextBlockWidth" Value="120"/>
+            <Setter Property="TextBlockFontFamily" Value="Calibri"/>
+            <Setter Property="TextBlockFontSize" Value="14"/>
+            <Setter Property="ValueFontFamily" Value="Calibri"/>
+            <Setter Property="ValueFontSize" Value="14"/>
+            <Setter Property="TextBlockHorizontalAlignment" Value="Left"/>
+            <Setter Property="TextBlockMargin" Value="7,0"/>
+        </Style>
+        <Style TargetType="{x:Type my:LabelAndText}" x:Key="TextboxLarge">
+            <Setter Property="TextBoxWidth" Value="320"/>
+            <Setter Property="TextBoxMargin" Value="5,3,5,3"/>
+            <Setter Property="StackPanelOrientation" Value="Vertical"/>
+            <Setter Property="TextBoxTextAlignment" Value="Left"/>
+            <Setter Property="TextBlockWidth" Value="120"/>
+            <Setter Property="TextBlockFontFamily" Value="Calibri"/>
+            <Setter Property="TextBlockFontSize" Value="14"/>
+            <Setter Property="ValueFontFamily" Value="Calibri"/>
+            <Setter Property="ValueFontSize" Value="14"/>
+            <Setter Property="TextBlockHorizontalAlignment" Value="Left"/>
+            <Setter Property="TextBlockMargin" Value="7,0"/>
+        </Style>
+        <Style TargetType="{x:Type my:LabelAndFilteredComboBox}">
+            <Setter Property="StackPanelOrientation" Value="Vertical"/>
+            <Setter Property="TextBlockWidth" Value="120"/>
+            <Setter Property="TextBlockFontFamily" Value="Calibri"/>
+            <Setter Property="TextBlockFontSize" Value="14"/>
+            <Setter Property="TextBlockHorizontalAlignment" Value="Left"/>
+            <Setter Property="CBoxBackground" Value="GhostWhite"/>
+            <Setter Property="CBoxWidth" Value="140"/>
+            <Setter Property="CBoxHeight" Value="23"/>
+            <Setter Property="ComboBoxMargin" Value="5,3"/>
+            <Setter Property="TextBoxMargin" Value="5,3"/>
+            <Setter Property="TextBlockMargin" Value="7,0"/>
+        </Style>
+        <Style TargetType="Button">
+            <Setter Property="Width" Value="120"/>
+            <Setter Property="HorizontalAlignment" Value="Left"/>
+            <Setter Property="Margin" Value="20,10"/>
+            <Setter Property="Background" Value="Lavender"/>
+        </Style>
+        <Style TargetType="Border">
+            <Setter Property="BorderThickness" Value="4"/>
+            <Setter Property="BorderBrush" Value="Lavender"/>
+            <Setter Property="CornerRadius" Value="4"/>
+            <Setter Property="Margin" Value="10,10"/>
+        </Style>
+    </UserControl.Resources>
+    <Grid ClipToBounds="True">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="Auto"/>
+        </Grid.ColumnDefinitions>
+        <StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <!--<TextBlock Text="{Binding Path=id}"/>-->
+                
+                <my:LabelAndFilteredComboBox Grid.Row="2" Grid.Column="3" TextBlockText="Standort :" CBoxItemssource="{Binding Source={StaticResource StandortLookup}}"
+                              CBoxSelectedValue="{Binding Path=id_Standort,Mode=TwoWay}" CBoxIsSynchronizedWithCurrentItem="False"
+                              CBoxSelectedValuePath="id"       
+                              CBoxDisplayMemberPath="Standort" />
+                
+                <my:LabelAndFilteredComboBox TextBlockText="Typ :" CBoxItemssource="{Binding Source={StaticResource EintraegeTelefonTypLookup}}"
+                                        CBoxSelectedValue="{Binding Path=Typ,Mode=TwoWay}" CBoxIsSynchronizedWithCurrentItem="False"
+                                        CBoxSelectedValuePath="id"       
+                                        CBoxDisplayMemberPath="Eintrag" />
+                <my:LabelAndText TextBlockText="Vorwahl :" TextBoxText="{Binding Path=Vorwahl,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
+                <my:LabelAndText TextBlockText="Rufnummer :" TextBoxText="{Binding Path=Rufnummer,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
+                <my:LabelAndText TextBlockText="Notiz :" TextBoxText="{Binding Path=Memo,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource TextboxLarge}"></my:LabelAndText>
+               
+                <Button x:Name="MakeCall" Style="{StaticResource ImageButtonMedium}" IsEnabled="{Binding Path=ShowDialer,Mode=TwoWay}"
+                         cal:Message.Attach="[Event Click] =[Action MakePhoneCall ($source) ]">
+                    <Image Source="{Binding Path=DialerImage}" Stretch="Uniform" />
+                </Button>
+               
+            </StackPanel>
+        </StackPanel>
+    </Grid>
+</UserControl>

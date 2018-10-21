@@ -1,0 +1,211 @@
+﻿<UserControl xmlns:c1="http://schemas.componentone.com/winfx/2006/xaml"  x:Class="SteinbachCRM.Views.KundenbesuchView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:ff="clr-namespace:SteinbachCRM.Tools"
+             xmlns:cal="clr-namespace:Caliburn.Micro;assembly=Caliburn.Micro"
+			 xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
+             mc:Ignorable="d" Language="DE-de"
+             d:DesignHeight="800" d:DesignWidth="1300" xmlns:my="clr-namespace:CommonTools.UserControls;assembly=CommonTools"
+             Loaded="UserControl_Loaded">
+    <UserControl.Resources>
+        <Style TargetType="{x:Type my:LabelAndFilteredComboBox}">
+            <Setter Property="StackPanelOrientation" Value="Horizontal"/>
+            <Setter Property="TextBlockWidth" Value="150"/>
+            <Setter Property="TextBlockFontFamily" Value="Calibri"/>
+            <Setter Property="TextBlockFontSize" Value="16"/>
+            <Setter Property="TextBlockHorizontalAlignment" Value="Left"/>
+            <Setter Property="CBoxBackground" Value="GhostWhite"/>
+            <Setter Property="CBoxWidth" Value="240"/>
+            <Setter Property="CBoxHeight" Value="23"/>
+            <Setter Property="ComboBoxMargin" Value="10,5"/>
+            <Setter Property="TextBlockMargin" Value="12,2,0,0"/>
+            <Setter Property="TextBlockHorizontalAlignment" Value="Right"/>
+            <Setter Property="TextBlockTextAlignment" Value="Right"/>
+        </Style>
+        <Style TargetType="{x:Type my:LabelAndText}">
+            <Setter Property="TextBoxWidth" Value="240"/>
+            <Setter Property="TextBoxMargin" Value="10,5"/>
+            <Setter Property="StackPanelOrientation" Value="Horizontal"/>
+            <Setter Property="TextBoxTextAlignment" Value="Left"/>
+            <Setter Property="TextBlockTextAlignment" Value="Right"/>
+            <Setter Property="TextBlockMargin" Value="12,2,0,0"/>
+            <Setter Property="TextBlockWidth" Value="150"/>
+            <Setter Property="TextBlockFontFamily" Value="Calibri"/>
+            <Setter Property="TextBlockFontSize" Value="16"/>
+            <Setter Property="ValueFontFamily" Value="Calibri"/>
+            <Setter Property="ValueFontSize" Value="14"/>
+            <Setter Property="TextBlockHorizontalAlignment" Value="Right"/>
+        </Style>
+        <Style TargetType="TextBox">
+            <Setter Property="Width" Value="240"/>
+            <Setter Property="Margin"  Value="10,5"/>
+            <Setter Property="FontFamily"  Value="Calibri"/>
+            <Setter Property="FontSize"  Value="14"/>
+        </Style>
+        <Style TargetType="TextBlock">
+            <Setter Property="Margin" Value="10,5,0,0"/>
+            <Setter Property="Width" Value="150"/>
+            <Setter Property="FontFamily" Value="Calibri"/>
+            <Setter Property="FontSize" Value="16"/>
+            <Setter Property="TextAlignment" Value="Right"/>
+        </Style>
+        <Style TargetType="c1:C1DateTimePicker">
+            <Setter Property="Height"  Value="25"/>
+            <Setter Property="Width" Value="240"/>
+            <Setter Property="FontFamily"  Value="Calibri"/>
+            <Setter Property="FontSize"  Value="14"/>
+            <Setter Property="Margin"  Value="10,5"/>
+            <Setter Property="TimeIncrement" Value="00:15:00"/>
+        </Style>
+        <Style TargetType="Line" >
+            <Setter Property="X1" Value="0"/>
+            <Setter Property="X2" Value="1500"/>
+            <Setter Property="Margin" Value="0,10,10,10"/>
+            <Setter Property="Stroke"  Value="LightSteelBlue"/>
+            <Setter Property="StrokeThickness" Value="3"/>
+        </Style>
+    </UserControl.Resources>
+    <ScrollViewer>
+        <Grid>
+            <Grid.RowDefinitions>
+                <!--<RowDefinition Height="120" />
+                <RowDefinition Height="61*" />
+                <RowDefinition Height="61*" />
+                <RowDefinition Height="240" />
+                <RowDefinition Height="61*" />
+                <RowDefinition Height="61*" />
+                <RowDefinition Height="61*" />
+                <RowDefinition Height="61*" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="61*" />
+                <RowDefinition Height="70" />-->
+            </Grid.RowDefinitions>
+            <StackPanel>
+                <StackPanel >
+                    <StackPanel Orientation="Horizontal">
+                        <Button Margin="10,5" Content="Speichern" Height="23" x:Name="Save" Style="{StaticResource StandardButton}" />
+                        <Button Margin="10,5" Content="Abbrechen" Height="23" x:Name="Reject" Style="{StaticResource StandardButton}" />
+                        <TextBlock Text="Interessenten/Kunden Besuchsbericht Nr. :" FontSize="24" Width="500" />
+                        <TextBlock Text="{Binding Path=id}" TextAlignment="Left" FontSize="24"/>
+                        <!--<TextBlock Text="Daten geändert :" Width="120"/>
+                        <CheckBox x:Name="isDirty" Margin="10,5" IsEnabled="False"/>-->
+
+                    </StackPanel>
+                    <Line/>
+                </StackPanel>
+                <StackPanel>
+                    <StackPanel Grid.Row="1" Name="stackPanel4" Orientation="Horizontal">
+                        <TextBlock Text="Kfz Kennzeichen : "/>
+                        <TextBox Text="{Binding Path=kfzkennzeichen,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
+                                MaxLength="25" />
+                        <TextBlock Text="gef. Kilometer : " />
+                        <!--<TextBox Text="{Binding Path=kmgefahren,Mode=TwoWay,UpdateSourceTrigger=LostFocus,StringFormat='{}{0:#,0 KM}'}"/>-->
+                        <TextBox Text="{Binding Path=kmgefahren,Mode=TwoWay,UpdateSourceTrigger=LostFocus,StringFormat=N0}"/>
+                        <!--<my:LabelAndText Name="Kennzeichen" TextBlockText="Kfz Kennzeichen :" TextBoxText="{Binding Path=kfzkennzeichen,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" />
+                        <my:LabelAndText Name="Kilometer" TextBlockText="gef. Kilometer :" TextBoxText="{Binding Path=kmgefahren,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" />-->
+
+
+                    </StackPanel>
+                    <StackPanel Grid.Row="2" Name="stackPanel1" Orientation="Horizontal">
+                        <TextBlock Text="Projekt Nr. : "/>
+                        <TextBox Text="{Binding Path=projektnummer,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
+                                MaxLength="16" />
+                        <!--<my:LabelAndText TextBlockText="Projekt Nr :" TextBoxText="{Binding Path=projektnummer,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" />-->
+                    </StackPanel>
+                    <StackPanel Grid.Row="3">
+                        <Line />
+                        <StackPanel Name="stackPanel2" Orientation="Horizontal">
+                            <TextBlock Text="Thema des Treffens : "/>
+                            <TextBox Text="{Binding Path=besuchsthema,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
+                                MaxLength="255" />
+                            <StackPanel>
+                                <my:LabelAndFilteredComboBox TextBlockText="Firma :" x:Name="Firmen" CBoxItemssource="{Binding Path=Firmen}"
+                                      CBoxSelectedItem="{Binding Path=SelectedFirmen,Mode=TwoWay}" CBoxDisplayMemberPath="name"
+                                        CBoxSelectedValuePath="id" HorizontalAlignment="Stretch" HorizontalContentAlignment="Stretch"
+                                        VerticalAlignment="Top" 
+                                                          cal:Message.Attach="[Event onfcbChanged] =[Action FirmenonfcbChanged ($eventArgs) ]"/>
+                                <my:LabelAndFilteredComboBox TextBlockText="Kontakt :" x:Name="Kontakte"
+                                   CBoxItemssource="{Binding Path=Kontakte}"
+                                     CBoxSelectedItem="{Binding Path=SelectedKontakte,Mode=TwoWay}" CBoxDisplayMemberPath="Fullname"
+                                    CBoxSelectedValuePath="id" VerticalAlignment="Top" />
+
+                                <!--<StackPanel Grid.Row="5" Name="stackPanel6" Orientation="Horizontal" >
+                                    <my:LabelAndFilteredComboBox TextBlockText="Mitarb. Fa. Steinbach :" x:Name="SIPerson"
+                                       CBoxItemssource="{Binding Path=SI_Person}"
+                                           CBoxSelectedItem="{Binding Path=SelectedSI_Person,Mode=TwoWay}" CBoxDisplayMemberPath="benutzername"
+                                          CBoxSelectedValuePath="id" />
+                                </StackPanel>
+                                <StackPanel Grid.Row="6" Name="stackPanel7">
+                                    <my:LabelAndFilteredComboBox TextBlockText="Hersteller :" x:Name="SIFirma"
+                                    CBoxItemssource="{Binding Path=SI_Firma}"
+                                       CBoxSelectedItem="{Binding Path=SelectedSI_Firma,Mode=TwoWay}" CBoxDisplayMemberPath="name"
+                                          CBoxSelectedValuePath="id" />
+                                </StackPanel>-->
+
+                            </StackPanel>
+
+                        </StackPanel>
+                        <Line/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <StackPanel>
+                            <StackPanel Grid.Row="4" Name="stackPanel5" Orientation="Horizontal">
+
+
+                            </StackPanel>
+
+                        </StackPanel>
+                        <TextBlock Text="Vertretene Firmen :" Margin="10,5,0,0" Width="150" FontFamily="Calibri" FontSize="16"/>
+                        <ListBox Width="240" x:Name="ListboxKundenbesucheVertreteneFirmenVM" Style="{StaticResource CheckBoxListFirmenSI }"
+                               ItemsSource="{Binding AvailableNames}"
+                               ff:MultiSelectorBehaviours.SynchronizedSelectedItems="{Binding SelectedNames}"
+                               DisplayMemberPath="name"
+                               SelectionMode="Multiple" />
+                        <TextBlock Text="Teilnehmer SI :" Margin="10,5,0,0" Width="150" FontFamily="Calibri" FontSize="16"/>
+                        <ListBox Width="240" x:Name="ListboxKundenbesucheTeilnehmerSIVM" Style="{StaticResource CheckBoxListTeilnehmerSI}"
+                                 ItemsSource="{Binding AvailableNames}"
+                                 ff:MultiSelectorBehaviours.SynchronizedSelectedItems="{Binding SelectedNames}"
+                                 DisplayMemberPath="benutzername"
+                                 SelectionMode="Multiple" />
+                        <StackPanel Orientation="Vertical">
+                            <TextBlock Text="Teilnehmer Kunde : " Margin="10,5,0,0" Width="150" FontFamily="Calibri" FontSize="16"
+                                      TextAlignment="Right" />
+                            <CheckBox Content="Alle Kontakte : " IsChecked="{Binding ReduceAvailablenames}" IsEnabled="{Binding ChkBoxAvailablenamesEnabled}"
+                                      HorizontalAlignment="Right"/>
+                        </StackPanel>
+                        <ListBox x:Name="ListBoxTeilnehmerExternBesucheVM" Style="{StaticResource CheckBoxListStyle}"
+                                        ItemsSource="{Binding AvailableNames}"
+                                           ff:MultiSelectorBehaviours.SynchronizedSelectedItems="{Binding SelectedNames}"
+                                               DisplayMemberPath="Nachname"
+                                              SelectionMode="Multiple" />
+                    </StackPanel>
+
+                    <StackPanel Grid.Row="7">
+                        <Line/>
+                        <StackPanel Name="stackPanel8" Orientation="Horizontal">
+                            <TextBlock Text="Datum/Uhrzeit von :" />
+                            <c1:C1DateTimePicker TimeFormat="ShortTime" DateTime="{Binding Path=datum_von,Mode=TwoWay}" />
+                            <TextBlock Text="Datum/Uhrzeit bis :" />
+                            <c1:C1DateTimePicker TimeFormat="ShortTime" DateTime="{Binding Path= datum_bis,Mode=TwoWay}" />
+                        </StackPanel>
+                        <Line/>
+                    </StackPanel>
+                    <StackPanel Grid.Row="8" Name="stackPanel9" Orientation="Horizontal">
+                        <TextBlock Text="Kurzbericht : " HorizontalAlignment="Left" />
+                        <TextBox Text="{Binding Path=kurzbericht,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" AcceptsReturn="True" MinHeight="60" Margin="10,5,0,0" Width="1080" Background="Beige" HorizontalAlignment="Left" />
+                    </StackPanel>
+                    <StackPanel Grid.Row="9" Name="stackPanel10" Orientation="Horizontal">
+                        <TextBlock Text="weit. Vorgehenweise : " HorizontalAlignment="Left" />
+                        <TextBox Text="{Binding Path=todo,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" AcceptsReturn="True" MinHeight="60" Margin="10,5,0,0" Width="1080"  Background="Beige" HorizontalAlignment="Left"/>
+                    </StackPanel>
+                    <!--<StackPanel Grid.Row="10" Name="stackPanel3" Orientation="Horizontal">
+                        <Button Margin="10,5" Content="Speichern" Height="23" x:Name="Save" Style="{StaticResource StandardButton}" />
+                    </StackPanel>-->
+                </StackPanel>
+            </StackPanel>
+        </Grid>
+    </ScrollViewer>
+</UserControl>

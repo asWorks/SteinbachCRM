@@ -1,0 +1,163 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Report xmlns="http://schemas.microsoft.com/sqlserver/reporting/2005/01/reportdefinition">
+  <Body>
+    <Height>5cm</Height>
+    <ReportItems>
+      <FixedPage Name="FixedPage1">
+        <Pages>
+          <Page>
+            <ReportItems>
+              <Textbox Name="TextBox1">
+                <Height>4.2cm</Height>
+                <Left>0.4cm</Left>
+                <Style>
+                  <FontSize>12pt</FontSize>
+                  <PaddingBottom>2pt</PaddingBottom>
+                  <PaddingLeft>2pt</PaddingLeft>
+                  <PaddingRight>2pt</PaddingRight>
+                  <PaddingTop>2pt</PaddingTop>
+                </Style>
+                <Top>0.4cm</Top>
+                <Value>=Code.GetCustomerAdress(GetFields())</Value>
+                <Width>8.2cm</Width>
+              </Textbox>
+            </ReportItems>
+            <Style>
+              <BorderWidth>
+                <Left>10pt</Left>
+                <Top>5pt</Top>
+              </BorderWidth>
+            </Style>
+          </Page>
+        </Pages>
+        <DataSetName>DataSet1</DataSetName>
+        <Grouping Name="FixedPage1_Group">
+          <GroupExpressions>
+            <GroupExpression>=Fields!id.Value</GroupExpression>
+          </GroupExpressions>
+        </Grouping>
+      </FixedPage>
+    </ReportItems>
+  </Body>
+  <Code>Public Function GetCustomerAdress(Fields As Fields) As String&#xD;
+	Dim adress As String = ""&#xD;
+&#xD;
+	&#xD;
+	If Not Fields!Firmenname.Value Is Nothing Then&#xD;
+		adress = adress &amp; Fields!Firmenname.Value	&#xD;
+		adress = adress &amp; vbCrLf&#xD;
+		adress = adress &amp; vbCrLf&#xD;
+	End If&#xD;
+	&#xD;
+	&#xD;
+	If Not Fields!Anrede1.Value Is Nothing Then&#xD;
+		adress = adress &amp; Fields!Anrede1.Value	&#xD;
+	End If&#xD;
+	adress = adress &amp; " "&#xD;
+	&#xD;
+	If Not Fields!Titel.Value Is Nothing Then&#xD;
+		adress = adress &amp; Fields!Titel.Value	&#xD;
+	End If&#xD;
+	adress = adress &amp; " "&#xD;
+	&#xD;
+	If Not Fields!Vorname.Value Is Nothing Then&#xD;
+		adress = adress &amp; Fields!Vorname.Value	&#xD;
+	End If&#xD;
+	adress = adress &amp; " "&#xD;
+	&#xD;
+	If Not Fields!Vorname2.Value Is Nothing Then&#xD;
+		adress = adress &amp; Fields!Vorname2.Value	&#xD;
+	End If&#xD;
+	adress = adress &amp; " "&#xD;
+	&#xD;
+	If Not Fields!Nachname.Value Is Nothing Then&#xD;
+		adress = adress &amp; Fields!Nachname.Value	&#xD;
+	End If&#xD;
+	adress = adress &amp; vbCrLf&#xD;
+	adress = adress &amp; vbCrLf&#xD;
+	&#xD;
+	If Not Fields!Straße.Value Is Nothing Then&#xD;
+		adress = adress &amp; Fields!Straße.Value	&#xD;
+	End If&#xD;
+	&#xD;
+	adress = adress &amp; vbCrLf&#xD;
+	&#xD;
+	If Not Fields!PLZ.Value Is Nothing Then&#xD;
+		adress = adress &amp; Fields!PLZ.Value &amp; " "	&#xD;
+	End If&#xD;
+	&#xD;
+	If Not Fields!Ort.Value Is Nothing Then&#xD;
+		adress = adress &amp; Fields!Ort.Value	&#xD;
+	End If&#xD;
+	&#xD;
+	adress = adress &amp; vbCrLf&#xD;
+	&#xD;
+	If Not Fields!Land.Value Is Nothing Then&#xD;
+		adress = adress &amp; Fields!Land.Value	&#xD;
+	End If&#xD;
+	&#xD;
+		&#xD;
+	Return adress&#xD;
+&#xD;
+	&#xD;
+End Function</Code>
+  <PageHeight>5cm</PageHeight>
+  <PageWidth>9cm</PageWidth>
+  <Width>9cm</Width>
+  <DataSources>
+    <DataSource Name="DataSource1">
+      <ConnectionProperties>
+        <DataProvider>OBJECT</DataProvider>
+      </ConnectionProperties>
+    </DataSource>
+    <DataSource Name="DataSource2">
+      <DataSourceReference>E:\Projects\TestAR2\TestSharedDatasource.rdsx</DataSourceReference>
+    </DataSource>
+  </DataSources>
+  <DataSets>
+    <DataSet Name="DataSet1">
+      <Fields>
+        <Field Name="Nachname">
+          <DataField>Nachname</DataField>
+        </Field>
+        <Field Name="Vorname">
+          <DataField>Vorname</DataField>
+        </Field>
+        <Field Name="Vorname2">
+          <DataField>Vorname2</DataField>
+        </Field>
+        <Field Name="Anrede">
+          <DataField>Anrede</DataField>
+        </Field>
+        <Field Name="Titel">
+          <DataField>Titel</DataField>
+        </Field>
+        <Field Name="Land">
+          <DataField>Land</DataField>
+        </Field>
+        <Field Name="PLZ">
+          <DataField>PLZ</DataField>
+        </Field>
+        <Field Name="Ort">
+          <DataField>Ort</DataField>
+        </Field>
+        <Field Name="Straße">
+          <DataField>Straße</DataField>
+        </Field>
+        <Field Name="id">
+          <DataField>id</DataField>
+        </Field>
+        <Field Name="Firmenname">
+          <DataField>Firmenname</DataField>
+        </Field>
+        <Field Name="Anrede1">
+          <DataField>Anrede1</DataField>
+        </Field>
+      </Fields>
+      <Query>
+        <CommandText>=</CommandText>
+        <DataSourceName>DataSource1</DataSourceName>
+      </Query>
+    </DataSet>
+  </DataSets>
+</Report>

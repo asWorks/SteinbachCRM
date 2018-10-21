@@ -1,0 +1,308 @@
+﻿<UserControl x:Class="SteinbachCRM.Views.TermineTerminView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:my="clr-namespace:CommonTools.UserControls;assembly=CommonTools"
+             xmlns:controls="clr-namespace:CommonTools.UserControls;assembly=CommonTools"
+             xmlns:ds="clr-namespace:SteinbachCRM.ViewModels"
+             xmlns:tools="clr-namespace:CommonTools.Converter;assembly=CommonTools"
+              xmlns:ff="clr-namespace:SteinbachCRM.Tools"
+              xmlns:cal="clr-namespace:Caliburn.Micro;assembly=Caliburn.Micro"
+             xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
+             xmlns:c1="http://schemas.componentone.com/winfx/2006/xaml"
+             mc:Ignorable="d"
+             Height="600" Width="900"
+             Loaded="UserControl_Loaded" Margin="0">
+    <UserControl.Resources>
+        <CollectionViewSource x:Key="EintraegeAktionenLookup" />
+        <CollectionViewSource x:Key="EintraegeStatusLookup" />
+        <CollectionViewSource x:Key="EintraegeErinnerungLookup" />
+        <CollectionViewSource x:Key="EintraegePrioritaetLookup" />
+        <CollectionViewSource x:Key="SI_UserLookup" />
+        <CollectionViewSource x:Key="FirmenLookup" />
+        <CollectionViewSource x:Key="EintraegeGebietLookup" />
+        <CollectionViewSource x:Key="EintraegeTeamLookup" />
+        <Style TargetType="{x:Type controls:LabelAndDatepicker}">
+            <Setter Property="DatePickerWidth" Value="150"/>
+            <Setter Property="StackPanelOrientation" Value="Vertical"/>
+            <Setter Property="TextBlockMargin" Value="2,5"/>
+            <Setter Property="DatePickerMargin" Value="3" />
+            <Setter Property="TextBlockFontFamily" Value="Calibri"/>
+            <Setter Property="TextBlockFontSize" Value="14"/>
+            <Setter Property="TextBlockTextAlignment" Value="Center"/>
+        </Style>
+        <Style TargetType="{x:Type controls:LabelAndCheckbox}" x:Key="CheckBoxNormal">
+            <!--<Setter Property="TextBoxWidth" Value="170"/>-->
+            <Setter Property="TextBlockWidth" Value="125"/>
+            <Setter Property="StackPanelOrientation" Value="Horizontal"/>
+            <Setter Property="TextBlockFontFamily" Value="Calibri"/>
+            <Setter Property="TextBlockFontSize" Value="14"/>
+            <Setter Property="TextBlockMargin" Value="10,5,10,5"/>
+            <Setter Property="CheckBoxMargin" Value="0,8,10,5"/>
+        </Style>
+        <Style TargetType="{x:Type controls:LabelAndCheckbox}">
+            <Setter Property="TextBoxWidth" Value="110"/>
+            <Setter Property="TextBlockWidth" Value="135"/>
+            <Setter Property="StackPanelOrientation" Value="Horizontal"/>
+            <Setter Property="TextBlockFontFamily" Value="Calibri"/>
+            <Setter Property="TextBlockFontSize" Value="14"/>
+            <Setter Property="TextBlockMargin" Value="10,15"/>
+            <Setter Property="CheckBoxMargin" Value="5,16"/>
+            <Setter Property="TextBlockTextAlignment" Value="Left"/>
+        </Style>
+        <Style TargetType="{x:Type controls:LabelAndText}">
+            <Setter Property="TextBoxWidth" Value="150"/>
+            <Setter Property="TextBoxMargin" Value="10,3,10,3"/>
+            <Setter Property="StackPanelOrientation" Value="Vertical"/>
+            <Setter Property="TextBoxTextAlignment" Value="Left"/>
+            <Setter Property="TextBlockWidth" Value="120"/>
+            <Setter Property="TextBlockFontFamily" Value="Calibri"/>
+            <Setter Property="TextBlockFontSize" Value="14"/>
+            <Setter Property="ValueFontFamily" Value="Calibri"/>
+            <Setter Property="ValueFontSize" Value="14"/>
+            <Setter Property="TextBlockHorizontalAlignment" Value="Left"/>
+            <Setter Property="TextBlockMargin" Value="10,2"/>
+        </Style>
+        <Style TargetType="{x:Type controls:LabelAndText}" x:Key="ReadOnlyTextBox">
+            <Setter Property="TextBoxWidth" Value="120"/>
+            <Setter Property="TextBoxMargin" Value="10,3,10,3"/>
+            <Setter Property="StackPanelOrientation" Value="Vertical"/>
+            <Setter Property="TextBoxTextAlignment" Value="Left"/>
+            <Setter Property="TextBlockWidth" Value="120"/>
+            <Setter Property="TextBlockFontFamily" Value="Calibri"/>
+            <Setter Property="TextBlockFontSize" Value="10"/>
+            <Setter Property="ValueFontFamily" Value="Calibri"/>
+            <Setter Property="ValueFontSize" Value="12"/>
+            <Setter Property="TextBlockHorizontalAlignment" Value="Center"/>
+        </Style>
+        <Style TargetType="{x:Type controls:LabelAndFilteredComboBox}" x:Key="TinyLabelAndFilteredComboBox">
+            <Setter Property="StackPanelOrientation" Value="Vertical"/>
+            <Setter Property="TextBlockWidth" Value="120"/>
+            <Setter Property="TextBlockFontFamily" Value="Calibri"/>
+            <Setter Property="TextBlockFontSize" Value="10"/>
+            <Setter Property="TextBlockHorizontalAlignment" Value="Left"/>
+            <Setter Property="CBoxBackground" Value="GhostWhite"/>
+            <Setter Property="CBoxWidth" Value="120"/>
+            <Setter Property="CBoxHeight" Value="21"/>
+            <Setter Property="ComboBoxMargin" Value="10,3"/>
+            <Setter Property="TextBoxMargin" Value="10,3"/>
+        </Style>
+        <Style TargetType="{x:Type controls:LabelAndFilteredComboBox}">
+            <Setter Property="StackPanelOrientation" Value="Vertical"/>
+            <Setter Property="TextBlockWidth" Value="120"/>
+            <Setter Property="TextBlockFontFamily" Value="Calibri"/>
+            <Setter Property="TextBlockFontSize" Value="14"/>
+            <Setter Property="TextBlockHorizontalAlignment" Value="Left"/>
+            <Setter Property="CBoxBackground" Value="GhostWhite"/>
+            <Setter Property="CBoxWidth" Value="150"/>
+            <Setter Property="CBoxHeight" Value="23"/>
+            <Setter Property="ComboBoxMargin" Value="10,3"/>
+            <Setter Property="TextBoxMargin" Value="10,3"/>
+            <Setter Property="TextBlockMargin" Value="10,2"/>
+        </Style>
+        <Style TargetType="Button">
+            <Setter Property="Width" Value="120"/>
+            <Setter Property="HorizontalAlignment" Value="Left"/>
+            <Setter Property="Margin" Value="20,10"/>
+            <Setter Property="Background" Value="Lavender"/>
+        </Style>
+        <Style TargetType="Border">
+            <Setter Property="BorderThickness" Value="2"/>
+            <Setter Property="BorderBrush" Value="LightGray"/>
+            <Setter Property="CornerRadius" Value="8"/>
+            <Setter Property="Margin" Value="10,10"/>
+        </Style>
+        <Style TargetType="TextBlock" x:Key="TextblockBeschriftung">
+            <Setter Property="Margin" Value="10,2,0,0"/>
+            <Setter Property="FontFamily" Value="Calibri"/>
+            <Setter Property="FontSize" Value="14"/>
+        </Style>
+        <Style TargetType="c1:C1DateTimePicker">
+            <Setter Property="Height" Value="25"/>
+            <Setter Property="Margin" Value="10,2,0,0"/>
+        </Style>
+        <Style TargetType="ListBox">
+            <Setter Property="Margin" Value="10,3"/>
+           
+        </Style>
+        <!--<Style TargetType="ListBoxItem">
+            <Setter Property="Selector.Background" Value="Blue"/>
+            <Setter Property="Background" Value="Yellow"/>
+        </Style>-->
+        <Style x:Key="CheckBoxListStyle" TargetType="{x:Type ListBox}" >
+            <Setter Property="SelectionMode" Value="Multiple"/>
+            <Setter Property="Height" Value="200"/>
+            <Setter Property="Width" Value="240"/>
+            <Setter Property="Margin" Value="10,3"/>
+            <Setter Property="ItemContainerStyle">
+                <Setter.Value>
+                    <Style TargetType="ListBoxItem">
+                        <Setter Property="Margin" Value="2"/>
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate TargetType="{x:Type ListBoxItem}">
+                                    <StackPanel Orientation="Horizontal">
+                                        <CheckBox Focusable="False"
+                                              IsChecked="{Binding Path=IsSelected,Mode=TwoWay,RelativeSource={RelativeSource TemplatedParent}}"></CheckBox>
+                                        <TextBlock Text="{Binding Path=Nachname}" Margin="10,0,0,0"/>
+                                        <TextBlock Text=", "/>
+                                        <TextBlock Text="{Binding Path=Vorname}"/>
+                                        <TextBlock Text=" - "/>
+                                        <TextBlock Text="{Binding Path=Funktion}"/>
+                                    </StackPanel>
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+                    </Style>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style x:Key="CheckBoxListTeilnehmerSI" TargetType="{x:Type ListBox}" >
+            <Setter Property="SelectionMode" Value="Multiple"/>
+            <Setter Property="Height" Value="200"/>
+            <Setter Property="Margin" Value="10,3"/>
+            <Setter Property="Width" Value="150"/>
+            <Setter Property="ItemContainerStyle">
+                <Setter.Value>
+                    <Style TargetType="ListBoxItem">
+                        <Setter Property="Margin" Value="2"/>
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate TargetType="{x:Type ListBoxItem}">
+                                    <StackPanel Orientation="Horizontal">
+                                        <CheckBox Focusable="False" Margin="5,0,0,0"
+                                              IsChecked="{Binding Path=IsSelected,Mode=TwoWay,RelativeSource={RelativeSource TemplatedParent}}"></CheckBox>
+                                        <TextBlock Text="{Binding Path=benutzername}" Margin="10,0,0,0"/>
+                                        
+                                    </StackPanel>
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+                    </Style>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <tools:PostfachPLZOrtConverter x:Key="postfachconverter" />
+        <tools:PersonIDConverter x:Key="personidconverter"/>
+        <tools:ReminderTimespanStringConverter x:Key="reminderconverter" />
+    </UserControl.Resources>
+    <Grid x:Name="CurrentTermin" Background="Lavender" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition />
+            <ColumnDefinition Width="270" />
+            <ColumnDefinition Width="170" />
+            <ColumnDefinition />
+            <!--<ColumnDefinition />
+            <ColumnDefinition />-->
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50" />
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="0" />
+            <RowDefinition Height="0" />
+            <RowDefinition Height="160" />
+            <RowDefinition Height="58*" />
+            <RowDefinition Height="58*" />
+            <!--<RowDefinition />-->
+            <!--<RowDefinition />-->
+        </Grid.RowDefinitions>
+        <!--<TextBlock Text="{Binding Path= AppointmentType,Mode=OneWay}" Height="30" Grid.Column="1" FontSize="16" />-->
+        <Border Grid.Column="1" Grid.ColumnSpan="2" Width="160" Background="{StaticResource SubtleBlue}">
+        <TextBlock Text="{Binding Path=AppointmentType}" Height="30" Width="150"  FontSize="16" HorizontalAlignment="Center" Background="{StaticResource SubtleBlue}" TextAlignment="Center" />
+        </Border>
+        <StackPanel Grid.Row="1">
+            <my:LabelAndFilteredComboBox Grid.Row="2" Grid.Column="0" TextBlockText="Aktion :" CBoxItemssource="{Binding Source={StaticResource EintraegeAktionenLookup}}"
+                              CBoxSelectedValue="{Binding Path=Aktion,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" CBoxIsSynchronizedWithCurrentItem="False"
+                              CBoxSelectedValuePath="id"       
+                              CBoxDisplayMemberPath="Eintrag"/>
+            <my:LabelAndFilteredComboBox Grid.Row="1" Grid.Column="0" TextBlockText="Firma :" CBoxItemssource="{Binding Source={StaticResource FirmenLookup}}" onfcbChanged="LabelAndFilteredComboBox_onfcbChanged"
+                              CBoxSelectedValue="{Binding Path=id_firma,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" CBoxIsSynchronizedWithCurrentItem="False"
+                              CBoxSelectedValuePath="id"       
+                              CBoxDisplayMemberPath="name" 
+                                      cal:Message.Attach="[Event OnFcb_SelectionChanged] =[Action FirmaSelectionChanged ($eventargs) ];
+                                         [Event onfcbChanged] =[Action FirmenOnFilterChanged ($eventArgs) ]"/>
+            
+            <my:LabelAndText Grid.Row="2" Grid.Column="1" TextBlockText="Betreff :" TextBoxText="{Binding Path=Betreff,Mode=TwoWay}"/>
+            <my:LabelAndText x:Name="txtStandort" Grid.Row="2" Grid.Column="2" TextBlockText="Standort :" TextBoxText="{Binding Path=Standort,Mode=TwoWay}"/>
+            <!--<my:LabelAndFilteredComboBox TextBlockText="Team :"
+                CBoxItemssource="{Binding Source={StaticResource EintraegeTeamLookup}}"
+                CBoxSelectedValue="{Binding Path=Team,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
+                CBoxIsSynchronizedWithCurrentItem="False" CBoxSelectedValuePath="id" CBoxDisplayMemberPath="Eintrag"
+                 />-->
+        </StackPanel>
+        <StackPanel Grid.Row="1" Grid.Column="1">
+            <TextBlock Text="Teilnehmer extern :" Style="{StaticResource TextblockBeschriftung}"/>
+            <ListBox x:Name="ListboxKontakte" Style="{StaticResource CheckBoxListStyle}"
+                      ItemsSource="{Binding AvailableNames}"
+               ff:MultiSelectorBehaviours.SynchronizedSelectedItems="{Binding SelectedNames}"
+               DisplayMemberPath="Nachname"
+               SelectionMode="Multiple" />
+            <TextBlock Text="{Binding Path=TestContent}"/>
+        </StackPanel>
+        <StackPanel Grid.Row="1" Grid.Column="3" Grid.RowSpan="1" Margin="0,0,10,0">
+            <TextBlock Text="Beginn :" Style="{StaticResource TextblockBeschriftung}"/>
+            <c1:C1DateTimePicker x:Name="dtpTerminVon" Grid.Row="3" Grid.Column="2" DateTime="{Binding Path=TerminVon,Mode=TwoWay}" EditMode="{Binding Path=DateTimePickerFormat}"
+                                  cal:Message.Attach="[Event DateTimeChanged] =[Action TerminVonDateTimeChanged ($eventargs) ]"
+                    TimeIncrement="00:15:00" TimeFormat="ShortTime" />
+            <TextBlock Text="Ende :" Style="{StaticResource TextblockBeschriftung}"/>
+            <c1:C1DateTimePicker x:Name="dtpTerminBis" Grid.Row="3" Grid.Column="2" DateTime="{Binding Path=TerminBis,Mode=TwoWay}" EditMode="{Binding Path=DateTimePickerFormat}"
+                                 cal:Message.Attach="[Event DateTimeChanged] =[Action TerminBisDateTimeChanged ($eventargs) ]"
+                    TimeIncrement="00:15:00" TimeFormat="ShortTime" />
+            <TextBlock x:Name="txtErinerungDatum" Text="Erinnerung-Datum/Uhrzeit :" Style="{StaticResource TextblockBeschriftung}"/>
+            <c1:C1DateTimePicker x:Name="dtpErinnerungDatum" Grid.Row="3" Grid.Column="2" DateTime="{Binding Path=ErinerungDatum,Mode=TwoWay}" IsEnabled="{Binding Path=Erinnerung}"
+                                 cal:Message.Attach="[Event DateTimeChanged] =[Action TerminErinnerungDateTimeChanged ($eventargs) ]"
+                    TimeIncrement="00:15:00" TimeFormat="ShortTime" />
+            <my:LabelAndFilteredComboBox x:Name="cboErinnerung" Grid.Row="3" Grid.Column="0" TextBlockText="Erinnerung :" CBoxItemssource="{Binding Source={StaticResource EintraegeErinnerungLookup}}" IsEnabled="{Binding Path=Erinnerung}"
+                                         cal:Message.Attach="[Event OnFcb_SelectionChanged] =[Action TerminFcbSelectionChanged ($eventargs) ]"
+                              CBoxSelectedValue="{Binding Path=ErinnerungTimespan,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged,Converter={StaticResource reminderconverter}}" CBoxIsSynchronizedWithCurrentItem="False"
+                              CBoxSelectedValuePath="Eintrag"       
+                              CBoxDisplayMemberPath="Eintrag"/>
+            <my:LabelAndCheckbox x:Name="ChkGanztaegig" TextBlockText="Ganztägig :" Style="{StaticResource CheckBoxNormal}" CheckBoxChecked="{Binding Path=istGanztaegig,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
+            <my:LabelAndCheckbox x:Name="ChkErinnerungAktiv" TextBlockText="Erinnerung aktiv :" Style="{StaticResource CheckBoxNormal}" CheckBoxChecked="{Binding Path=Erinnerung,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
+            <my:LabelAndCheckbox x:Name="ChkErinnerungGesendet" TextBlockText="Erinnerung gesendet :" Style="{StaticResource CheckBoxNormal}" CheckBoxChecked="{Binding Path=EmailSent,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
+                             ThisCheckBoxUnchecked="ChkErinnerungGesendet_ThisCheckBoxUnchecked"  ThisCheckBoxChecked="ChkErinnerungGesendet_ThisCheckBoxChecked"  />
+        
+        </StackPanel>
+        <StackPanel Grid.Row="1" Grid.Column="2">
+            <TextBlock Text="Teilnehmer SI :" Style="{StaticResource TextblockBeschriftung}"/>
+            <ListBox x:Name="ListboxTeilnehmerSI" Style="{StaticResource CheckBoxListTeilnehmerSI}"
+                      ItemsSource="{Binding AvailableNames}"
+               ff:MultiSelectorBehaviours.SynchronizedSelectedItems="{Binding SelectedNames}"
+               DisplayMemberPath="benutzername"
+               SelectionMode="Multiple" />
+        </StackPanel>
+        <StackPanel Grid.Row="4" Grid.ColumnSpan="4">
+            <TextBlock Text="Details :" Margin="10,3,0,5"/>
+            <TextBox Text="{Binding Path=Details,Mode=TwoWay}" AcceptsReturn="True" Width="800" Height="120" Margin="10,5,0,10"
+                     HorizontalAlignment="Left" VerticalScrollBarVisibility="Auto" />
+        </StackPanel>
+        <my:LabelAndFilteredComboBox Grid.Row="5" TextBlockText="Status :" CBoxItemssource="{Binding Source={StaticResource EintraegeStatusLookup}}"
+                              CBoxSelectedValue="{Binding Path=Status,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" CBoxIsSynchronizedWithCurrentItem="False"
+                              CBoxSelectedValuePath="id"       
+                              CBoxDisplayMemberPath="Eintrag"/>
+        <my:LabelAndFilteredComboBox Grid.Row="5" Grid.Column="1" TextBlockText="Priorität :" CBoxItemssource="{Binding Source={StaticResource EintraegePrioritaetLookup}}"
+                              CBoxSelectedValue="{Binding Path=Priorität,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" CBoxIsSynchronizedWithCurrentItem="False"
+                              CBoxSelectedValuePath="id"       
+                              CBoxDisplayMemberPath="Eintrag"
+                Grid.ColumnSpan="2" />
+        <my:LabelAndFilteredComboBox Grid.Row="5" Grid.Column="2" TextBlockText="Gebiet :" CBoxItemssource="{Binding Source={StaticResource EintraegeGebietLookup}}"
+                              CBoxSelectedValue="{Binding Path=Gebiet,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" CBoxIsSynchronizedWithCurrentItem="False"
+                              CBoxSelectedValuePath="id"       
+                              CBoxDisplayMemberPath="Eintrag"
+                Grid.ColumnSpan="2" />
+        <!--<StackPanel  Grid.Row="6" Grid.Column="1" ></StackPanel>-->
+        <my:LabelAndFilteredComboBox Grid.Row="5" Grid.Column="3" TextBlockText="Angelegt :" CBoxItemssource="{Binding Source={StaticResource SI_UserLookup}}"
+                              CBoxSelectedValue="{Binding Path=Angelegt,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" CBoxIsSynchronizedWithCurrentItem="False"
+                              CBoxSelectedValuePath="id"       
+                              CBoxDisplayMemberPath="benutzername"/>
+        <!--<my:LabelAndCheckbox Grid.Row="6" TextBlockText="Folgeaktivität Termin :" CheckBoxChecked="{Binding Path=FolgeAktivitaetTermin,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
+        <my:LabelAndCheckbox Grid.Row="6" Grid.Column="1" TextBlockText="Folgeaktivität Aufgabe :" CheckBoxChecked="{Binding Path=FolgeAktivitaetAufgabe,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
+                Grid.ColumnSpan="1" />-->
+        <Button  x:Name="SaveChanges" Grid.Row="6" Grid.Column="2" Content="Speichern" Style="{StaticResource StandardButton}"/>
+        <StackPanel Grid.Row="6" Grid.Column="3" Orientation="Horizontal">
+           
+        <Button Grid.Row="6" Grid.Column="3" x:Name="RejectChanges" Content="Abrechen" Style="{StaticResource StandardButton}"/>
+        </StackPanel>
+    </Grid>
+</UserControl>

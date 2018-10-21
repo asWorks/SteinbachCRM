@@ -1,0 +1,65 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" >
+<head>
+    <title>Untitled Page</title>
+</head>
+<body>
+
+
+    <textarea id="TextArea1" cols="150" rows="20">
+      Testprojekt mit Automapper Caliburn Micro und EF
+
+      E:\Projects\spike\TestEF+CaliburnMicro\TestCM+EF\
+    </textarea>
+    <textarea id="TextArea2" cols="150" rows="20">
+       public class DateTools
+    {
+
+        public static DateTime GetTodayWithCustomTime(int hour, int minute, int second)
+        {
+            int year = DateTime.Now.Year;
+            int month = DateTime.Now.Month;
+            int day = DateTime.Now.Day;
+
+            return new DateTime(year, month, day, hour, minute, second);
+
+        }
+        /// <summary>
+        /// Gibt aktuelles Datum mit aktueller voller Stunde zurück
+        /// </summary>
+        /// <param name="FullHourOffset">Offset der zur volle Stunde addiert wird. </param>
+        /// <param name="minute">Minuten</param>
+
+        /// <returns>DateTime</returns>
+        public static DateTime GetTodayWithCustomTime(int FullHourOffset, int minute = 0)
+        {
+            int h = DateTime.Now.Hour + FullHourOffset;
+            int year = DateTime.Now.Year;
+            int month = DateTime.Now.Month;
+            int day = DateTime.Now.Day;
+
+            return new DateTime(year, month, day, h, minute, 0);
+
+        }
+        /// <summary>
+        /// Gibt das übergebene Datum mit der übergbenen Uhrzeit zurück.
+        /// </summary>
+        /// <param name="dt"></param>
+        /// <param name="hour"></param>
+        /// <param name="minute"></param>
+        /// <param name="second"></param>
+        /// <returns></returns>
+        public static DateTime GetDateWithCustomHour(DateTime dt, int hour, int minute, int second)
+        {
+            int year = dt.Year;
+            int month = dt.Month;
+            int day = dt.Day;
+
+            return new DateTime(year, month, day, hour, minute, 0);
+
+        }
+    }
+    </textarea>
+
+</body>
+</html>

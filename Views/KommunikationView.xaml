@@ -1,0 +1,62 @@
+﻿<UserControl x:Class="SteinbachCRM.Views.KommunikationView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+              xmlns:c1="http://schemas.componentone.com/winfx/2006/xaml"
+              xmlns:cal="clr-namespace:Caliburn.Micro;assembly=Caliburn.Micro"
+			 xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
+             mc:Ignorable="d" 
+             Height="Auto" Width="Auto">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="51*" />
+            <RowDefinition Height="549*" />
+        </Grid.RowDefinitions>
+        <StackPanel Orientation="Horizontal">
+            <Label Content="Von Datum :" Height="25" Margin="20,10,0,0"/>
+            <DatePicker x:Name="VonDatum" Height="25" Margin="5,10,0,0"/>
+            <Label Content="Bis Datum :" Height="25" Margin="20,10,0,0"/>
+            <DatePicker x:Name="BisDatum" Height="25" Margin="5,10,0,0"/>
+            <!--<CheckBox x:Name="MultiLine" Content="Mehrzeilige Anzeige" Margin="50,12,0,0"/>-->
+        </StackPanel>
+        <c1:C1DataGrid ItemsSource="{Binding KommuniKation}"  HorizontalAlignment="Left" Margin="23,19,10,0" x:Name="KommuniKation" VerticalAlignment="Top" AutoGenerateColumns="False"
+								cal:Message.Attach="[Event MouseDoubleClick] =[Action KommuniKation_DoubleClick ($source)];
+                        [Event DeletingRows] =[Action Kommunikation_DeletingRows ($eventargs)]"
+						CanUserAddRows="False" Height="400" CanUserSort="True" CanUserGroup="True" FrozenTopRowsCount="1" RowHeight="Auto"
+                Grid.Row="1" DeletingRows="KommuniKation_DeletingRows" >
+            <c1:C1DataGrid.TopRows>
+                <c1:DataGridFilterRow x:Name="dgFilterRow" Height="30" CanUserToggleDetails="True" CanUserResize="True" IsSelectable="True" />
+            </c1:C1DataGrid.TopRows>
+            <c1:C1DataGrid.Columns>
+                <!--<c1:DataGridTextColumn Header="Nachname" Binding="{Binding Nachname,Mode=TwoWay}" Width="90" SortMemberPath="Nachname" FilterMemberPath="Nachname" />-->
+                <!--<c1:DataGridTemplateColumn Header="Action" Width="80" VerticalAlignment="Top" >
+                    <c1:DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <StackPanel Orientation="Horizontal" Height="25" VerticalAlignment="Top">
+                                <Button x:Name="ShowItem" Height="25" Width="25" ToolTip="Bearbeiten">
+                                    <Image Source="/SteinbachCRM;component/Images/configure.png" />
+                                </Button>
+                                <Button x:Name= "DeleteItem" Height="25"  Width="25" ToolTip="Löschen">
+                                    <Image Source="/SteinbachCRM;component/Images/del.png" />
+                                </Button>
+                            </StackPanel>
+                        </DataTemplate>
+                    </c1:DataGridTemplateColumn.CellTemplate>
+                </c1:DataGridTemplateColumn>-->
+                
+                <c1:DataGridTextColumn Binding="{Binding Type,Mode=TwoWay}" x:Name="Type" Header="Typ"  Width="90" SortMemberPath="Type" FilterMemberPath="Type"/>
+                <c1:DataGridDateTimeColumn Binding="{Binding DatumUhrzeit,Mode=TwoWay}" x:Name="DatumUhrzeit" Header="Datum"  Width="100" SortMemberPath="DatumUhrzeit" SortState="Descending" />
+                <c1:DataGridTextColumn Binding="{Binding Aktion,Mode=TwoWay}" x:Name="Aktion" Header="Aktion"  Width="90" SortMemberPath="Aktion"/>
+                <c1:DataGridTextColumn Binding="{Binding Person,Mode=TwoWay}" x:Name="Person" Header="Person"  Width="90" SortMemberPath="Person" FilterMemberPath="Person"/>
+                <c1:DataGridTextColumn Binding="{Binding Betreff,Mode=TwoWay}" x:Name="Betreff" Header="Betreff"  Width="200" SortMemberPath="Betreff" FilterMemberPath="Betreff"
+                                       TextWrapping="WrapWithOverflow"  />
+                <c1:DataGridTextColumn Binding="{Binding Benutzer,Mode=TwoWay}" x:Name="Benutzer" Header="Benutzer"  Width="90" SortMemberPath="Benutzer" FilterMemberPath="Benutzer"/>
+                <c1:DataGridTextColumn Binding="{Binding Gebiet,Mode=TwoWay}" x:Name="Gebiet" Header="Gebiet"  Width="90" SortMemberPath="Betreff" FilterMemberPath="Gebiet"/>
+                <c1:DataGridTextColumn Binding="{Binding ExterneTeilnehmerString,Mode=TwoWay}" x:Name="ExterneTeilnehmer" Header="Externe Teilnehmer"  Width="150" SortMemberPath="ExterneTeilnehmer" FilterMemberPath="ExterneTeilnehmer" CanUserResizeRows="True"
+                        TextWrapping="WrapWithOverflow" />
+                <c1:DataGridTextColumn Binding="{Binding Status,Mode=TwoWay}" x:Name="Status" Header="Status"  Width="90" SortMemberPath="Status" FilterMemberPath="Status"/>
+            </c1:C1DataGrid.Columns>
+        </c1:C1DataGrid>
+    </Grid>
+</UserControl>

@@ -1,0 +1,44 @@
+﻿<UserControl xmlns:my="clr-namespace:CommonTools.UserControls;assembly=CommonTools"  x:Class="SteinbachCRM.Views.FirmaView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:controls="clr-namespace:CommonTools.UserControls;assembly=CommonTools"
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="300"
+             Loaded="UserControl_Loaded" >
+    <UserControl.Resources>
+        <Style TargetType="{x:Type controls:LabelAndText}">
+
+            <Setter Property="TextBoxWidth" Value="150"/>
+            <Setter Property="TextBoxMargin" Value="3"/>
+            
+            <Setter Property="StackPanelOrientation" Value="Horizontal"/>
+            <Setter Property="TextBoxTextAlignment" Value="Left"/>
+            <Setter Property="TextBlockWidth" Value="120"/>
+            <Setter Property="TextBlockFontFamily" Value="Calibri"/>
+            <Setter Property="TextBlockFontSize" Value="14"/>
+            <Setter Property="ValueFontFamily" Value="Calibri"/>
+            <Setter Property="ValueFontSize" Value="14"/>
+            <Setter Property="TextBlockTextAlignment" Value="Right"/>
+
+        </Style>
+    </UserControl.Resources>
+    <Grid x:Name="CurrentFirma" >
+        <StackPanel>
+            <TextBox x:Name="CurrentFirma_name"/>
+            <StackPanel x:Name="spCurrentFirma" Unloaded="spCurrentFirma_Unloaded">
+            <my:LabelAndText TextBoxText="{Binding Path=kurzname,Mode=TwoWay}" TextBlockText="Kurzname :"/>
+                <my:LabelAndText TextBoxText="{Binding Path=Webseite,Mode=TwoWay}" TextBlockText="Webseite :"/>
+                <my:LabelAndText TextBoxText="{Binding Path=KdNr,Mode=TwoWay}" TextBlockText="KdNr :"/>
+                <my:LabelAndText TextBoxText="{Binding Path=Gebiet,Mode=TwoWay}" TextBlockText="Gebiet :"/>
+                <my:LabelAndText TextBoxText="{Binding Path=Quelle ,Mode=TwoWay}" TextBlockText="Quelle :"/>
+                <my:LabelAndText TextBoxText="{Binding Path=Typ,Mode=TwoWay}" TextBlockText="Typ :"/>
+                <my:LabelAndText TextBoxText="{Binding Path=AngelegtVon,Mode=TwoWay}" TextBlockText="Angelegt von :"/>
+                
+            </StackPanel>
+            <Button x:Name="Save" Content="Speichern"/>
+        </StackPanel>    
+        
+    </Grid>
+</UserControl>

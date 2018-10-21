@@ -1,0 +1,8 @@
+﻿<Window x:Class="SteinbachCRM.Views.StandardPopupView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="StandardPopupView" Closing="Window_Closing">
+    <Grid Margin="0">
+        <ContentControl x:Name="CurrentObject" Margin="0,0,0,0"/>
+    </Grid>
+</Window>

@@ -1,0 +1,17 @@
+﻿<Window x:Class="asWorksUpdater.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="MainWindow" Height="350" Width="525" 
+        Loaded="Window_Loaded">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="248*" />
+            <RowDefinition Height="63*" />
+        </Grid.RowDefinitions>
+        <Button Content="Update ausführen" Grid.Row="1" Height="23" HorizontalAlignment="Left" Margin="45,17,0,0" Name="btnUpdate"
+                VerticalAlignment="Top" Width="167" Click="btnUpdate_Click" />
+        <Button Content="Update jetzt nicht ausführen" Height="23" HorizontalAlignment="Left" Margin="276,17,0,0" Name="btnCancel"
+                VerticalAlignment="Top" Width="167" Grid.Row="1" Click="btnCancel_Click" />
+        <TextBlock x:Name="Message" Text="TextBlock" TextWrapping="Wrap" TextAlignment="Center" />
+    </Grid>
+</Window>

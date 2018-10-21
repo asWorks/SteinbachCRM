@@ -1,0 +1,129 @@
+﻿<UserControl xmlns:my="clr-namespace:CommonTools.UserControls;assembly=CommonTools"  x:Class="SteinbachCRM.Views.Firmen_PersonenView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:controls="clr-namespace:CommonTools.UserControls;assembly=CommonTools"
+             xmlns:ds="clr-namespace:SteinbachCRM.ViewModels"
+             xmlns:tools="clr-namespace:CommonTools.Converter;assembly=CommonTools"
+             mc:Ignorable="d"
+             Height="Auto" Width="Auto"
+            
+             Loaded="UserControl_Loaded">
+    <!--d:DesignHeight="300" d:DesignWidth="900"-->
+    <UserControl.Resources>
+       
+        <CollectionViewSource x:Key="EintraegeAnredeLookup" />
+        <CollectionViewSource x:Key="EintraegeBetreuerLookup" />
+        <CollectionViewSource x:Key="EintraegeGebietLookup" />
+       
+        <Style TargetType="{x:Type controls:LabelAndCheckbox}" x:Key="CheckBoxHorizontal">
+            <Setter Property="TextBoxWidth" Value="150"/>
+            <Setter Property="StackPanelOrientation" Value="Horizontal"/>
+            <Setter Property="TextBlockFontFamily" Value="Calibri"/>
+            <Setter Property="TextBlockFontSize" Value="14"/>
+            <Setter Property="TextBlockMargin" Value="20,5,20,5"/>
+            <Setter Property="CheckBoxMargin" Value="0,5"/>
+        </Style>
+        <Style TargetType="{x:Type controls:LabelAndCheckbox}">
+            <Setter Property="TextBoxWidth" Value="250"/>
+            <Setter Property="StackPanelOrientation" Value="Vertical"/>
+            <Setter Property="TextBlockFontFamily" Value="Calibri"/>
+            <Setter Property="TextBlockFontSize" Value="14"/>
+            <Setter Property="TextBlockMargin" Value="20,10,20,10"/>
+            <Setter Property="CheckBoxMargin" Value="20,0"/>
+        </Style>
+        <Style TargetType="{x:Type controls:LabelAndText}">
+            <Setter Property="TextBoxWidth" Value="150"/>
+            <Setter Property="TextBoxMargin" Value="10,3,10,3"/>
+            <Setter Property="StackPanelOrientation" Value="Vertical"/>
+            <Setter Property="TextBoxTextAlignment" Value="Left"/>
+            <Setter Property="TextBlockWidth" Value="120"/>
+            <Setter Property="TextBlockFontFamily" Value="Calibri"/>
+            <Setter Property="TextBlockFontSize" Value="14"/>
+            <Setter Property="ValueFontFamily" Value="Calibri"/>
+            <Setter Property="ValueFontSize" Value="14"/>
+            <Setter Property="TextBlockHorizontalAlignment" Value="Center"/>
+        </Style>
+        <Style TargetType="{x:Type controls:LabelAndFilteredComboBox}">
+            <Setter Property="StackPanelOrientation" Value="Vertical"/>
+            <Setter Property="TextBlockWidth" Value="120"/>
+            <Setter Property="TextBlockFontFamily" Value="Calibri"/>
+            <Setter Property="TextBlockFontSize" Value="14"/>
+            <Setter Property="TextBlockHorizontalAlignment" Value="Center"/>
+            <Setter Property="CBoxBackground" Value="GhostWhite"/>
+            <Setter Property="CBoxWidth" Value="150"/>
+            <Setter Property="CBoxHeight" Value="23"/>
+            <Setter Property="ComboBoxMargin" Value="10,3"/>
+            <Setter Property="TextBoxMargin" Value="10,3"/>
+            </Style>
+        <Style TargetType="Button">
+            <Setter Property="Width" Value="120"/>
+            <Setter Property="HorizontalAlignment" Value="Left"/>
+            <Setter Property="Margin" Value="20,10"/>
+            <Setter Property="Background" Value="Lavender"/>
+        </Style>
+        <Style TargetType="Border">
+            <Setter Property="BorderThickness" Value="3"/>
+            <Setter Property="BorderBrush" Value="Blue"/>
+            <Setter Property="CornerRadius" Value="8"/>
+            <Setter Property="Margin" Value="10,10"/>
+        </Style>
+        <tools:PostfachPLZOrtConverter x:Key="postfachconverter" />
+    </UserControl.Resources>
+    <StackPanel>
+        <Border>
+            <Grid x:Name="SelectedPerson" Background="Lavender">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition />
+                    <ColumnDefinition />
+                    <ColumnDefinition />
+                    <ColumnDefinition />
+                    <ColumnDefinition />
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition />
+                    <RowDefinition />
+                    <RowDefinition />
+                    <RowDefinition />
+                   
+                </Grid.RowDefinitions>
+               
+                <my:LabelAndText Grid.Row="0" Grid.Column="0" TextBlockText="Nachname :" TextBoxText="{Binding Path=Nachname,Mode=TwoWay}"/>
+                <my:LabelAndText Grid.Row="0" Grid.Column="1" TextBlockText="Vorname :" TextBoxText="{Binding Path=Vorname,Mode=TwoWay}"/>
+                <my:LabelAndText Grid.Row="0" Grid.Column="2" TextBlockText="2. Vorname :" TextBoxText="{Binding Path=Vorname2,Mode=TwoWay}"/>
+                <my:LabelAndText Grid.Row="0" Grid.Column="3" TextBlockText="Namenszusatz :" TextBoxText="{Binding Path=Namenszusatz,Mode=TwoWay}"/>
+                <my:LabelAndFilteredComboBox Grid.Row="0" Grid.Column="4" TextBlockText="Anrede :" CBoxItemssource="{Binding Source={StaticResource EintraegeAnredeLookup}}"
+                              CBoxSelectedValue="{Binding Path=Anrede,Mode=TwoWay}" CBoxIsSynchronizedWithCurrentItem="False"
+                              CBoxSelectedValuePath="Eintrag"       
+                              CBoxDisplayMemberPath="Eintrag" />
+                
+                
+                <my:LabelAndText Grid.Row="1" Grid.Column="0" TextBlockText="Titel :" TextBoxText="{Binding Path=Titel,Mode=TwoWay}"/>
+                
+                <my:LabelAndText Grid.Row="1" Grid.Column="1" TextBlockText="Funktion :" TextBoxText="{Binding Path=Funktion,Mode=TwoWay}"/>
+                
+               <my:LabelAndText Grid.Row="1" Grid.Column="2" TextBlockText="Abteilung" TextBoxText="{Binding Path=Abteilung,Mode=TwoWay}"/>
+                
+                
+                
+                <my:LabelAndFilteredComboBox Grid.Row="1" Grid.Column="3" TextBlockText="Gebiet :" CBoxItemssource="{Binding Source={StaticResource EintraegeGebietLookup}}"
+                              CBoxSelectedValue="{Binding Path=Gebiet,Mode=TwoWay}" CBoxIsSynchronizedWithCurrentItem="False"
+                              CBoxSelectedValuePath="Eintrag"       
+                              CBoxDisplayMemberPath="Eintrag" />
+                
+                <my:LabelAndText Grid.Row="1" Grid.Column="4" TextBlockText="Webseite" TextBoxText="{Binding Path=Webseite,Mode=TwoWay}"/>
+                <my:LabelAndFilteredComboBox Grid.Row="2" Grid.Column="0" TextBlockText="Verantwortlich :" CBoxItemssource="{Binding Source={StaticResource EintraegeBetreuerLookup}}"
+                              CBoxSelectedValue="{Binding Path=Betreuer,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" CBoxIsSynchronizedWithCurrentItem="False"
+                              CBoxSelectedValuePath="Eintrag"       
+                              CBoxDisplayMemberPath="Eintrag" />
+                
+                <my:LabelAndCheckbox  Grid.Row="2" Grid.Column="1" TextBlockText="Newsletter" CheckBoxChecked="{Binding Path=Newsletter,Mode=TwoWay}" Style="{StaticResource CheckBoxHorizontal}"/>
+                <my:LabelAndCheckbox  Grid.Row="2" Grid.Column="2" TextBlockText="Messeeinladung" CheckBoxChecked="{Binding Path=Messeeinladung,Mode=TwoWay}" Style="{StaticResource CheckBoxHorizontal}"/>
+                <my:LabelAndCheckbox  Grid.Row="2" Grid.Column="3" TextBlockText="Weihnachtskarte" CheckBoxChecked="{Binding Path=Weihnachtskarte,Mode=TwoWay}" Style="{StaticResource CheckBoxHorizontal}"/>
+            </Grid>
+        </Border>
+       
+        <Button Grid.Row="3" Grid.Column="1" x:Name="Save" Content="Speichern"/>
+    </StackPanel>
+</UserControl>

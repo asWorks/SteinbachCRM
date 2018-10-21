@@ -1,0 +1,868 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="2.0" xmlns:edmx="http://schemas.microsoft.com/ado/2008/10/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="ProjektDB_SteinbachNeuModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+        <EntityContainer Name="ProjektDB_SteinbachNeuModelStoreContainer">
+          <EntitySet Name="AuswahlEintraege" EntityType="ProjektDB_SteinbachNeuModel.Store.AuswahlEintraege" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="AuswahlEintraegeGruppen" EntityType="ProjektDB_SteinbachNeuModel.Store.AuswahlEintraegeGruppen" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="config" EntityType="ProjektDB_SteinbachNeuModel.Store.config" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="CRMEmails" EntityType="ProjektDB_SteinbachNeuModel.Store.CRMEmails" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="CRMTermine" EntityType="ProjektDB_SteinbachNeuModel.Store.CRMTermine" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="EmailAttachments" EntityType="ProjektDB_SteinbachNeuModel.Store.EmailAttachments" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="firma" EntityType="ProjektDB_SteinbachNeuModel.Store.firma" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Firmen_Personen" EntityType="ProjektDB_SteinbachNeuModel.Store.Firmen_Personen" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="person" EntityType="ProjektDB_SteinbachNeuModel.Store.person" store:Type="Tables" Schema="dbo" />
+          <AssociationSet Name="FK_AuswahlEintraege_AuswahlEintraegeGruppen" Association="ProjektDB_SteinbachNeuModel.Store.FK_AuswahlEintraege_AuswahlEintraegeGruppen">
+            <End Role="AuswahlEintraegeGruppen" EntitySet="AuswahlEintraegeGruppen" />
+            <End Role="AuswahlEintraege" EntitySet="AuswahlEintraege" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CRMEmails_CRMEmails" Association="ProjektDB_SteinbachNeuModel.Store.FK_CRMEmails_CRMEmails">
+            <End Role="firma" EntitySet="firma" />
+            <End Role="CRMEmails" EntitySet="CRMEmails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CRMEmails_Firmen_Personen" Association="ProjektDB_SteinbachNeuModel.Store.FK_CRMEmails_Firmen_Personen">
+            <End Role="Firmen_Personen" EntitySet="Firmen_Personen" />
+            <End Role="CRMEmails" EntitySet="CRMEmails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CRMEmails_person" Association="ProjektDB_SteinbachNeuModel.Store.FK_CRMEmails_person">
+            <End Role="person" EntitySet="person" />
+            <End Role="CRMEmails" EntitySet="CRMEmails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_EmailAttachments_CRMEmails" Association="ProjektDB_SteinbachNeuModel.Store.FK_EmailAttachments_CRMEmails">
+            <End Role="CRMEmails" EntitySet="CRMEmails" />
+            <End Role="EmailAttachments" EntitySet="EmailAttachments" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Kunden_Personen_firma" Association="ProjektDB_SteinbachNeuModel.Store.FK_Kunden_Personen_firma">
+            <End Role="firma" EntitySet="firma" />
+            <End Role="Firmen_Personen" EntitySet="Firmen_Personen" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="AuswahlEintraege">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Gruppe" Type="nvarchar" MaxLength="35" />
+          <Property Name="Eintrag" Type="nvarchar" MaxLength="100" />
+          <Property Name="id_Gruppe" Type="int" />
+          <Property Name="ai_int" Type="int" />
+          <Property Name="ai_string" Type="nvarchar" MaxLength="50" />
+          <Property Name="ai_sort" Type="int" />
+        </EntityType>
+        <EntityType Name="AuswahlEintraegeGruppen">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Kategorie" Type="nvarchar" MaxLength="50" />
+          <Property Name="id_Kategorie" Type="int" />
+          <Property Name="Gruppe" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="config">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="created" Type="datetime" />
+          <Property Name="mkey" Type="nvarchar" MaxLength="32" />
+          <Property Name="value" Type="nvarchar" MaxLength="64" />
+          <Property Name="Description" Type="nvarchar" MaxLength="150" />
+        </EntityType>
+        <EntityType Name="CRMEmails">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Typ" Type="nvarchar" MaxLength="50" />
+          <Property Name="Absender" Type="nvarchar" MaxLength="100" />
+          <Property Name="AbsenderMailAdresse" Type="nvarchar" MaxLength="255" />
+          <Property Name="Empfaenger" Type="nvarchar" MaxLength="100" />
+          <Property Name="Empfaengerliste" Type="nvarchar" MaxLength="255" />
+          <Property Name="Betreff" Type="nvarchar(max)" />
+          <Property Name="Text" Type="nvarchar(max)" />
+          <Property Name="Datum" Type="datetime" />
+          <Property Name="HTMLText" Type="nvarchar(max)" />
+          <Property Name="RTFText" Type="bigint" />
+          <Property Name="EntryID" Type="nvarchar" MaxLength="255" />
+          <Property Name="ConversationID" Type="nvarchar" MaxLength="255" />
+          <Property Name="id_Firma" Type="int" />
+          <Property Name="id_Kontakt" Type="int" />
+          <Property Name="id_PersonSI" Type="int" />
+          <Property Name="RTF_Text" Type="bigint" />
+          <Property Name="id_Projekt" Type="int" />
+          <Property Name="OutlookUsername" Type="nvarchar" MaxLength="50" />
+          <Property Name="BodyFormat" Type="nvarchar" MaxLength="10" />
+          <Property Name="Aktion" Type="int" />
+          <Property Name="Status" Type="int" />
+          <Property Name="created" Type="datetime" />
+        </EntityType>
+        <EntityType Name="CRMTermine">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="id_firma" Type="int" />
+          <Property Name="Art" Type="int" />
+          <Property Name="Info" Type="nvarchar" MaxLength="50" />
+          <Property Name="Aktion" Type="int" />
+          <Property Name="Betreff" Type="nvarchar" MaxLength="150" />
+          <Property Name="Standort" Type="nvarchar" MaxLength="50" />
+          <Property Name="Details" Type="nvarchar(max)" />
+          <Property Name="Status" Type="int" />
+          <Property Name="Priorität" Type="int" />
+          <Property Name="Gebiet" Type="int" />
+          <Property Name="Angelegt" Type="int" />
+          <Property Name="TerminVon" Type="datetime" />
+          <Property Name="TerminBis" Type="datetime" />
+          <Property Name="TerminDauer" Type="bigint" />
+          <Property Name="ErinerungDatum" Type="datetime" />
+          <Property Name="ErinnerungTimespan" Type="bigint" />
+          <Property Name="Ganztaegig" Type="smallint" />
+          <Property Name="Erinnerung" Type="smallint" />
+          <Property Name="FolgeAktivitaetTermin" Type="smallint" />
+          <Property Name="FolgeAktivitaetAufgabe" Type="smallint" />
+          <Property Name="Privat" Type="smallint" />
+          <Property Name="ProzentAbgeschlossen" Type="money" />
+          <Property Name="AbschlussZeit" Type="datetime" />
+          <Property Name="Team" Type="int" />
+          <Property Name="EmailSent" Type="smallint" />
+          <Property Name="EmailSentDate" Type="datetime" />
+          <Property Name="AppointmentType" Type="nvarchar" MaxLength="20" />
+          <Property Name="istGanztaegig" Type="smallint" />
+          <Property Name="created" Type="datetime" />
+        </EntityType>
+        <EntityType Name="EmailAttachments">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="id_Email" Type="int" />
+          <Property Name="Path" Type="nvarchar" MaxLength="512" />
+          <Property Name="Filename" Type="nvarchar" MaxLength="100" />
+          <Property Name="AttachmentType" Type="int" />
+          <Property Name="created" Type="datetime" />
+          <Property Name="isEmbedded" Type="smallint" />
+        </EntityType>
+        <EntityType Name="firma">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="created" Type="datetime" />
+          <Property Name="name" Type="nvarchar" MaxLength="128" />
+          <Property Name="kurzname" Type="nvarchar" MaxLength="32" />
+          <Property Name="istFirma" Type="smallint" />
+          <Property Name="istVerarbeitet" Type="smallint" />
+          <Property Name="IstGruppe" Type="smallint" />
+          <Property Name="IstKunde" Type="smallint" />
+          <Property Name="KdNr" Type="int" />
+          <Property Name="Kundennummer" Type="nvarchar" MaxLength="20" />
+          <Property Name="KundenTyp" Type="nvarchar" MaxLength="30" />
+          <Property Name="Status" Type="nvarchar" MaxLength="50" />
+          <Property Name="Typ" Type="int" />
+          <Property Name="Webseite" Type="nvarchar" MaxLength="150" />
+          <Property Name="Quelle" Type="int" />
+          <Property Name="Gebiet" Type="int" />
+          <Property Name="AngelegtVon" Type="int" />
+          <Property Name="AngelegtAm" Type="datetime" />
+          <Property Name="Zahlungsbedingungen" Type="int" />
+          <Property Name="Name_Alt" Type="nvarchar" MaxLength="128" />
+          <Property Name="Betreuer" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Firmen_Personen">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="id_Firma" Type="int" />
+          <Property Name="id_Standort" Type="int" />
+          <Property Name="created" Type="smalldatetime" />
+          <Property Name="Nachname" Type="nvarchar" MaxLength="50" />
+          <Property Name="Vorname" Type="nvarchar" MaxLength="50" />
+          <Property Name="Vorname2" Type="nvarchar" MaxLength="50" />
+          <Property Name="Namenszusatz" Type="nvarchar" MaxLength="50" />
+          <Property Name="Titel" Type="nvarchar" MaxLength="50" />
+          <Property Name="Funktion" Type="nvarchar" MaxLength="50" />
+          <Property Name="Abteilung" Type="nvarchar" MaxLength="50" />
+          <Property Name="Gebiet" Type="int" />
+          <Property Name="Anrede" Type="int" />
+          <Property Name="Newsletter" Type="smallint" />
+          <Property Name="Messeeinladung" Type="smallint" />
+          <Property Name="Weihnachtskarte" Type="smallint" />
+          <Property Name="Betreuer" Type="nvarchar" MaxLength="50" />
+          <Property Name="Typ" Type="int" />
+          <Property Name="Notiz" Type="nvarchar(max)" />
+          <Property Name="Ort" Type="nvarchar" MaxLength="50" />
+          <Property Name="PLZ" Type="nvarchar" MaxLength="10" />
+          <Property Name="Straße" Type="nvarchar" MaxLength="150" />
+          <Property Name="Land" Type="nvarchar" MaxLength="50" />
+          <Property Name="GeaendertAm" Type="datetime" />
+          <Property Name="GeaendertVon" Type="int" />
+          <Property Name="ErstKontakt" Type="int" />
+        </EntityType>
+        <EntityType Name="person">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="created" Type="datetime" />
+          <Property Name="maennlich" Type="smallint" />
+          <Property Name="vorname" Type="nvarchar" MaxLength="64" />
+          <Property Name="nachname" Type="nvarchar" MaxLength="64" />
+          <Property Name="email" Type="nvarchar" MaxLength="128" />
+          <Property Name="benutzername" Type="nvarchar" MaxLength="128" />
+          <Property Name="passwort" Type="nvarchar" MaxLength="128" />
+          <Property Name="rights" Type="nvarchar" MaxLength="255" />
+          <Property Name="MailTimerActive" Type="smallint" />
+          <Property Name="MailTimerInterval" Type="bigint" />
+          <Property Name="ProjekteAufklappen" Type="smallint" />
+          <Property Name="ListeFirmenAktiv" Type="smallint" />
+          <Property Name="ListeKontakteAktiv" Type="smallint" />
+        </EntityType>
+        <Association Name="FK_AuswahlEintraege_AuswahlEintraegeGruppen">
+          <End Role="AuswahlEintraegeGruppen" Type="ProjektDB_SteinbachNeuModel.Store.AuswahlEintraegeGruppen" Multiplicity="0..1" />
+          <End Role="AuswahlEintraege" Type="ProjektDB_SteinbachNeuModel.Store.AuswahlEintraege" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AuswahlEintraegeGruppen">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="AuswahlEintraege">
+              <PropertyRef Name="id_Gruppe" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CRMEmails_CRMEmails">
+          <End Role="firma" Type="ProjektDB_SteinbachNeuModel.Store.firma" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="CRMEmails" Type="ProjektDB_SteinbachNeuModel.Store.CRMEmails" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="firma">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="CRMEmails">
+              <PropertyRef Name="id_Firma" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CRMEmails_Firmen_Personen">
+          <End Role="Firmen_Personen" Type="ProjektDB_SteinbachNeuModel.Store.Firmen_Personen" Multiplicity="0..1" />
+          <End Role="CRMEmails" Type="ProjektDB_SteinbachNeuModel.Store.CRMEmails" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Firmen_Personen">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="CRMEmails">
+              <PropertyRef Name="id_Kontakt" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CRMEmails_person">
+          <End Role="person" Type="ProjektDB_SteinbachNeuModel.Store.person" Multiplicity="0..1" />
+          <End Role="CRMEmails" Type="ProjektDB_SteinbachNeuModel.Store.CRMEmails" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="person">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="CRMEmails">
+              <PropertyRef Name="id_PersonSI" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_EmailAttachments_CRMEmails">
+          <End Role="CRMEmails" Type="ProjektDB_SteinbachNeuModel.Store.CRMEmails" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="EmailAttachments" Type="ProjektDB_SteinbachNeuModel.Store.EmailAttachments" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CRMEmails">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="EmailAttachments">
+              <PropertyRef Name="id_Email" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Kunden_Personen_firma">
+          <End Role="firma" Type="ProjektDB_SteinbachNeuModel.Store.firma" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Firmen_Personen" Type="ProjektDB_SteinbachNeuModel.Store.Firmen_Personen" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="firma">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Firmen_Personen">
+              <PropertyRef Name="id_Firma" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="ProjektDB_SteinbachNeuModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+        <EntityContainer Name="SteinbachEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="AuswahlEintraeges" EntityType="ProjektDB_SteinbachNeuModel.AuswahlEintraege" />
+          <EntitySet Name="AuswahlEintraegeGruppens" EntityType="ProjektDB_SteinbachNeuModel.AuswahlEintraegeGruppen" />
+          <EntitySet Name="configs" EntityType="ProjektDB_SteinbachNeuModel.config" />
+          <EntitySet Name="CRMTermines" EntityType="ProjektDB_SteinbachNeuModel.CRMTermine" />
+          <EntitySet Name="firmas" EntityType="ProjektDB_SteinbachNeuModel.firma" />
+          <EntitySet Name="Firmen_Personen" EntityType="ProjektDB_SteinbachNeuModel.Firmen_Personen" />
+          <EntitySet Name="people" EntityType="ProjektDB_SteinbachNeuModel.person" />
+          <AssociationSet Name="FK_AuswahlEintraege_AuswahlEintraegeGruppen" Association="ProjektDB_SteinbachNeuModel.FK_AuswahlEintraege_AuswahlEintraegeGruppen">
+            <End Role="AuswahlEintraegeGruppen" EntitySet="AuswahlEintraegeGruppens" />
+            <End Role="AuswahlEintraege" EntitySet="AuswahlEintraeges" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Kunden_Personen_firma" Association="ProjektDB_SteinbachNeuModel.FK_Kunden_Personen_firma">
+            <End Role="firma" EntitySet="firmas" />
+            <End Role="Firmen_Personen" EntitySet="Firmen_Personen" />
+          </AssociationSet>
+          <EntitySet Name="CRMEmails" EntityType="ProjektDB_SteinbachNeuModel.CRMEmail" />
+          <AssociationSet Name="FK_CRMEmails_CRMEmails" Association="ProjektDB_SteinbachNeuModel.FK_CRMEmails_CRMEmails">
+            <End Role="firma" EntitySet="firmas" />
+            <End Role="CRMEmail" EntitySet="CRMEmails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CRMEmails_Firmen_Personen" Association="ProjektDB_SteinbachNeuModel.FK_CRMEmails_Firmen_Personen">
+            <End Role="Firmen_Personen" EntitySet="Firmen_Personen" />
+            <End Role="CRMEmail" EntitySet="CRMEmails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CRMEmails_person" Association="ProjektDB_SteinbachNeuModel.FK_CRMEmails_person">
+            <End Role="person" EntitySet="people" />
+            <End Role="CRMEmail" EntitySet="CRMEmails" />
+          </AssociationSet>
+          <EntitySet Name="EmailAttachments" EntityType="ProjektDB_SteinbachNeuModel.EmailAttachments" />
+          <AssociationSet Name="FK_EmailAttachments_CRMEmails" Association="ProjektDB_SteinbachNeuModel.FK_EmailAttachments_CRMEmails">
+            <End Role="CRMEmail" EntitySet="CRMEmails" />
+            <End Role="EmailAttachments" EntitySet="EmailAttachments" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="AuswahlEintraege">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Gruppe" Type="String" MaxLength="35" Unicode="true" FixedLength="false" />
+          <Property Name="Eintrag" Type="String" MaxLength="100" Unicode="true" FixedLength="false" />
+          <Property Name="id_Gruppe" Type="Int32" />
+          <Property Name="ai_int" Type="Int32" />
+          <Property Name="ai_string" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="ai_sort" Type="Int32" />
+          <NavigationProperty Name="AuswahlEintraegeGruppen" Relationship="ProjektDB_SteinbachNeuModel.FK_AuswahlEintraege_AuswahlEintraegeGruppen" FromRole="AuswahlEintraege" ToRole="AuswahlEintraegeGruppen" />
+        </EntityType>
+        <EntityType Name="AuswahlEintraegeGruppen">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Kategorie" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="id_Kategorie" Type="Int32" />
+          <Property Name="Gruppe" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <NavigationProperty Name="AuswahlEintraeges" Relationship="ProjektDB_SteinbachNeuModel.FK_AuswahlEintraege_AuswahlEintraegeGruppen" FromRole="AuswahlEintraegeGruppen" ToRole="AuswahlEintraege" />
+        </EntityType>
+        <EntityType Name="config">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="created" Type="DateTime" />
+          <Property Name="mkey" Type="String" MaxLength="32" Unicode="true" FixedLength="false" />
+          <Property Name="value" Type="String" MaxLength="64" Unicode="true" FixedLength="false" />
+          <Property Name="Description" Type="String" MaxLength="150" Unicode="true" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="CRMTermine">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="id_firma" Type="Int32" />
+          <Property Name="Art" Type="Int32" />
+          <Property Name="Info" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="Aktion" Type="Int32" />
+          <Property Name="Betreff" Type="String" MaxLength="150" Unicode="true" FixedLength="false" />
+          <Property Name="Standort" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="Details" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="Status" Type="Int32" />
+          <Property Name="Priorität" Type="Int32" />
+          <Property Name="Gebiet" Type="Int32" />
+          <Property Name="Angelegt" Type="Int32" />
+          <Property Name="TerminVon" Type="DateTime" />
+          <Property Name="TerminBis" Type="DateTime" />
+          <Property Name="TerminDauer" Type="Int64" />
+          <Property Name="ErinerungDatum" Type="DateTime" />
+          <Property Name="ErinnerungTimespan" Type="Int64" />
+          <Property Name="Ganztaegig" Type="Int16" />
+          <Property Name="Erinnerung" Type="Int16" />
+          <Property Name="FolgeAktivitaetTermin" Type="Int16" />
+          <Property Name="FolgeAktivitaetAufgabe" Type="Int16" />
+          <Property Name="Privat" Type="Int16" />
+          <Property Name="ProzentAbgeschlossen" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="AbschlussZeit" Type="DateTime" />
+          <Property Name="Team" Type="Int32" />
+          <Property Name="EmailSent" Type="Int16" />
+          <Property Name="EmailSentDate" Type="DateTime" />
+          <Property Name="AppointmentType" Type="String" MaxLength="20" Unicode="true" FixedLength="false" />
+          <Property Type="Int16" Name="istGanztaegig" />
+          <Property Type="DateTime" Name="created" />
+        </EntityType>
+        <EntityType Name="firma">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="created" Type="DateTime" />
+          <Property Name="KdNr" Type="Int32" />
+          <Property Name="KundenTyp" Type="String" MaxLength="30" Unicode="true" FixedLength="false" />
+          <Property Name="name" Type="String" MaxLength="128" Unicode="true" FixedLength="false" />
+          <Property Name="Status" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="kurzname" Type="String" MaxLength="32" Unicode="true" FixedLength="false" />
+          <Property Name="istFirma" Type="Int16" />
+          <Property Name="istVerarbeitet" Type="Int16" />
+          <Property Name="IstGruppe" Type="Int16" />
+          <Property Name="IstKunde" Type="Int16" />
+          <Property Name="Kundennummer" Type="String" MaxLength="20" Unicode="true" FixedLength="false" />
+          <Property Name="Typ" Type="Int32" />
+          <Property Name="Webseite" Type="String" MaxLength="150" Unicode="true" FixedLength="false" />
+          <Property Name="Quelle" Type="Int32" />
+          <Property Name="Gebiet" Type="Int32" />
+          <Property Name="AngelegtVon" Type="Int32" />
+          <Property Name="AngelegtAm" Type="DateTime" />
+          <Property Name="Zahlungsbedingungen" Type="Int32" />
+          <Property Name="Name_Alt" Type="String" MaxLength="128" Unicode="true" FixedLength="false" />
+          <Property Name="Betreuer" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <NavigationProperty Name="Firmen_Personen" Relationship="ProjektDB_SteinbachNeuModel.FK_Kunden_Personen_firma" FromRole="firma" ToRole="Firmen_Personen" />
+          <NavigationProperty Name="CRMEmails" Relationship="ProjektDB_SteinbachNeuModel.FK_CRMEmails_CRMEmails" FromRole="firma" ToRole="CRMEmail" />
+        </EntityType>
+        <EntityType Name="Firmen_Personen">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="id_Firma" Type="Int32" />
+          <Property Name="id_Standort" Type="Int32" />
+          <Property Name="created" Type="DateTime" />
+          <Property Name="Nachname" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="Vorname" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="Vorname2" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="Namenszusatz" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="Titel" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="Funktion" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="Abteilung" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="Gebiet" Type="Int32" />
+          <Property Name="Anrede" Type="Int32" />
+          <Property Name="Newsletter" Type="Int16" />
+          <Property Name="Messeeinladung" Type="Int16" />
+          <Property Name="Weihnachtskarte" Type="Int16" />
+          <Property Name="Betreuer" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="Typ" Type="Int32" />
+          <Property Name="Notiz" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="Ort" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="PLZ" Type="String" MaxLength="10" Unicode="true" FixedLength="false" />
+          <Property Name="Land" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="Straße" Type="String" MaxLength="150" Unicode="true" FixedLength="false" />
+          <Property Name="GeaendertAm" Type="DateTime" />
+          <Property Name="GeaendertVon" Type="Int32" />
+          <Property Name="ErstKontakt" Type="Int32" />
+          <NavigationProperty Name="firma" Relationship="ProjektDB_SteinbachNeuModel.FK_Kunden_Personen_firma" FromRole="Firmen_Personen" ToRole="firma" />
+          <NavigationProperty Name="CRMEmails" Relationship="ProjektDB_SteinbachNeuModel.FK_CRMEmails_Firmen_Personen" FromRole="Firmen_Personen" ToRole="CRMEmail" />
+        </EntityType>
+        <EntityType Name="person">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="created" Type="DateTime" />
+          <Property Name="maennlich" Type="Int16" />
+          <Property Name="vorname" Type="String" MaxLength="64" Unicode="true" FixedLength="false" />
+          <Property Name="nachname" Type="String" MaxLength="64" Unicode="true" FixedLength="false" />
+          <Property Name="email" Type="String" MaxLength="128" Unicode="true" FixedLength="false" />
+          <Property Name="benutzername" Type="String" MaxLength="128" Unicode="true" FixedLength="false" />
+          <Property Name="passwort" Type="String" MaxLength="128" Unicode="true" FixedLength="false" />
+          <Property Name="rights" Type="String" MaxLength="255" Unicode="true" FixedLength="false" />
+          <Property Name="MailTimerActive" Type="Int16" />
+          <Property Name="MailTimerInterval" Type="Int64" />
+          <Property Name="ProjekteAufklappen" Type="Int16" />
+          <Property Name="ListeFirmenAktiv" Type="Int16" />
+          <Property Name="ListeKontakteAktiv" Type="Int16" />
+          <NavigationProperty Name="CRMEmails" Relationship="ProjektDB_SteinbachNeuModel.FK_CRMEmails_person" FromRole="person" ToRole="CRMEmail" />
+        </EntityType>
+        <Association Name="FK_AuswahlEintraege_AuswahlEintraegeGruppen">
+          <End Role="AuswahlEintraegeGruppen" Type="ProjektDB_SteinbachNeuModel.AuswahlEintraegeGruppen" Multiplicity="0..1" />
+          <End Role="AuswahlEintraege" Type="ProjektDB_SteinbachNeuModel.AuswahlEintraege" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AuswahlEintraegeGruppen">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="AuswahlEintraege">
+              <PropertyRef Name="id_Gruppe" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Kunden_Personen_firma">
+          <End Role="firma" Type="ProjektDB_SteinbachNeuModel.firma" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Firmen_Personen" Type="ProjektDB_SteinbachNeuModel.Firmen_Personen" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="firma">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Firmen_Personen">
+              <PropertyRef Name="id_Firma" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="CRMEmail">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Type="Int32" Name="id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="Typ" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Absender" MaxLength="100" FixedLength="true" Unicode="true" />
+          <Property Type="String" Name="AbsenderMailAdresse" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Empfaenger" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Empfaengerliste" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Betreff" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Text" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Type="DateTime" Name="Datum" />
+          <Property Type="String" Name="HTMLText" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Type="Int64" Name="RTFText" />
+          <Property Type="String" Name="EntryID" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="ConversationID" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="id_Firma" />
+          <Property Type="Int32" Name="id_Kontakt" />
+          <Property Type="Int32" Name="id_PersonSI" />
+          <NavigationProperty Name="firma" Relationship="ProjektDB_SteinbachNeuModel.FK_CRMEmails_CRMEmails" FromRole="CRMEmail" ToRole="firma" />
+          <NavigationProperty Name="Firmen_Personen" Relationship="ProjektDB_SteinbachNeuModel.FK_CRMEmails_Firmen_Personen" FromRole="CRMEmail" ToRole="Firmen_Personen" />
+          <NavigationProperty Name="person" Relationship="ProjektDB_SteinbachNeuModel.FK_CRMEmails_person" FromRole="CRMEmail" ToRole="person" />
+          <Property Type="Int64" Name="RTF_Text" />
+          <Property Type="Int32" Name="id_Projekt" />
+          <Property Type="String" Name="OutlookUsername" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="BodyFormat" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="Aktion" />
+          <NavigationProperty Name="EmailAttachments" Relationship="ProjektDB_SteinbachNeuModel.FK_EmailAttachments_CRMEmails" FromRole="CRMEmail" ToRole="EmailAttachments" />
+          <Property Type="Int32" Name="Status" />
+          <Property Type="DateTime" Name="created" />
+        </EntityType>
+        <Association Name="FK_CRMEmails_CRMEmails">
+          <End Type="ProjektDB_SteinbachNeuModel.firma" Role="firma" Multiplicity="0..1" />
+          <End Type="ProjektDB_SteinbachNeuModel.CRMEmail" Role="CRMEmail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="firma">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="CRMEmail">
+              <PropertyRef Name="id_Firma" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CRMEmails_Firmen_Personen">
+          <End Type="ProjektDB_SteinbachNeuModel.Firmen_Personen" Role="Firmen_Personen" Multiplicity="0..1" />
+          <End Type="ProjektDB_SteinbachNeuModel.CRMEmail" Role="CRMEmail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Firmen_Personen">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="CRMEmail">
+              <PropertyRef Name="id_Kontakt" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CRMEmails_person">
+          <End Type="ProjektDB_SteinbachNeuModel.person" Role="person" Multiplicity="0..1" />
+          <End Type="ProjektDB_SteinbachNeuModel.CRMEmail" Role="CRMEmail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="person">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="CRMEmail">
+              <PropertyRef Name="id_PersonSI" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="EmailAttachments">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Type="Int32" Name="id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Int32" Name="id_Email" />
+          <Property Type="String" Name="Path" MaxLength="512" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Filename" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="AttachmentType" />
+          <NavigationProperty Name="CRMEmails" Relationship="ProjektDB_SteinbachNeuModel.FK_EmailAttachments_CRMEmails" FromRole="EmailAttachments" ToRole="CRMEmail" />
+          <Property Type="DateTime" Name="created" />
+          <Property Type="Int16" Name="isEmbedded" />
+        </EntityType>
+        <Association Name="FK_EmailAttachments_CRMEmails">
+          <End Type="ProjektDB_SteinbachNeuModel.CRMEmail" Role="CRMEmail" Multiplicity="0..1" />
+          <End Type="ProjektDB_SteinbachNeuModel.EmailAttachments" Role="EmailAttachments" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CRMEmail">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="EmailAttachments">
+              <PropertyRef Name="id_Email" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="ProjektDB_SteinbachNeuModelStoreContainer" CdmEntityContainer="SteinbachEntities">
+          <EntitySetMapping Name="AuswahlEintraeges">
+            <EntityTypeMapping TypeName="ProjektDB_SteinbachNeuModel.AuswahlEintraege">
+              <MappingFragment StoreEntitySet="AuswahlEintraege">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="Gruppe" ColumnName="Gruppe" />
+                <ScalarProperty Name="Eintrag" ColumnName="Eintrag" />
+                <ScalarProperty Name="id_Gruppe" ColumnName="id_Gruppe" />
+                <ScalarProperty Name="ai_int" ColumnName="ai_int" />
+                <ScalarProperty Name="ai_string" ColumnName="ai_string" />
+                <ScalarProperty Name="ai_sort" ColumnName="ai_sort" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AuswahlEintraegeGruppens">
+            <EntityTypeMapping TypeName="ProjektDB_SteinbachNeuModel.AuswahlEintraegeGruppen">
+              <MappingFragment StoreEntitySet="AuswahlEintraegeGruppen">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="Kategorie" ColumnName="Kategorie" />
+                <ScalarProperty Name="id_Kategorie" ColumnName="id_Kategorie" />
+                <ScalarProperty Name="Gruppe" ColumnName="Gruppe" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="configs">
+            <EntityTypeMapping TypeName="ProjektDB_SteinbachNeuModel.config">
+              <MappingFragment StoreEntitySet="config">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="created" ColumnName="created" />
+                <ScalarProperty Name="mkey" ColumnName="mkey" />
+                <ScalarProperty Name="value" ColumnName="value" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CRMTermines">
+            <EntityTypeMapping TypeName="ProjektDB_SteinbachNeuModel.CRMTermine">
+              <MappingFragment StoreEntitySet="CRMTermine">
+                <ScalarProperty Name="created" ColumnName="created" />
+                <ScalarProperty Name="istGanztaegig" ColumnName="istGanztaegig" />
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="id_firma" ColumnName="id_firma" />
+                <ScalarProperty Name="Art" ColumnName="Art" />
+                <ScalarProperty Name="Info" ColumnName="Info" />
+                <ScalarProperty Name="Aktion" ColumnName="Aktion" />
+                <ScalarProperty Name="Betreff" ColumnName="Betreff" />
+                <ScalarProperty Name="Standort" ColumnName="Standort" />
+                <ScalarProperty Name="Details" ColumnName="Details" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="Priorität" ColumnName="Priorität" />
+                <ScalarProperty Name="Gebiet" ColumnName="Gebiet" />
+                <ScalarProperty Name="Angelegt" ColumnName="Angelegt" />
+                <ScalarProperty Name="TerminVon" ColumnName="TerminVon" />
+                <ScalarProperty Name="TerminBis" ColumnName="TerminBis" />
+                <ScalarProperty Name="TerminDauer" ColumnName="TerminDauer" />
+                <ScalarProperty Name="ErinerungDatum" ColumnName="ErinerungDatum" />
+                <ScalarProperty Name="ErinnerungTimespan" ColumnName="ErinnerungTimespan" />
+                <ScalarProperty Name="Ganztaegig" ColumnName="Ganztaegig" />
+                <ScalarProperty Name="Erinnerung" ColumnName="Erinnerung" />
+                <ScalarProperty Name="FolgeAktivitaetTermin" ColumnName="FolgeAktivitaetTermin" />
+                <ScalarProperty Name="FolgeAktivitaetAufgabe" ColumnName="FolgeAktivitaetAufgabe" />
+                <ScalarProperty Name="Privat" ColumnName="Privat" />
+                <ScalarProperty Name="ProzentAbgeschlossen" ColumnName="ProzentAbgeschlossen" />
+                <ScalarProperty Name="AbschlussZeit" ColumnName="AbschlussZeit" />
+                <ScalarProperty Name="Team" ColumnName="Team" />
+                <ScalarProperty Name="EmailSent" ColumnName="EmailSent" />
+                <ScalarProperty Name="EmailSentDate" ColumnName="EmailSentDate" />
+                <ScalarProperty Name="AppointmentType" ColumnName="AppointmentType" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="firmas">
+            <EntityTypeMapping TypeName="ProjektDB_SteinbachNeuModel.firma">
+              <MappingFragment StoreEntitySet="firma">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="created" ColumnName="created" />
+                <ScalarProperty Name="KdNr" ColumnName="KdNr" />
+                <ScalarProperty Name="KundenTyp" ColumnName="KundenTyp" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="kurzname" ColumnName="kurzname" />
+                <ScalarProperty Name="istFirma" ColumnName="istFirma" />
+                <ScalarProperty Name="istVerarbeitet" ColumnName="istVerarbeitet" />
+                <ScalarProperty Name="IstGruppe" ColumnName="IstGruppe" />
+                <ScalarProperty Name="IstKunde" ColumnName="IstKunde" />
+                <ScalarProperty Name="Kundennummer" ColumnName="Kundennummer" />
+                <ScalarProperty Name="Typ" ColumnName="Typ" />
+                <ScalarProperty Name="Webseite" ColumnName="Webseite" />
+                <ScalarProperty Name="Quelle" ColumnName="Quelle" />
+                <ScalarProperty Name="Gebiet" ColumnName="Gebiet" />
+                <ScalarProperty Name="AngelegtVon" ColumnName="AngelegtVon" />
+                <ScalarProperty Name="AngelegtAm" ColumnName="AngelegtAm" />
+                <ScalarProperty Name="Zahlungsbedingungen" ColumnName="Zahlungsbedingungen" />
+                <ScalarProperty Name="Name_Alt" ColumnName="Name_Alt" />
+                <ScalarProperty Name="Betreuer" ColumnName="Betreuer" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Firmen_Personen">
+            <EntityTypeMapping TypeName="ProjektDB_SteinbachNeuModel.Firmen_Personen">
+              <MappingFragment StoreEntitySet="Firmen_Personen">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="id_Firma" ColumnName="id_Firma" />
+                <ScalarProperty Name="id_Standort" ColumnName="id_Standort" />
+                <ScalarProperty Name="created" ColumnName="created" />
+                <ScalarProperty Name="Nachname" ColumnName="Nachname" />
+                <ScalarProperty Name="Vorname" ColumnName="Vorname" />
+                <ScalarProperty Name="Vorname2" ColumnName="Vorname2" />
+                <ScalarProperty Name="Namenszusatz" ColumnName="Namenszusatz" />
+                <ScalarProperty Name="Titel" ColumnName="Titel" />
+                <ScalarProperty Name="Funktion" ColumnName="Funktion" />
+                <ScalarProperty Name="Abteilung" ColumnName="Abteilung" />
+                <ScalarProperty Name="Gebiet" ColumnName="Gebiet" />
+                <ScalarProperty Name="Anrede" ColumnName="Anrede" />
+                <ScalarProperty Name="Newsletter" ColumnName="Newsletter" />
+                <ScalarProperty Name="Messeeinladung" ColumnName="Messeeinladung" />
+                <ScalarProperty Name="Weihnachtskarte" ColumnName="Weihnachtskarte" />
+                <ScalarProperty Name="Betreuer" ColumnName="Betreuer" />
+                <ScalarProperty Name="Typ" ColumnName="Typ" />
+                <ScalarProperty Name="Notiz" ColumnName="Notiz" />
+                <ScalarProperty Name="Ort" ColumnName="Ort" />
+                <ScalarProperty Name="PLZ" ColumnName="PLZ" />
+                <ScalarProperty Name="Land" ColumnName="Land" />
+                <ScalarProperty Name="Straße" ColumnName="Straße" />
+                <ScalarProperty Name="GeaendertAm" ColumnName="GeaendertAm" />
+                <ScalarProperty Name="GeaendertVon" ColumnName="GeaendertVon" />
+                <ScalarProperty Name="ErstKontakt" ColumnName="ErstKontakt" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="people">
+            <EntityTypeMapping TypeName="ProjektDB_SteinbachNeuModel.person">
+              <MappingFragment StoreEntitySet="person">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="created" ColumnName="created" />
+                <ScalarProperty Name="maennlich" ColumnName="maennlich" />
+                <ScalarProperty Name="vorname" ColumnName="vorname" />
+                <ScalarProperty Name="nachname" ColumnName="nachname" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="benutzername" ColumnName="benutzername" />
+                <ScalarProperty Name="passwort" ColumnName="passwort" />
+                <ScalarProperty Name="rights" ColumnName="rights" />
+                <ScalarProperty Name="MailTimerActive" ColumnName="MailTimerActive" />
+                <ScalarProperty Name="MailTimerInterval" ColumnName="MailTimerInterval" />
+                <ScalarProperty Name="ProjekteAufklappen" ColumnName="ProjekteAufklappen" />
+                <ScalarProperty Name="ListeFirmenAktiv" ColumnName="ListeFirmenAktiv" />
+                <ScalarProperty Name="ListeKontakteAktiv" ColumnName="ListeKontakteAktiv" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CRMEmails">
+            <EntityTypeMapping TypeName="ProjektDB_SteinbachNeuModel.CRMEmail">
+              <MappingFragment StoreEntitySet="CRMEmails">
+                <ScalarProperty Name="created" ColumnName="created" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="Aktion" ColumnName="Aktion" />
+                <ScalarProperty Name="BodyFormat" ColumnName="BodyFormat" />
+                <ScalarProperty Name="OutlookUsername" ColumnName="OutlookUsername" />
+                <ScalarProperty Name="id_Projekt" ColumnName="id_Projekt" />
+                <ScalarProperty Name="RTF_Text" ColumnName="RTF_Text" />
+                <ScalarProperty Name="id_PersonSI" ColumnName="id_PersonSI" />
+                <ScalarProperty Name="id_Kontakt" ColumnName="id_Kontakt" />
+                <ScalarProperty Name="id_Firma" ColumnName="id_Firma" />
+                <ScalarProperty Name="ConversationID" ColumnName="ConversationID" />
+                <ScalarProperty Name="EntryID" ColumnName="EntryID" />
+                <ScalarProperty Name="RTFText" ColumnName="RTFText" />
+                <ScalarProperty Name="HTMLText" ColumnName="HTMLText" />
+                <ScalarProperty Name="Datum" ColumnName="Datum" />
+                <ScalarProperty Name="Text" ColumnName="Text" />
+                <ScalarProperty Name="Betreff" ColumnName="Betreff" />
+                <ScalarProperty Name="Empfaengerliste" ColumnName="Empfaengerliste" />
+                <ScalarProperty Name="Empfaenger" ColumnName="Empfaenger" />
+                <ScalarProperty Name="AbsenderMailAdresse" ColumnName="AbsenderMailAdresse" />
+                <ScalarProperty Name="Absender" ColumnName="Absender" />
+                <ScalarProperty Name="Typ" ColumnName="Typ" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="EmailAttachments">
+            <EntityTypeMapping TypeName="ProjektDB_SteinbachNeuModel.EmailAttachments">
+              <MappingFragment StoreEntitySet="EmailAttachments">
+                <ScalarProperty Name="isEmbedded" ColumnName="isEmbedded" />
+                <ScalarProperty Name="created" ColumnName="created" />
+                <ScalarProperty Name="AttachmentType" ColumnName="AttachmentType" />
+                <ScalarProperty Name="Filename" ColumnName="Filename" />
+                <ScalarProperty Name="Path" ColumnName="Path" />
+                <ScalarProperty Name="id_Email" ColumnName="id_Email" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2008/10/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="False" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams>
+      <Diagram Name="Model1">
+        <EntityTypeShape EntityType="ProjektDB_SteinbachNeuModel.AuswahlEintraege" Width="1.5" PointX="8" PointY="1" Height="2.5571907552083335" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProjektDB_SteinbachNeuModel.AuswahlEintraegeGruppen" Width="1.5" PointX="5.75" PointY="1.25" Height="1.9802864583333335" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProjektDB_SteinbachNeuModel.config" Width="1.5" PointX="5.75" PointY="4.75" Height="1.9802864583333317" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProjektDB_SteinbachNeuModel.CRMTermine" Width="1.5" PointX="7.75" PointY="4.75" Height="6.4032194010416656" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProjektDB_SteinbachNeuModel.firma" Width="1.5" PointX="0.75" PointY="1.625" Height="5.2494108072916656" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProjektDB_SteinbachNeuModel.Firmen_Personen" Width="1.5" PointX="3" PointY="1.125" Height="6.2109179687500014" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProjektDB_SteinbachNeuModel.person" Width="1.5" PointX="0.75" PointY="8.75" Height="3.7109993489583317" IsExpanded="true" />
+        <AssociationConnector Association="ProjektDB_SteinbachNeuModel.FK_AuswahlEintraege_AuswahlEintraegeGruppen" ManuallyRouted="false">
+          <ConnectorPoint PointX="7.25" PointY="2.2401432291666667" />
+          <ConnectorPoint PointX="8" PointY="2.2401432291666667" />
+        </AssociationConnector>
+        <AssociationConnector Association="ProjektDB_SteinbachNeuModel.FK_Kunden_Personen_firma" ManuallyRouted="false">
+          <ConnectorPoint PointX="2.25" PointY="4.3458561197916659" />
+          <ConnectorPoint PointX="3" PointY="4.3458561197916659" />
+        </AssociationConnector>
+        <EntityTypeShape EntityType="ProjektDB_SteinbachNeuModel.CRMEmail" Width="1.5" PointX="5.25" PointY="7.5" Height="4.6725065104166674" />
+        <AssociationConnector Association="ProjektDB_SteinbachNeuModel.FK_CRMEmails_CRMEmails" >
+          <ConnectorPoint PointX="1.5" PointY="7.0667122395833326" />
+          <ConnectorPoint PointX="1.5" PointY="8.5" />
+          <ConnectorPoint PointX="2.5" PointY="8.5" />
+          <ConnectorPoint PointX="2.5" PointY="9.3249697563476559" />
+          <ConnectorPoint PointX="5.25" PointY="9.3249697563476559" />
+        </AssociationConnector>
+        <AssociationConnector Association="ProjektDB_SteinbachNeuModel.FK_CRMEmails_Firmen_Personen" >
+          <ConnectorPoint PointX="4.5" PointY="3.9901432291666667" />
+          <ConnectorPoint PointX="5.46875" PointY="3.9901432291666667" />
+          <ConnectorPoint PointX="5.46875" PointY="7.5" />
+        </AssociationConnector>
+        <AssociationConnector Association="ProjektDB_SteinbachNeuModel.FK_CRMEmails_person" >
+          <ConnectorPoint PointX="2.25" PointY="11.051635268798828" />
+          <ConnectorPoint PointX="5.25" PointY="11.051635268798828" />
+        </AssociationConnector>
+        <EntityTypeShape EntityType="ProjektDB_SteinbachNeuModel.EmailAttachments" Width="1.5" PointX="7.5" PointY="12.375" Height="2.1725878906249996" />
+        <AssociationConnector Association="ProjektDB_SteinbachNeuModel.FK_EmailAttachments_CRMEmails" >
+          <ConnectorPoint PointX="6.75" PointY="12.850657552083334" />
+          <ConnectorPoint PointX="7.5" PointY="12.850657552083334" />
+        </AssociationConnector>
+      </Diagram>
+    </Diagrams>
+  </Designer>
+</edmx:Edmx>

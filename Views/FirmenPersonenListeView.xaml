@@ -1,0 +1,161 @@
+﻿<UserControl x:Class="SteinbachCRM.Views.FirmenPersonenListeView"
+			 xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+			 xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+			 xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+			 xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+              xmlns:ff="clr-namespace:SteinbachCRM.Tools"
+			 xmlns:cal="clr-namespace:Caliburn.Micro;assembly=Caliburn.Micro"
+			 xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
+			 mc:Ignorable="d" 
+			 xmlns:c1="http://schemas.componentone.com/winfx/2006/xaml"
+			 Width="Auto" Height="700" 
+			 Loaded="UserControl_Loaded">
+    <UserControl.Resources>
+        <CollectionViewSource x:Key="EintraegeTypMailadresseLookup"/>
+        <CollectionViewSource x:Key="EintraegeAnredeLookup" />
+        <CollectionViewSource x:Key="EintraegeBetreuerLookup" />
+        <CollectionViewSource x:Key="EintraegeGebietLookup" />
+        <CollectionViewSource x:Key="EintraegeStandortLookup" />
+        <CollectionViewSource x:Key="EintraegeTypTelefonLookup" />
+        <CollectionViewSource x:Key="PersonenListeCVS" />
+        <!--<Style TargetType="Button">
+            <Setter Property="Width" Value="30"/>
+            <Setter Property="Height" Value="30"/>
+        </Style>-->
+            
+    </UserControl.Resources>
+    <ScrollViewer>
+    <StackPanel>
+        
+        <Grid Width="1410">
+            <StackPanel>
+                <TextBlock Text="Personen :" Margin="20,20" FontFamily="Calibri" FontSize="16"/>
+                    <StackPanel Orientation="Horizontal">
+                        <c1:C1DataGrid ItemsSource="{Binding Personenliste}"  HorizontalAlignment="Left" Margin="20,0,0,0" Name="c1DataGrid1" VerticalAlignment="Top" AutoGenerateColumns="False"
+								cal:Message.Attach="[Event SelectionChanged] =[Action CurrentPerson_SelectionChanged ($source)];
+							   [Event DeletingRows] =[Action Personen_DeletingRows ($eventargs)]"
+						CanUserAddRows="False" Height="400" CanUserSort="True" CanUserGroup="True" FrozenTopRowsCount="1">
+                            <c1:C1DataGrid.TopRows>
+                                <c1:DataGridFilterRow x:Name="dgFilterRow" Height="30" CanUserToggleDetails="True" CanUserResize="True" IsSelectable="True" />
+                            </c1:C1DataGrid.TopRows>
+                            <c1:C1DataGrid.Columns>
+                                <c1:DataGridTextColumn Header="Nachname" Binding="{Binding Nachname,Mode=TwoWay}" Width="90" SortMemberPath="Nachname" FilterMemberPath="Nachname" />
+                                <c1:DataGridTextColumn Header="Vorname" Binding="{Binding Vorname,Mode=TwoWay}" Width="90" SortMemberPath="Vorname"/>
+                                <!--<c1:DataGridTextColumn x:Name="txtVorname2" Header="Vorname2" Binding="{Binding Vorname2,Mode=TwoWay}" Width="90" Visibility="{Binding Path=HideUselessColumns}"/>
+                        <c1:DataGridTextColumn x:Name="txtNamenszusatz" Header="Namenszusatz" Binding="{Binding Namenszusatz,Mode=TwoWay}" Width="90" Visibility="{Binding Path=HideUselessColumns}"/>-->
+                                <c1:DataGridComboBoxColumn Header="Anrede" Binding="{Binding Anrede,Mode=TwoWay}" Width="90" SortMemberPath="Anrede" FilterMemberPath="Anrede"
+										   ItemsSource="{Binding Source={StaticResource EintraegeAnredeLookup}}"
+										   SelectedValuePath="id"
+										   DisplayMemberPath="Eintrag" EditOnSelection="True" />
+                                <!--<c1:DataGridTextColumn x:Name="txtTitel" Header="Titel" Binding="{Binding Titel,Mode=TwoWay}" Width="90" Visibility="{Binding Path=HideUselessColumns}"/>-->
+                                <c1:DataGridTextColumn Header="Funktion" Binding="{Binding Funktion,Mode=TwoWay}" />
+                                <c1:DataGridTextColumn Header="Abteilung" Binding="{Binding Abteilung,Mode=TwoWay}"/>
+                                <c1:DataGridComboBoxColumn Header="Gebiet" Binding="{Binding Gebiet,Mode=TwoWay}" Width="90"
+										 ItemsSource="{Binding Source={StaticResource EintraegeGebietLookup}}"
+										   SelectedValuePath="id"
+										   DisplayMemberPath="Eintrag" EditOnSelection="True" />
+                                <c1:DataGridComboBoxColumn Header="Standort" Binding="{Binding id_Standort,Mode=TwoWay}" Width="150"
+										 ItemsSource="{Binding Source={StaticResource EintraegeStandortLookup}}"
+										   SelectedValuePath="id"
+										   DisplayMemberPath="Standort" EditOnSelection="True" />
+
+                                <!--<c1:DataGridComboBoxColumn x:Name="txtBetreuer" Header="Angeleger" Binding="{Binding Betreuer,Mode=TwoWay}" Width="90"
+										   ItemsSource="{Binding Source={StaticResource EintraegeBetreuerLookup}}"
+										   SelectedValuePath="benutzername"
+										   DisplayMemberPath="benutzername" Visibility="{Binding Path=HideUselessColumns}" />-->
+                                <!--<c1:DataGridCheckBoxColumn Header="Messeeinladung" Binding="{Binding Messeeinladung,Mode=TwoWay}" Width="90"/>
+                        <c1:DataGridCheckBoxColumn Header="Weihnachtskarte" Binding="{Binding Weihnachtskarte,Mode=TwoWay}" Width="90" SortMemberPath="Weihnachtskarte" FilterMemberPath="Weihnachtskarte"/>
+                        <c1:DataGridCheckBoxColumn Header="Newsletter" Binding="{Binding Newsletter,Mode=TwoWay}" Width="90"/>-->
+                            </c1:C1DataGrid.Columns>
+                        </c1:C1DataGrid>
+                        <StackPanel>
+                            <ListBox x:Name="ListboxPersonenEventsVM" Style="{StaticResource CheckBoxListEvents}"
+               ItemsSource="{Binding AvailableNames}"
+               ff:MultiSelectorBehaviours.SynchronizedSelectedItems="{Binding SelectedNames}"
+               DisplayMemberPath="Bezeichnung"
+               SelectionMode="Multiple" ></ListBox>
+                            <ListBox x:Name="ListboxPersonenKategorienVM" Style="{StaticResource CheckBoxListFirmenSI}"
+               ItemsSource="{Binding AvailableNames}"
+               ff:MultiSelectorBehaviours.SynchronizedSelectedItems="{Binding SelectedNames}"
+               DisplayMemberPath="Eintrag"
+               SelectionMode="Multiple" ></ListBox>
+                        </StackPanel>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                    <Button  x:Name="AddPerson" Style="{StaticResource PlusButton}">
+                        <Image Style="{StaticResource PlusImage}" />
+                    </Button>
+                    <!--<Button Content="Ausblenden" x:Name="HideColumns" Click="HideColumns_Click" Margin="20,10,10,0" Width="100"/>-->
+                </StackPanel>
+            </StackPanel>
+        </Grid>
+        <Grid>
+            <StackPanel Orientation="Horizontal">
+                <StackPanel>
+                    <TextBlock Text="Persönliche Telefonnummern" Margin="20,20" FontFamily="Calibri" FontSize="16"/>
+                    <c1:C1DataGrid ItemsSource="{Binding Telefonnummern}" HorizontalAlignment="Left" Margin="20,0,0,0" Name="c1DataGrid" VerticalAlignment="Top"
+								   AutoGenerateColumns="False" CanUserAddRows="False"
+								   cal:Message.Attach="[Event DeletingRows] =[Action Telefonnummern_DeletingRows ($eventargs)]">
+                        <c1:C1DataGrid.Columns>
+                            <c1:DataGridComboBoxColumn Header="Typ" Binding="{Binding Typ,Mode=TwoWay}" Width="90"
+										   ItemsSource="{Binding Source={StaticResource EintraegeTypTelefonLookup}}"
+										   SelectedValuePath="id"
+										   DisplayMemberPath="Eintrag" />
+                            <c1:DataGridTextColumn Header="Vorwahl" Binding="{Binding Vorwahl,Mode=TwoWay}" Width="90"/>
+                            <c1:DataGridTextColumn Header="Rufnummer" Binding="{Binding Rufnummer,Mode=TwoWay}" Width="180"/>
+                            <c1:DataGridTextColumn x:Name="MemoTelefon" Header="Memo" Binding="{Binding Memo,Mode=TwoWay}" Width="120" Visibility="{Binding Path=HideUselessColumns}"/>
+                                    <c1:DataGridTemplateColumn Header="Anrufen" Width="60" VerticalAlignment="Top" >
+                                        <c1:DataGridTemplateColumn.CellTemplate>
+                                            <DataTemplate>
+                                                <StackPanel Orientation="Horizontal" Height="25" VerticalAlignment="Top">
+                                                    <Button x:Name="btnShow" IsEnabled="{Binding Path= ShowDialer}"
+                                                            Style="{StaticResource ImageButtonGrid}"
+                                                             cal:Message.Attach="[Event Click] =[Action MakePhoneCall ($source) ]">
+                                                    <Image Source="{Binding Path=DialerImage}" Stretch="Uniform"  />
+                                                    </Button>
+                                                </StackPanel>
+                                            </DataTemplate>
+                                        </c1:DataGridTemplateColumn.CellTemplate>
+                                    </c1:DataGridTemplateColumn>
+                            </c1:C1DataGrid.Columns>
+                    </c1:C1DataGrid>
+                    <Button  x:Name="AddTelefonNummer" Style="{StaticResource PlusButton}">
+                           <Image Style="{StaticResource PlusImage}" />
+                    </Button>
+                </StackPanel>
+                <StackPanel>
+                    <TextBlock Text="Persönliche Mailadressen" Margin="30,20" FontFamily="Calibri" FontSize="16" />
+                    <c1:C1DataGrid ItemsSource="{Binding Mailadressen}" HorizontalAlignment="Left" Margin="20,0,0,0" Name="c1DataGridMailadressen" VerticalAlignment="Top" AutoGenerateColumns="False"
+							CanUserAddRows="False" 
+								   cal:Message.Attach="[Event DeletingRows] =[Action Mailadressen_DeletingRows ($eventargs)]">
+                        <c1:C1DataGrid.Columns>
+                            <c1:DataGridComboBoxColumn Header="Typ" Binding="{Binding Typ,Mode=TwoWay}" Width="90"
+										   ItemsSource="{Binding Source={StaticResource EintraegeTypMailadresseLookup}}"
+										   SelectedValuePath="typ"
+										   DisplayMemberPath="Eintrag" />
+                            <c1:DataGridTextColumn Header="Mailadresse" Binding="{Binding Mailadresse,Mode=TwoWay}" Width="150"/>
+                            <c1:DataGridTextColumn x:Name="MemoMail" Header="Memo" Binding="{Binding Memo,Mode=TwoWay}" Width="200"/>
+                                <c1:DataGridTemplateColumn Header="Mail Senden" Width="80" VerticalAlignment="Top" >
+                                    <c1:DataGridTemplateColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <StackPanel Orientation="Horizontal" Height="25" VerticalAlignment="Top">
+                                                <Button x:Name="btnShow" Content="..."
+                                                            Style="{StaticResource ImageButtonGrid}"
+                                                             cal:Message.Attach="[Event Click] =[Action OpenOutlook ($source) ]">
+                                                </Button>
+                                            </StackPanel>
+                                        </DataTemplate>
+                                    </c1:DataGridTemplateColumn.CellTemplate>
+                                </c1:DataGridTemplateColumn>
+                            </c1:C1DataGrid.Columns>
+                    </c1:C1DataGrid>
+                    <Button  x:Name="AddMailadresse" Style="{StaticResource PlusButton}">
+                            <Image Style="{StaticResource PlusImage}" />
+                        </Button>
+                </StackPanel>
+            </StackPanel>
+        </Grid>
+       
+    </StackPanel>
+   </ScrollViewer>
+</UserControl>

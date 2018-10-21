@@ -1,0 +1,78 @@
+﻿<UserControl xmlns:c1="http://schemas.componentone.com/winfx/2006/xaml"  x:Class="SteinbachCRM.Views.EditAuswahlEintraegeView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+              xmlns:cal="clr-namespace:Caliburn.Micro;assembly=Caliburn.Micro"
+			 xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
+             mc:Ignorable="d" 
+             Height="600" Width="Auto"
+             Loaded="UserControl_Loaded">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="Auto"/>
+          
+        </Grid.ColumnDefinitions>
+        <StackPanel>
+            <TextBlock Text="Kategorien :" Margin="20,20" FontFamily="Calibri" FontSize="16"/>
+            <c1:C1DataGrid Width="400" ItemsSource="{Binding KategorienListe}"  HorizontalAlignment="Left" Margin="20,0,0,0" Name="GridGruppen" VerticalAlignment="Top" AutoGenerateColumns="False"
+								cal:Message.Attach="[Event SelectionChanged] =[Action GridGruppen_SelectionChanged ($source)];
+							   [Event DeletingRows] =[Action GridGruppen_DeletingRows ($eventargs)]"
+						CanUserAddRows="False" Height="400" CanUserSort="True" CanUserGroup="True" FrozenTopRowsCount="1">
+                <c1:C1DataGrid.TopRows>
+                    <c1:DataGridFilterRow x:Name="GruppenFilterRow" Height="30" CanUserToggleDetails="True" CanUserResize="True" IsSelectable="True" />
+                </c1:C1DataGrid.TopRows>
+                <c1:C1DataGrid.Columns>
+                    <c1:DataGridTextColumn Header="ID" Binding="{Binding id,Mode=OneTime}" Width="90" SortMemberPath="Nachname" FilterMemberPath="id" />
+                    <c1:DataGridTextColumn Header="Kategorie" Binding="{Binding Kategorie,Mode=TwoWay}" Width="90" SortMemberPath="Kategorie"/>
+                    <c1:DataGridTextColumn Header="Gruppe" Binding="{Binding Gruppe,Mode=TwoWay}" Width="90" SortMemberPath="Gruppe"/>
+                    <c1:DataGridTextColumn Header="KategorieID" Binding="{Binding id_Kategorie,Mode=TwoWay}" Width="90" SortMemberPath="Gruppe"/>
+                    
+                    <!--<c1:DataGridComboBoxColumn Header="Anrede" Binding="{Binding Anrede,Mode=TwoWay}" Width="90" SortMemberPath="Anrede" FilterMemberPath="Anrede">
+                                               </c1:DataGridComboBoxColumn>-->
+                </c1:C1DataGrid.Columns>
+            </c1:C1DataGrid>
+            <Button x:Name="AddGruppe"  Style="{StaticResource DeleteButton}" Margin="20,5">
+                <Image Style="{StaticResource PlusImage}"/>
+            </Button>
+        </StackPanel>
+        <StackPanel Grid.Column="1">
+            <TextBlock Text="Einträge :" Margin="20,20" FontFamily="Calibri" FontSize="16"/>
+            <c1:C1DataGrid ItemsSource="{Binding EintraegeListe}"  HorizontalAlignment="Left" Margin="10,0,0,0" Name="GridEintraege" VerticalAlignment="Top" AutoGenerateColumns="False"
+								cal:Message.Attach="[Event DeletingRows] =[Action GridEintraege_DeletingRows ($eventargs)]"
+						CanUserAddRows="False" Height="400" CanUserSort="True" CanUserGroup="True" FrozenTopRowsCount="1">
+                <c1:C1DataGrid.TopRows>
+                    <c1:DataGridFilterRow x:Name="dgFilterRow" Height="30" CanUserToggleDetails="True" CanUserResize="True" IsSelectable="True" />
+                </c1:C1DataGrid.TopRows>
+                <c1:C1DataGrid.Columns>
+                    <c1:DataGridTextColumn Header="ID" Binding="{Binding id,Mode=OneTime}" Width="90" SortMemberPath="id" FilterMemberPath="id" />
+                    <c1:DataGridTextColumn Header="Gruppe" Binding="{Binding Gruppe,Mode=TwoWay}" Width="90" SortMemberPath="Gruppe"/>
+                    <c1:DataGridTextColumn Header="Eintrag" Binding="{Binding Eintrag,Mode=TwoWay}" Width="90" SortMemberPath="Eintrag"/>
+                    <c1:DataGridTextColumn Header="id_Gruppe" Binding="{Binding id_Gruppe,Mode=OneWay}" Width="90" SortMemberPath="id_Gruppe"/>
+                    <c1:DataGridTextColumn Header="Addional Int" Binding="{Binding ai_int,Mode=TwoWay}" Width="90" SortMemberPath="ai_int"/>
+                    <c1:DataGridTextColumn Header="Addional String" Binding="{Binding ai_string,Mode=TwoWay}" Width="90" SortMemberPath="ai_string"/>
+                    <c1:DataGridTextColumn Header="Addional Sort" Binding="{Binding ai_sort,Mode=TwoWay}" Width="90" SortMemberPath="ai_sort"/>
+                    
+                    
+                    <!--<c1:DataGridTemplateColumn Header="Entfernen">
+                        <c1:DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <Button x:Name="DeleteEintrag"  Style="{StaticResource DeleteButton}" Click="DeleteEintrag_Click"
+                                        cal:Message.Attach="[Event Click ] =[Action GridEintraege_DeleteEintrag ($eventargs)]">
+                                    <Image Style="{StaticResource DeleteImage}"/>
+                                </Button>
+                            </DataTemplate>
+                        </c1:DataGridTemplateColumn.CellTemplate>
+                    </c1:DataGridTemplateColumn>-->
+                    <!--<c1:DataGridComboBoxColumn Header="Anrede" Binding="{Binding Anrede,Mode=TwoWay}" Width="90" SortMemberPath="Anrede" FilterMemberPath="Anrede">
+                                               </c1:DataGridComboBoxColumn>-->
+                </c1:C1DataGrid.Columns>
+            </c1:C1DataGrid>
+            <Button x:Name="AddEintrag"  Style="{StaticResource DeleteButton}">
+                    <Image Style="{StaticResource PlusImage}"/>
+              </Button>
+            <Button x:Name="SaveChanges" Content="Speichern" Style="{StaticResource StandardButton}"/>
+        </StackPanel>
+    </Grid>
+</UserControl>

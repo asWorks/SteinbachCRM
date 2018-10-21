@@ -1,0 +1,68 @@
+﻿<Window x:Class="SteinbachCRM.Views.TestFirma1"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" 
+             d:DesignHeight="600" d:DesignWidth="300" xmlns:my="clr-namespace:DAL;assembly=DAL" Loaded="UserControl_Loaded">
+    <Window.Resources>
+        <CollectionViewSource x:Key="firmaViewSource" d:DesignSource="{d:DesignInstance my:firma, CreateList=True}" />
+    </Window.Resources>
+    <Grid>
+        <Grid DataContext="{StaticResource firmaViewSource}" Name="grid1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+            <Label Content="Gebiet:" Grid.Column="0" Grid.Row="0" HorizontalAlignment="Left" Margin="3"
+                    VerticalAlignment="Center" />
+            <ComboBox DisplayMemberPath="Gebiet" Grid.Column="1" Grid.Row="0" Height="23" HorizontalAlignment="Left"
+                    ItemsSource="{Binding}" Margin="3" Name="gebietComboBox" VerticalAlignment="Center" Width="120">
+                <ComboBox.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <VirtualizingStackPanel />
+                    </ItemsPanelTemplate>
+                </ComboBox.ItemsPanel>
+            </ComboBox>
+            <Label Content="name:" Grid.Column="0" Grid.Row="1" HorizontalAlignment="Left" Margin="3"
+                    VerticalAlignment="Center" />
+            <TextBox Grid.Column="1" Grid.Row="1" Height="23" HorizontalAlignment="Left" Margin="3" Name="nameTextBox"
+                    Text="{Binding Path=name, Mode=TwoWay, ValidatesOnExceptions=true, NotifyOnValidationError=true}"
+                    VerticalAlignment="Center" Width="120" />
+            <Label Content="Quelle:" Grid.Column="0" Grid.Row="2" HorizontalAlignment="Left" Margin="3"
+                    VerticalAlignment="Center" />
+            <ComboBox DisplayMemberPath="Quelle" Grid.Column="1" Grid.Row="2" Height="23" HorizontalAlignment="Left"
+                    ItemsSource="{Binding}" Margin="3" Name="quelleComboBox" VerticalAlignment="Center" Width="120">
+                <ComboBox.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <VirtualizingStackPanel />
+                    </ItemsPanelTemplate>
+                </ComboBox.ItemsPanel>
+            </ComboBox>
+            <Label Content="Status:" Grid.Column="0" Grid.Row="3" HorizontalAlignment="Left" Margin="3"
+                    VerticalAlignment="Center" />
+            <TextBox Grid.Column="1" Grid.Row="3" Height="23" HorizontalAlignment="Left" Margin="3" Name="statusTextBox"
+                    Text="{Binding Path=Status, Mode=TwoWay, ValidatesOnExceptions=true, NotifyOnValidationError=true}"
+                    VerticalAlignment="Center" Width="120" />
+            <Label Content="Typ:" Grid.Column="0" Grid.Row="4" HorizontalAlignment="Left" Margin="3"
+                    VerticalAlignment="Center" />
+            <TextBox Grid.Column="1" Grid.Row="4" Height="23" HorizontalAlignment="Left" Margin="3" Name="typTextBox"
+                    Text="{Binding Path=Typ, Mode=TwoWay, ValidatesOnExceptions=true, NotifyOnValidationError=true}"
+                    VerticalAlignment="Center" Width="120" />
+            <Label Content="Webseite:" Grid.Column="0" Grid.Row="5" HorizontalAlignment="Left" Margin="3"
+                    VerticalAlignment="Center" />
+            <TextBox Grid.Column="1" Grid.Row="5" Height="23" HorizontalAlignment="Left" Margin="3"
+                    Name="webseiteTextBox"
+                    Text="{Binding Path=Webseite, Mode=TwoWay, ValidatesOnExceptions=true, NotifyOnValidationError=true}"
+                    VerticalAlignment="Center" Width="120" />
+        </Grid>
+    </Grid>
+</Window>

@@ -1,0 +1,99 @@
+﻿<UserControl x:Class="SteinbachCRM.Views.KundendatenView"
+       	 xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+			 xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+			 xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+			 xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+			 xmlns:cal="clr-namespace:Caliburn.Micro;assembly=Caliburn.Micro"
+			 xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
+             xmlns:my="clr-namespace:CommonTools.UserControls;assembly=CommonTools" 
+             mc:Ignorable="d" 
+			 
+             Width="Auto" MinWidth="900" Height="Auto"
+			
+             Loaded="UserControl_Loaded">
+    <!--xmlns:my="http://schemas.componentone.com/wpf/DataGrid"-->
+    <UserControl.Resources>
+        <Style TargetType="{x:Type my:LabelAndFilteredComboBox}">
+            <Setter Property="StackPanelOrientation" Value="Horizontal"/>
+            <Setter Property="TextBlockWidth" Value="60"/>
+            <Setter Property="TextBlockFontFamily" Value="Calibri"/>
+            <Setter Property="TextBlockFontSize" Value="14"/>
+            <Setter Property="TextBlockHorizontalAlignment" Value="Left"/>
+            <Setter Property="CBoxBackground" Value="GhostWhite"/>
+            <Setter Property="CBoxWidth" Value="300"/>
+            <Setter Property="CBoxHeight" Value="23"/>
+            <Setter Property="ComboBoxMargin" Value="10,15,5,20"/>
+            <Setter Property="TextBlockMargin" Value="12,15,0,0"/>
+        </Style>
+        <CollectionViewSource x:Key="PersonTyp"/>
+        <Style TargetType="Button">
+            <Setter Property="Width" Value="80"/>
+            <Setter Property="Background" Value="Lavender"/>
+            <Setter Property="Margin" Value="5,2,0,5"/>
+            <Setter Property="HorizontalAlignment" Value="Left"/>
+        </Style>
+        <DataTemplate x:Key="PersonenFirmenTemplate">
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="{Binding Nachname}" MinWidth="100"/>
+                <TextBlock Text="{Binding Vorname}" MinWidth="100" Background="Khaki"/>
+                <TextBlock Text="{Binding name}" MinWidth="100" Background="Honeydew"/>
+            </StackPanel>
+        </DataTemplate>
+    </UserControl.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Border Style="{StaticResource StandardBorder}">
+            <StackPanel Orientation="Horizontal">
+                <Button x:Name="NewCompany" Content="Neu" Style="{StaticResource StandardButton}" ToolTip="Neue Firma" IsEnabled="{Binding Path=SelectEnabled}"/>
+                <Button x:Name="SaveData" Content="Speichern" Style="{StaticResource StandardButton}" 
+                    ToolTip="Änderungen speichern" />
+                <Button x:Name="UpdateFirma" Style="{StaticResource ImageButton}" Tag="Formular aktualisiern">
+                    <Image Source="/SteinbachCRM;component/Images/exec.png" ToolTip="Formular aktualisieren" />
+                </Button>
+                <my:LabelAndFilteredComboBox x:Name="searchFirma" TextBlockText="Firma :" CBoxItemssource="{Binding AlleFirmen}" IsEnabled="{Binding Path=SelectEnabled}"
+										 CBoxDisplayMemberPath="name" 
+                                         CBoxSelectedItem="{Binding Path=SelectedAlleFirmen,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
+										 cal:Message.Attach="[Event onfcbChanged] =[Action FirmenonfcbChanged ($eventArgs) ] ;
+										 [Event OnFcb_SelectionChanged] =[Action FirmenOnFcb_SelectionChanged ($eventArgs)]"
+                    ToolTip="Firma auswählen" />
+
+
+                <my:LabelAndFilteredComboBox x:Name="SearchPerson" TextBlockText="Kontakt :" CBoxItemssource="{Binding AllePersonen}" IsEnabled="{Binding Path=SelectEnabled}"
+										 cBoxItemTemplate="{StaticResource PersonenFirmenTemplate}"
+                                         CBoxSelectedItem="{Binding Path=SelectedAllePersonen,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
+										 cal:Message.Attach="[Event onfcbChanged] =[Action PersonenonfcbChanged ($eventArgs)]"
+                    ToolTip="Kontakt auswählen" />
+
+
+
+                <!--<Button x:Name="DeleteCustomer" Content="Kunden Löschen" Style="{StaticResource StandardButton}" />-->
+                <!--<Button x:Name="TestWWW" Content="test WWW"/>--> 
+            </StackPanel>
+        </Border>
+        <Border Style="{StaticResource StandardBorder}" Grid.Row="1">
+            <TabControl Grid.Row="1" Height="Auto" HorizontalAlignment="Left" Margin="10,10,10,10"
+                        Name="tabControl1" VerticalAlignment="Top" MinWidth="900" Width="Auto" MinHeight="300" 
+                    >
+                <TabItem Header="Firmendaten" x:Name="tabFirmendaten" 
+                    >
+                    <ContentControl x:Name="FirmenxDatenViewModel" IsEnabled="{Binding FirmenDatenEnabled}"></ContentControl>
+                </TabItem>
+                <TabItem Header="Personendaten" x:Name="tabPersonendaten">
+                    <ContentControl x:Name="PersonenDatenViewModel"></ContentControl>
+                </TabItem>
+                <TabItem Header="Personen Tabelle" Name="tabBuchhaltung">
+                    <ContentControl x:Name="FirmenPersonenListeViewModel"></ContentControl>
+                </TabItem>
+                <TabItem Header="Kommunikation" Name="tabKommunikation">
+                    <ContentControl x:Name="KommunikationVM"></ContentControl>
+                </TabItem>
+                <TabItem Header="Kundenberichte" Name="tabKundenbesuche">
+                    <ContentControl x:Name="KundenbesuchVM"></ContentControl>
+                </TabItem>
+            </TabControl>
+        </Border>
+    </Grid>
+</UserControl>

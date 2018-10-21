@@ -1,0 +1,126 @@
+﻿<UserControl xmlns:c1="http://schemas.componentone.com/winfx/2006/xaml"  x:Class="SteinbachCRM.Views.SI_EventsView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+              xmlns:Custom="http://schemas.componentone.com/winfx/2006/xaml"
+             xmlns:controls="clr-namespace:CommonTools.UserControls;assembly=CommonTools"
+              xmlns:cal="clr-namespace:Caliburn.Micro;assembly=Caliburn.Micro"
+		xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
+        cal:Message.Attach="[Closing] =[Action CancelClosing($eventargs)]"
+             mc:Ignorable="d" Width="1300" Height="650" Loaded="UserControl_Loaded" >
+    <UserControl.Resources>
+        <CollectionViewSource x:Key="FirmenViewSource"/>
+        <CollectionViewSource x:Key="FirmenFullViewSource"/>
+
+        <Style  TargetType="controls:FilteredComboBox_Extended">
+            <Setter Property="CBoxWidth" Value="180"/>
+            <Setter Property="CBoxHeight" Value="25"/>
+            <Setter Property="CBoxMargin" Value="0,0,0,0"/>
+
+        </Style>
+        <DataTemplate x:Key="FirmenTemplate">
+            <StackPanel Orientation="Horizontal">
+               <TextBlock Text="{Binding Path=name}"/>
+            </StackPanel>
+        </DataTemplate>
+
+    </UserControl.Resources>
+    <Grid>
+        <StackPanel>
+            <Button x:Name="Save" Content="Speichern" HorizontalAlignment="Left" Grid.Row="1" VerticalAlignment="Top" Style="{StaticResource StandardButton}"/>
+
+            <Custom:C1DataGrid x:Name="EventsGrid" ItemsSource="{Binding events}" AutoGenerateColumns="False" CanUserAddRows="False">
+                <Custom:C1DataGrid.Columns>
+                    <Custom:DataGridTextColumn Header="ID" Binding="{Binding id, Mode=TwoWay}" Width="60"/>
+                   
+                   
+
+                    <Custom:DataGridTextColumn Header="Bezeichnung" Binding="{Binding Bezeichnung, Mode=TwoWay}" Width="150"/>
+                    <Custom:DataGridTextColumn Header="Kurzbezeichnung" Binding="{Binding Kurzbezeichnung, Mode=TwoWay}" Width="100"/>
+                    <Custom:DataGridCheckBoxColumn Header="IstAktiv" Binding="{Binding istAktiv,Mode=TwoWay}" Width="60"/>
+                    <!--<Custom:DataGridCheckBoxColumn Header="IstPermanent" Binding="{Binding istPermanent,Mode=TwoWay}" Width="85"/>
+                    <Custom:DataGridDateTimeColumn Header="Von Datum" Binding="{Binding VonDatum,Mode=TwoWay}" Width="120" EditMode="Date"/>
+                    <Custom:DataGridDateTimeColumn Header="Bis Datum" Binding="{Binding BisDatum,Mode=TwoWay}" Width="180" EditMode="Date"/>-->
+                    <Custom:DataGridTemplateColumn Header="Firma" EditOnSelection="False">
+                        <Custom:DataGridTemplateColumn.CellTemplate>
+
+                            <DataTemplate>
+                                <controls:FilteredComboBox_Extended Name="fcbFirma1"
+                                                                                    CBoxItemssource="{Binding Source={StaticResource FirmenFullViewSource}}"
+                                                                                    FilteredItemsSource="{Binding Source={StaticResource FirmenViewSource}}"
+                                                                                    cBoxItemTemplate="{StaticResource FirmenTemplate}"
+                                                                                    StoredItemTemplate="{StaticResource FirmenTemplate}"
+                                                                                    DisplayedMemberpath="name"
+                                                                                    CBoxSelectedValue="{Binding Path=id_Firma,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
+                                                                                    CBoxSelectedValuePath="id"
+                                                                                    cBoxIsSynchronizedWithCurrentItem="False"
+                                                                                            OnFCBChangedFunc="fcbFirma_OnFCBChangedFunc">
+                                </controls:FilteredComboBox_Extended>
+
+                            </DataTemplate>
+                             </Custom:DataGridTemplateColumn.CellTemplate>
+                        <Custom:DataGridTemplateColumn.CellEditingTemplate>
+                            <DataTemplate>
+                                <!--<controls:FilteredComboBox_Extended Name="fcbFirma"
+                                                                                    CBoxItemssource="{Binding Source={StaticResource FirmenViewSource}}"
+                                                                                    FilteredItemsSource="{Binding Source={StaticResource FirmenViewSource}}"
+                                                                                    DisplayedMemberpath="name"
+                                                                                    CBoxSelectedValue="{Binding Path=id_Firma,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
+                                                                                    CBoxSelectedValuePath="id"
+                                                                                    cBoxIsSynchronizedWithCurrentItem="False"
+                                                                                            />-->
+                                <!--<ComboBox Width="200" ItemsSource="{Binding Source={StaticResource FirmenFullViewSource}}"
+                        					SelectedValue="{Binding id_Firma}" 
+                        					SelectedItem="{Binding SelectedKostenstellenGruppen}"
+                                                           
+                        					SelectedValuePath="id"
+                        					DisplayMemberPath="name"
+                                                  IsSynchronizedWithCurrentItem="False"
+                                                  Background="White"/>-->
+                                
+                                <!--<c1:C1DropDown >
+                                    <c1:C1DropDown.Header>
+                                        <c1:C1TextBoxBase C1Text="{Binding Path=name, Mode=TwoWay}" BorderThickness="0"/>
+                                    </c1:C1DropDown.Header>
+                                    <c1:C1DropDown.Content>-->
+                                        <controls:FilteredComboBox_Extended Name="fcbFirma"
+                                                                                    CBoxItemssource="{Binding Source={StaticResource FirmenViewSource}}"
+                                                                                    FilteredItemsSource="{Binding Source={StaticResource FirmenViewSource}}"
+                                                                                    DisplayedMemberpath="name"
+                                                                                    CBoxSelectedValue="{Binding Path=id_Firma,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
+                                                                                    CBoxSelectedValuePath="id"
+                                                                                    cBoxIsSynchronizedWithCurrentItem="False"
+                                                                                            />
+                                           
+                                    <!--</c1:C1DropDown.Content>
+                                </c1:C1DropDown>-->
+
+
+                            </DataTemplate>
+                       </Custom:DataGridTemplateColumn.CellEditingTemplate>
+                        
+                       
+                    </Custom:DataGridTemplateColumn>
+
+                    <Custom:DataGridTextColumn Header="Memo" Binding="{Binding Memo, Mode=TwoWay}" Width="90"/>
+                    <Custom:DataGridTemplateColumn Header="Löschen">
+                        <Custom:DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <Button  x:Name="DeleteEvent" Style="{StaticResource DeleteButton}" Click="DeleteEvent_Click" 
+                                                 cal:Message.Attach="[Click] =[Action DeletePositionEvents($view)]">
+                                    <Image Style="{StaticResource DeleteImage}" />
+                                </Button>
+                            </DataTemplate>
+                        </Custom:DataGridTemplateColumn.CellTemplate>
+                    </Custom:DataGridTemplateColumn>
+
+                </Custom:C1DataGrid.Columns>
+            </Custom:C1DataGrid>
+            <Button  x:Name="AddEvent" Style="{StaticResource PlusButton}">
+                <Image Style="{StaticResource PlusImage}" />
+            </Button>
+
+        </StackPanel>
+    </Grid>
+</UserControl>

@@ -1,0 +1,98 @@
+﻿<UserControl x:Class="SteinbachCRM.Views.TermineListeView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+              xmlns:cal="clr-namespace:Caliburn.Micro;assembly=Caliburn.Micro"
+			 xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
+			 mc:Ignorable="d" 
+			 xmlns:c1="http://schemas.componentone.com/winfx/2006/xaml"
+                xmlns:Converter="clr-namespace:SteinbachCRM.Converter"
+             d:DesignHeight="800" d:DesignWidth="1100"
+             Loaded="UserControl_Loaded"    
+             >
+    <UserControl.Resources>
+        <CollectionViewSource x:Key="FirmenLookup" />
+        <CollectionViewSource x:Key="ActionLookup" />
+        <CollectionViewSource x:Key="AngelegtLookup" />
+        <Converter:TeilnehmerSI_StringConverter x:Key="TeilnehmerSI_String"/>
+    </UserControl.Resources>
+    <Grid Width="1410">
+        <StackPanel>
+          
+            
+            <TextBlock Text="Termine :" Margin="20,5" FontFamily="Calibri" FontSize="16"/>
+            <StackPanel Orientation="Horizontal" Margin="20,0">
+                
+                 <Button x:Name="TerminNeu" Content="Neuer Termin" Style="{StaticResource StandardButton}"/>
+                <Button x:Name="AufgabeNeu" Content="Neue Aufgabe" Style="{StaticResource StandardButton}"/>
+                <Button x:Name="goBack" Content="Zurück" Style="{StaticResource StandardButton}"/>
+               
+                <StackPanel Margin="30,0,20,0">
+                    <RadioButton Content="Termine" Height="16" Name="rabTermine" Style="{StaticResource StandardRadioButton}" GroupName="Termine"
+                                 IsChecked="{Binding Path=TermineIsChecked}"/>
+                    <RadioButton Content="Aufgaben" Height="16" Name="rabAufgaben" Style="{StaticResource StandardRadioButton}" GroupName="Termine"
+                                 />
+                </StackPanel>
+               
+                
+                <TextBlock Text="Von Datum :" Margin="0,13,10,0"/>
+                <c1:C1DateTimePicker x:Name="DatumVon" EditMode="Date" DateTimeChanged="DatumVon_DateTimeChanged"
+                                     DateTime="{Binding DatumVon,Mode=TwoWay}" Height="25"
+                                     cal:Message.Attach="[Event DateTimeChanged] =[Action DatumVonChanged ($eventargs)]"/>
+                <TextBlock Text="Bis Datum :" Margin="10,13,10,0"/>
+                <c1:C1DateTimePicker x:Name="DatumBis" EditMode="Date" DateTime="{Binding DatumBis,Mode=TwoWay}" Height="25" 
+                                    cal:Message.Attach="[Event DateTimeChanged] =[Action DatumBisChanged ($eventargs)]"/>
+                <StackPanel Margin="30,0,0,0">
+                    <Button x:Name="ShowSchedule" Content="Übersicht" Style="{StaticResource StandardButton}"/>
+                </StackPanel>
+            </StackPanel>
+            <c1:C1DataGrid ItemsSource="{Binding TermineListe}"  HorizontalAlignment="Left" Margin="20,0,0,0" 
+                           Name="TermineListeData" VerticalAlignment="Top" AutoGenerateColumns="False" 
+								cal:Message.Attach="[Event SelectionChanged] =[Action Termin_SelectionChanged ($source)];
+							   [Event DeletingRows] =[Action Termine_DeletingRows ($eventargs)];
+                               [Event MouseDoubleClick] =[Action TerminListeMouseDoubleClick ($source)]"
+						CanUserAddRows="False" Height="650" CanUserSort="True" CanUserGroup="True"
+                   >
+                <c1:C1DataGrid.TopRows>
+                    <c1:DataGridFilterRow x:Name="dgFilterRow" Height="30" CanUserToggleDetails="True" CanUserResize="True" IsSelectable="True" />
+                </c1:C1DataGrid.TopRows>
+                <c1:C1DataGrid.Columns>
+                    <c1:DataGridTextColumn Header="ID" Binding="{Binding id,Mode=OneTime}" Width="40"
+                            SortMemberPath="id" />
+                    <c1:DataGridComboBoxColumn x:Name="ActionLookUp" Header="Aktion" Binding="{Binding Aktion,Mode=TwoWay}" Width="70"
+										   ItemsSource="{Binding Source= {StaticResource ActionLookup}}"
+										   SelectedValuePath="id"
+										   DisplayMemberPath="Eintrag"
+                                           SortMemberPath="Aktion" FilterMemberPath="Aktion" />
+                    <c1:DataGridDateTimeColumn Header="Beginn" Binding="{Binding TerminVon,Mode=OneWay}" Width="100"
+                            SortMemberPath="TerminVon" FilterMemberPath="TerminVon" />
+                    <c1:DataGridDateTimeColumn Header="Ende" Binding="{Binding TerminBis,Mode=OneWay}" Width="100"
+                            SortMemberPath="TerminBis" FilterMemberPath="TerminBis" />
+                    <c1:DataGridTextColumn Header="Betreff" Binding="{Binding Betreff,Mode=OneWay}" Width="120"
+                            SortMemberPath="Betreff" FilterMemberPath="Betreff" />
+                    <c1:DataGridTextColumn Header="Details" Binding="{Binding Details,Mode=OneWay}" Width="150"
+                            SortMemberPath="Details" FilterMemberPath="Details" />
+                    <c1:DataGridTextColumn Header="TeilnehmerSI" Binding="{Binding id,Mode=OneWay,Converter={StaticResource TeilnehmerSI_String}}" Width="100"
+                            SortMemberPath="Details" FilterMemberPath="Details" />
+                    
+                    <c1:DataGridTextColumn Header="Standort" Binding="{Binding Standort,Mode=OneTime}" Width="90"
+                            SortMemberPath="Standort" FilterMemberPath="Standort" />
+                    <c1:DataGridDateTimeColumn Header="Erinnerung" Binding="{Binding ErinerungDatum, Mode=OneWay}" Width="100"
+                                               SortMemberPath="ErinerungDatum" FilterMemberPath="ErinerungDatum"/>
+                    <c1:DataGridCheckBoxColumn Header="Erinnerung aktiv" Binding="{Binding Erinnerung,Mode=OneWay}" Width="50"
+                                               SortMemberPath="Erinnerung" FilterMemberPath="Erinnerung"/>
+                    <c1:DataGridComboBoxColumn x:Name="Firma" Header="Firma" Binding="{Binding id_firma,Mode=OneWay}" Width="100"
+										   ItemsSource="{Binding Source={StaticResource FirmenLookup}}"
+										   SelectedValuePath="id"
+										   DisplayMemberPath="name" SortMemberPath="id_firma" FilterMemberPath="id_firma"/>
+                    <c1:DataGridComboBoxColumn x:Name="Angelegt" Header="Angelegt" Binding="{Binding Angelegt,Mode=OneWay}" Width="80"
+										   ItemsSource="{Binding Source={StaticResource AngelegtLookup}}"
+										   SelectedValuePath="id"
+										   DisplayMemberPath="benutzername" SortMemberPath="Angelegt" FilterMemberPath="Angelegt"/>
+                    <!--<c1:DataGridCheckBoxColumn Header="Newsletter" Binding="{Binding Newsletter,Mode=TwoWay}" Width="90"/>-->
+                </c1:C1DataGrid.Columns>
+            </c1:C1DataGrid>
+        </StackPanel>
+    </Grid>
+</UserControl>

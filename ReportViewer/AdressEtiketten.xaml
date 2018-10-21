@@ -1,0 +1,13 @@
+﻿<Window
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:Wpf="clr-namespace:GrapeCity.ActiveReports.Viewer.Wpf;assembly=GrapeCity.ActiveReports.Viewer.Wpf.v8" x:Class="SteinbachCRM.ReportViewer.AdressEtiketten"
+        Title="AfressEtiketten" Height="444.517" Width="716.751">
+    <Grid>
+     
+
+        <Wpf:Viewer x:Name="viewer1" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="699" Height="394"/>
+       
+
+    </Grid>
+</Window>

@@ -1,0 +1,6 @@
+Testprojekt mit Automapper Caliburn Micro und EF
+E:\Projects\spike\TestEF+CaliburnMicro\TestCM+EF\
+
+
+TestAddin Outlook für Kommunikation
+E:\Projects\Test\TestOutlookAddin\

@@ -1,0 +1,58 @@
+Es ist folgender Fehler aufgetreten    Object reference not set to an instance of an object.  No inner exception  Source =   SteinbachCRM       at SteinbachCRM.ViewModels.FirmaDataViewModel.Save()   |  : User : J. Steinbach
+
+Es ist folgender Fehler aufgetreten    Der Objektverweis wurde nicht auf eine Objektinstanz festgelegt.  No inner exception  Source =   SteinbachCRM       bei SteinbachCRM.ViewModels.FirmaDataViewModel.Save()   |  : User : L. Rinke
+
+Es ist folgender Fehler aufgetreten    Der Objektverweis wurde nicht auf eine Objektinstanz festgelegt.  No inner exception  Source =   SteinbachCRM       bei SteinbachCRM.ViewModels.FirmaDataViewModel.Save()   |  : User : L. Rinke
+
+Es ist folgender Fehler aufgetreten    Der Objektverweis wurde nicht auf eine Objektinstanz festgelegt.  No inner exception  Source =   SteinbachCRM       bei SteinbachCRM.ViewModels.FirmaDataViewModel.Save()   |  : User : L. Rinke
+
+Es ist folgender Fehler aufgetreten    Der Objektverweis wurde nicht auf eine Objektinstanz festgelegt.  No inner exception  Source =   TestException       bei TestException.MainWindow.IrreWichtigeMethode(String nix) in E:\Projects\spike\TestException\TestException\MainWindow.xaml.cs:Zeile 50.     |  : User : Kein user angemeldet
+
+Es ist folgender Fehler aufgetreten    Postfach nicht verfügbar. Die Serverantwort war: 5.7.1 Unable to relay  No inner exception  Source =   System           bei CommonTools.Mail.SendMail.DoSendMail(String Server, String User, String Password, String from, String To, String subject, String body) in E:\Projects\Steinbach\CommonTools\Mail\SendMail.cs:Zeile 27.       bei CommonTools.Tools.ErrorMethods.ShowErrorMessageToUser(Exception ex, String Message, String ClassName, String MethodName) in E:\Projects\Steinbach\CommonTools\Tools\ErrorMethods.cs:Zeile 109.       bei TestException.MainWindow.IrreWichtigeMethode(String nix) in E:\Projects\spike\TestException\TestException\MainWindow.xaml.cs:Zeile 57.       bei TestException.MainWindow.button1_Click(Object sender, RoutedEventArgs e) in E:\Projects\spike\TestException\TestException\MainWindow.xaml.cs:Zeile 34.                                                             bei MS.Win32.HwndWrapper.WndProc(IntPtr hwnd, Int32 msg, IntPtr wParam, IntPtr lParam, Boolean& handled)       bei MS.Win32.HwndSubclass.DispatcherCallbackOperation(Object o)         bei MS.Internal.Threading.ExceptionFilterHelper.TryCatchWhen(Object source, Delegate method, Object args, Int32 numArgs, Delegate catchHandler)     |  : User : Kein user angemeldet
+
+Es ist folgender Fehler aufgetreten    Der Objektverweis wurde nicht auf eine Objektinstanz festgelegt.  No inner exception  Source =   TestException       bei TestException.MainWindow.IrreWichtigeMethode(String nix) in E:\Projects\spike\TestException\TestException\MainWindow.xaml.cs:Zeile 50.     |  : User : Kein user angemeldet
+
+
+Es ist folgender Fehler aufgetreten    Der Objektverweis wurde nicht auf eine Objektinstanz festgelegt.  No inner exception  Source =   SteinbachCRM       bei SteinbachCRM.ViewModels.FirmaDataViewModel.Save()   |  : User : L. Rinke
+
+
+Es ist folgender Fehler aufgetreten    Es kann keine gültige Anordnung für abhängige Vorgänge ermittelt werden. Abhängigkeiten sind aufgrund von Fremdschlüsseleinschränkungen, Modellanforderungen oder vom Speicher generierten Werten möglich.  No inner exception  Source =   System.Data.Entity       bei System.Data.Mapping.Update.Internal.UpdateTranslator.DependencyOrderingError(IEnumerable`1 remainder)     bei System.Data.Mapping.Update.Internal.UpdateTranslator.ProduceCommands()     bei System.Data.Mapping.Update.Internal.UpdateTranslator.Update(IEntityStateManager stateManager, IEntityAdapter adapter)     bei System.Data.EntityClient.EntityAdapter.Update(IEntityStateManager entityCache)     bei System.Data.Objects.ObjectContext.SaveChanges(SaveOptions options)     bei SteinbachCRM.ViewModels.KundendatenViewModel.SaveData()   |  : User : L. Rinke
+
+
+Es ist folgender Fehler aufgetreten
+
+Der Objektverweis wurde nicht auf eine Objektinstanz festgelegt.
+No inner exception
+Source = 
+TestException
+
+   bei TestException.MainWindow.IrreWichtigeMethode(String nix) in E:\Projects\spike\TestException\TestException\MainWindow.xaml.cs:Zeile 50.
+
+ |  : User : Kein user angemeldet
+
+
+Es ist folgender Fehler aufgetreten
+
+Der Objektverweis wurde nicht auf eine Objektinstanz festgelegt.
+No inner exception
+Source = 
+SteinbachCRM
+
+   bei SteinbachCRM.ViewModels.FirmaDataViewModel.db_SavingChanges(Object sender, EventArgs e) in E:\Projects\Steinbach\SteinbachCRM\ViewModels\FirmaDataViewModel.cs:Zeile 371.
+
+ |  : User : Admin
+
+
+
+
+
+Es ist folgender Fehler aufgetreten
+
+Der Objektverweis wurde nicht auf eine Objektinstanz festgelegt.
+No inner exception
+Source = 
+SteinbachCRM
+
+   bei SteinbachCRM.ViewModels.FirmaDataViewModel.db_SavingChanges(Object sender, EventArgs e) in E:\Projects\Steinbach\SteinbachCRM\ViewModels\FirmaDataViewModel.cs:Zeile 371.
+
+ |  : User : Admin

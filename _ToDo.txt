@@ -1,0 +1,10 @@
+﻿Terminliste nach Aufgaben und Terminen trennen.
+In Übersicht nur Termine - in Kommunikation alles für den jeweils angemeldeten Benutzer => Anleger.
+EMail Reminder - Ich hätte gerne noch Info darüber, welche Firma die Aufgabe
+ oder den Termin betrifft und auch welche Aktion sich dahinter verbirgt.
+
+ Kommunikation Email und Terminanzeige -> Speichern und Abbrechen
+ Kontakte - Adresse aus Firma übernehmen.
+ Emails - Anlagen anzeigen
+ Projekte Schiffe Datenbindung prüfen.
+ Termine Ganztägig

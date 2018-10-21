@@ -1,0 +1,669 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{76707497-F881-4E69-AFD0-A4F0FA76C334}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>SteinbachCRM</RootNamespace>
+    <AssemblyName>SteinbachCRM</AssemblyName>
+    <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
+    <TargetFrameworkProfile>
+    </TargetFrameworkProfile>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>Icon_CRM1.ico</ApplicationIcon>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="AutoMapper, Version=3.1.0.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
+      <HintPath>packages\AutoMapper.3.1.0\lib\net40\AutoMapper.dll</HintPath>
+    </Reference>
+    <Reference Include="AutoMapper.Net4, Version=3.1.0.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
+      <HintPath>packages\AutoMapper.3.1.0\lib\net40\AutoMapper.Net4.dll</HintPath>
+    </Reference>
+    <Reference Include="C1.Data.Entity.4, Version=4.0.20142.111, Culture=neutral, PublicKeyToken=64e78d493ac08671, processorArchitecture=MSIL" />
+    <Reference Include="C1.LiveLinq.4, Version=4.0.20142.111, Culture=neutral, PublicKeyToken=28cd8b3517c57673, processorArchitecture=MSIL" />
+    <Reference Include="C1.WPF.4, Version=4.0.20113.210, Culture=neutral, PublicKeyToken=2aa4ec5576d6c3ce">
+      <SpecificVersion>False</SpecificVersion>
+    </Reference>
+    <Reference Include="C1.WPF.Data.Entity.4, Version=4.0.20142.111, Culture=neutral, PublicKeyToken=b90bf65cf3f9c151, processorArchitecture=MSIL" />
+    <Reference Include="C1.WPF.DataGrid.4, Version=4.0.20113.210, Culture=neutral, PublicKeyToken=2aa4ec5576d6c3ce">
+      <SpecificVersion>False</SpecificVersion>
+    </Reference>
+    <Reference Include="C1.WPF.DataGrid.Filters.4, Version=4.0.20113.210, Culture=neutral, PublicKeyToken=2aa4ec5576d6c3ce, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+    </Reference>
+    <Reference Include="C1.WPF.DateTimeEditors.4, Version=4.0.20113.210, Culture=neutral, PublicKeyToken=2aa4ec5576d6c3ce">
+      <SpecificVersion>False</SpecificVersion>
+    </Reference>
+    <Reference Include="C1.WPF.RichTextBox.4, Version=4.0.20133.367, Culture=neutral, PublicKeyToken=2aa4ec5576d6c3ce, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+    </Reference>
+    <Reference Include="C1.WPF.Schedule.4, Version=4.0.20113.210, Culture=neutral, PublicKeyToken=2aa4ec5576d6c3ce">
+      <SpecificVersion>False</SpecificVersion>
+    </Reference>
+    <Reference Include="Caliburn.Micro, Version=1.5.2.0, Culture=neutral, PublicKeyToken=8e5891231f2ed21f, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>packages\Caliburn.Micro.1.5.2\lib\net40\Caliburn.Micro.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework">
+      <HintPath>packages\EntityFramework.6.0.2\lib\net40\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer">
+      <HintPath>packages\EntityFramework.6.0.2\lib\net40\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="GrapeCity.ActiveReports.Chart.v8, Version=8.0.133.0, Culture=neutral, PublicKeyToken=cc4967777c49a3ff, processorArchitecture=MSIL">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="GrapeCity.ActiveReports.Design.Win.v8, Version=8.0.133.0, Culture=neutral, PublicKeyToken=cc4967777c49a3ff, processorArchitecture=MSIL">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="GrapeCity.ActiveReports.Diagnostics.v8, Version=8.0.133.0, Culture=neutral, PublicKeyToken=cc4967777c49a3ff, processorArchitecture=MSIL">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="GrapeCity.ActiveReports.Document.v8, Version=8.0.133.0, Culture=neutral, PublicKeyToken=cc4967777c49a3ff, processorArchitecture=MSIL">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="GrapeCity.ActiveReports.Export.Document.v8, Version=8.0.133.0, Culture=neutral, PublicKeyToken=cc4967777c49a3ff, processorArchitecture=MSIL">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="GrapeCity.ActiveReports.Export.Excel.v8, Version=8.0.133.0, Culture=neutral, PublicKeyToken=cc4967777c49a3ff, processorArchitecture=MSIL">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="GrapeCity.ActiveReports.Export.Image.Unsafe.v8, Version=8.0.133.0, Culture=neutral, PublicKeyToken=cc4967777c49a3ff, processorArchitecture=MSIL">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="GrapeCity.ActiveReports.Export.Image.v8, Version=8.0.133.0, Culture=neutral, PublicKeyToken=cc4967777c49a3ff, processorArchitecture=MSIL">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="GrapeCity.ActiveReports.Extensibility.v8, Version=8.0.133.0, Culture=neutral, PublicKeyToken=cc4967777c49a3ff, processorArchitecture=MSIL">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="GrapeCity.ActiveReports.v8, Version=8.0.133.0, Culture=neutral, PublicKeyToken=cc4967777c49a3ff, processorArchitecture=MSIL">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="GrapeCity.ActiveReports.Viewer.Win.v8, Version=8.0.133.0, Culture=neutral, PublicKeyToken=cc4967777c49a3ff, processorArchitecture=MSIL">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="GrapeCity.ActiveReports.Viewer.Wpf.v8, Version=8.0.133.0, Culture=neutral, PublicKeyToken=cc4967777c49a3ff, processorArchitecture=MSIL">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.mshtml, Version=7.0.3300.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+      <HintPath>c:\Program Files\Microsoft.NET\Primary Interop Assemblies\Microsoft.mshtml.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Office.Interop.Outlook, Version=14.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL">
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.Composition" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Data.Entity" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Windows.Interactivity, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>packages\Caliburn.Micro.1.5.2\lib\net40\System.Windows.Interactivity.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Xaml">
+      <RequiredTargetFramework>4.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="WindowsBase" />
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+  </ItemGroup>
+  <ItemGroup>
+    <ApplicationDefinition Include="App.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </ApplicationDefinition>
+    <Compile Include="AppBootstrapper.cs" />
+    <Compile Include="Backup\PersonenDatenView.xaml.cs">
+      <DependentUpon>PersonenDatenView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Backup\PersonenDatenViewModel.cs" />
+    <Compile Include="Converter\TeilnehmerSI_StringConverter.cs" />
+    <Compile Include="Events\ConfigureUIKunden.cs" />
+    <Compile Include="Events\KundeChangedEvent.cs" />
+    <Compile Include="Events\KundeSavedEvent.cs" />
+    <Compile Include="Events\SelectKundenDatenEnabled.cs" />
+    <Compile Include="Events\TestCallBackEvent.cs" />
+    <Compile Include="Enums\Extensions\EntityObjectExtension.cs" />
+    <Compile Include="Enums\Extensions\SelfReferencesTracking.cs" />
+    <Compile Include="Models\KommunikationModel.cs" />
+    <Compile Include="Models\KundenbesucheListe.cs" />
+    <Compile Include="Models\SelectedAdressesModel.cs" />
+    <Compile Include="ObjectCollections\Firmen_TelefonViewModelCollection.cs" />
+    <Compile Include="ObjectCollections\TestCollection.cs" />
+    <Compile Include="ObjectFactory\EntitiesFactory.cs" />
+    <Compile Include="Events\ConfigureUITermineDaten.cs" />
+    <Compile Include="Events\SelectUIEvent.cs" />
+    <Compile Include="Events\TerminEvent.cs" />
+    <Compile Include="Events\TerminSavedEvent.cs" />
+    <Compile Include="ObjectCollections\AuswahlEintraegeCollection.cs" />
+    <Compile Include="ObjectCollections\AdressenCollection.cs" />
+    <Compile Include="ObjectCollections\FirmenMailadressenCollection.cs" />
+    <Compile Include="ObjectCollections\Firmen_TelefonCollection.cs" />
+    <Compile Include="ObjectCollections\GenericObservableCollection.cs" />
+    <Compile Include="ObjectCollections\FirmenCollection.cs" />
+    <Compile Include="ObjectCollections\Firmen_PersonenCollection.cs" />
+    <Compile Include="ObjectCollections\PersonCollection.cs" />
+    <Compile Include="ReportViewer\AdressEtiketten.xaml.cs">
+      <DependentUpon>AdressEtiketten.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Tools\StaticMethods.cs" />
+    <Compile Include="ViewModels\CheckBoxListBoxes\ListboxKundenbesucheVertreteneFirmenViewModel.cs" />
+    <Compile Include="ViewModels\CheckBoxListBoxes\ListboxKundenbesucheTeilnehmerSIViewModel.cs" />
+    <Compile Include="ViewModels\CheckBoxListBoxes\ListboxSelectedTypFirmaEigenschaftenViewModel.cs" />
+    <Compile Include="ViewModels\SI_MailingSelectionViewModel.cs" />
+    <Compile Include="ViewModels\SI_EventsViewModel.cs" />
+    <Compile Include="Tools\TransferTimespan.cs" />
+    <Compile Include="ViewModels\CheckBoxListBoxes\ListboxSelectedEventsViewModel.cs" />
+    <Compile Include="ViewModels\CheckBoxListBoxes\ListboxSelectedKategorienViewModel.cs" />
+    <Compile Include="ViewModels\Firmen_TelefonViewModel.cs" />
+    <Compile Include="ViewModels\KundenbesuchListeViewModel.cs" />
+    <Compile Include="ViewModels\MultipleListboxViewModelBase.cs" />
+    <Compile Include="ViewModels\ListboxTeilnehmerExternBesucheViewModel.cs" />
+    <Compile Include="ViewModels\FirmaDataViewModel.cs" />
+    <Compile Include="ViewModels\Interfaces\IDataMethods.cs" />
+    <Compile Include="ViewModels\KommunikationViewModel.cs" />
+    <Compile Include="ViewModels\KundenbesuchViewModel.cs" />
+    <Compile Include="ViewModels\MailViewerViewModel.cs" />
+    <Compile Include="Views\Personen_TelefonView.xaml.cs">
+      <DependentUpon>Personen_TelefonView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\FirmaDataView.xaml.cs">
+      <DependentUpon>FirmaDataView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Firmen_TelefonView.xaml.cs">
+      <DependentUpon>Firmen_TelefonView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\KommunikationView.xaml.cs">
+      <DependentUpon>KommunikationView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\KundenbesuchListeView.xaml.cs">
+      <DependentUpon>KundenbesuchListeView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\KundenbesuchView.xaml.cs">
+      <DependentUpon>KundenbesuchView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\MailViewerView.xaml.cs">
+      <DependentUpon>MailViewerView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\SI_MailingSelectionView.xaml.cs">
+      <DependentUpon>SI_MailingSelectionView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\SI_EventsView.xaml.cs">
+      <DependentUpon>SI_EventsView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Templates\Personen_Mailadressen.xaml.cs">
+      <DependentUpon>Personen_Mailadressen.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Templates\CRM_Termine.xaml.cs">
+      <DependentUpon>CRM_Termine.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Templates\Firmen_Mailadressen.xaml.cs">
+      <DependentUpon>Firmen_Mailadressen.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Templates\Firmen_Telefon.xaml.cs">
+      <DependentUpon>Firmen_Telefon.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Templates\Firmen_Adressen.xaml.cs">
+      <DependentUpon>Firmen_Adressen.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Templates\Firmen_Personen.xaml.cs">
+      <DependentUpon>Firmen_Personen.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Tools\Class1.cs" />
+    <Compile Include="Tools\DivTools.cs" />
+    <Compile Include="Tools\MultiSelectorBehaviours.cs" />
+    <Compile Include="Tools\TwoListSynchronizer.cs" />
+    <Compile Include="ViewModels\Interfaces\IListboxEigenschaften.cs" />
+    <Compile Include="ViewModels\ListboxEigenschaftenViewModel.cs" />
+    <Compile Include="ViewModels\EditAuswahlEintraegeViewModel.cs" />
+    <Compile Include="ViewModels\Interfaces\IScheduler.cs" />
+    <Compile Include="ViewModels\Interfaces\IStandardPopup.cs" />
+    <Compile Include="ViewModels\Interfaces\ITerminPopup.cs" />
+    <Compile Include="ViewModels\Interfaces\IEditAuswahlEintraege.cs" />
+    <Compile Include="ViewModels\Interfaces\ITermineListe.cs" />
+    <Compile Include="ViewModels\Interfaces\ITermineTermin.cs" />
+    <Compile Include="ViewModels\Interfaces\ITerminedaten.cs" />
+    <Compile Include="ViewModels\SchedulerViewModel.cs" />
+    <Compile Include="ViewModels\StandardPopupViewModel.cs" />
+    <Compile Include="ViewModels\TerminedatenViewModel.cs" />
+    <Compile Include="ViewModels\Interfaces\IListboxTeilnehmerExtern.cs" />
+    <Compile Include="ViewModels\ListboxTeilnehmerExternViewModel.cs" />
+    <Compile Include="ViewModels\Interfaces\IListboxTeilnehmerSI.cs" />
+    <Compile Include="ViewModels\ListboxTeilnehmerSIViewModel.cs" />
+    <Compile Include="ViewModels\TermineListeViewModel.cs" />
+    <Compile Include="ViewModels\TermineViewModel.cs" />
+    <Compile Include="ViewModels\FirmenPersonenListeViewModel.cs" />
+    <Compile Include="ViewModels\Firmen_PersonenViewModel.cs" />
+    <Compile Include="ViewModels\Interfaces\ICRM_Termine.cs" />
+    <Compile Include="ViewModels\Interfaces\IFirmenPersonenListe.cs" />
+    <Compile Include="ViewModels\Interfaces\IFirmen_Personen.cs" />
+    <Compile Include="ViewModels\Interfaces\IListboxKategorien.cs" />
+    <Compile Include="ViewModels\Interfaces\IListItemConverter.cs" />
+    <Compile Include="ViewModels\Interfaces\IPersonenDaten.cs" />
+    <Compile Include="ViewModels\PersonenDatenViewModel.cs" />
+    <Compile Include="ViewModels\FirmaViewModel.cs" />
+    <Compile Include="ViewModels\FirmenDatenViewModel.cs" />
+    <Compile Include="ViewModels\Interfaces\IDataState.cs" />
+    <Compile Include="ViewModels\Interfaces\IFirma.cs" />
+    <Compile Include="ViewModels\Interfaces\IFirmenDaten.cs" />
+    <Compile Include="ViewModels\Interfaces\IKundendaten.cs" />
+    <Compile Include="ViewModels\Interfaces\INavigation.cs" />
+    <Compile Include="ViewModels\Interfaces\IShell.cs" />
+    <Compile Include="ViewModels\KundendatenViewModel.cs" />
+    <Compile Include="ViewModels\NavigationViewModel.cs" />
+    <Compile Include="ViewModels\ShellViewModel.cs" />
+    <Compile Include="ViewModels\ListboxKategorienViewModel.cs" />
+    <Compile Include="ViewModels\TermineTerminViewModel.cs" />
+    <Compile Include="ViewModels\TerminPopupViewModel.cs" />
+    <Compile Include="ViewModels\TestViewModel.cs" />
+    <Compile Include="Views\EditAuswahlEintraegeView.xaml.cs">
+      <DependentUpon>EditAuswahlEintraegeView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\SchedulerView.xaml.cs">
+      <DependentUpon>SchedulerView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\StandardPopupView.xaml.cs">
+      <DependentUpon>StandardPopupView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\TerminedatenView.xaml.cs">
+      <DependentUpon>TerminedatenView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\TermineListeView.xaml.cs">
+      <DependentUpon>TermineListeView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\TermineView.xaml.cs">
+      <DependentUpon>TermineView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\FirmenPersonenListeView.xaml.cs">
+      <DependentUpon>FirmenPersonenListeView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Firmen_PersonenView.xaml.cs">
+      <DependentUpon>Firmen_PersonenView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\PersonenDatenView.xaml.cs">
+      <DependentUpon>PersonenDatenView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="AltViews\FirmaView.xaml.cs">
+      <DependentUpon>FirmaView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\FirmenDatenView.xaml.cs">
+      <DependentUpon>FirmenDatenView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="AltViews\Kundendaten.xaml.cs">
+      <DependentUpon>Kundendaten.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\KundendatenView.xaml.cs">
+      <DependentUpon>KundendatenView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\NavigationView.xaml.cs">
+      <DependentUpon>NavigationView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="AltViews\Navigation.xaml.cs">
+      <DependentUpon>Navigation.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="AltViews\NavWindow.xaml.cs">
+      <DependentUpon>NavWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="App.xaml.cs">
+      <DependentUpon>App.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Views\ShellView.xaml.cs">
+      <DependentUpon>ShellView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="AltViews\ShellView_Alt.xaml.cs">
+      <DependentUpon>ShellView_Alt.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="AltViews\TestFirma1.xaml.cs">
+      <DependentUpon>TestFirma1.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\TermineTerminView.xaml.cs">
+      <DependentUpon>TermineTerminView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\TerminPopupView.xaml.cs">
+      <DependentUpon>TerminPopupView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\TestDateTime.xaml.cs">
+      <DependentUpon>TestDateTime.xaml</DependentUpon>
+    </Compile>
+    <Page Include="Backup\PersonenDatenView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ReportViewer\AdressEtiketten.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Resources\ExpanderDictionary.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Resources\CheckBoxListBoxDictionary.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Personen_TelefonView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\FirmaDataView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Firmen_TelefonView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\KommunikationView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\KundenbesuchListeView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\KundenbesuchView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\MailViewerView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\SI_MailingSelectionView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\SI_EventsView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Templates\Personen_Mailadressen.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Templates\CRM_Termine.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Templates\Firmen_Mailadressen.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Templates\Firmen_Telefon.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Templates\Firmen_Adressen.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Templates\Firmen_Personen.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\EditAuswahlEintraegeView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\SchedulerView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\StandardPopupView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\TerminedatenView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\TermineListeView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\TermineView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\FirmenPersonenListeView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Firmen_PersonenView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\PersonenDatenView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="AltViews\FirmaView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\FirmenDatenView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="AltViews\Kundendaten.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\KundendatenView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\NavigationView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="AltViews\Navigation.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="AltViews\NavWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\ShellView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="AltViews\ShellView_Alt.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="AltViews\TestFirma1.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\TermineTerminView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\TerminPopupView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\TestDateTime.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <EmbeddedResource Include="Properties\licenses.licx" />
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <None Include="App.Config">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Etiketten\AdressEtikett.rdlx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="packages.config" />
+    <None Include="Properties\DataSources\DAL.firma.datasource" />
+    <None Include="Properties\DataSources\SteinbachCRM.ObjectCollections.FirmenCollection.datasource" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <AppDesigner Include="Properties\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="SteinbachCRM.DataService\SteinbachCRM.DataService.csproj">
+      <Project>{786AE5C9-0B6A-4A4B-9B70-5DECC3EF433E}</Project>
+      <Name>SteinbachCRM.DataService</Name>
+    </ProjectReference>
+    <ProjectReference Include="TapiLib\TapiLib.csproj">
+      <Project>{8B3E4F11-B6AA-46C5-B8F7-63CA443AD8A9}</Project>
+      <Name>TapiLib</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Steinbach Ansicht hp_small.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\steinbach.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\edit_add.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\plus.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\del.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\tipp.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\exec.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Icon_CRM1.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="_ToDo.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\configure.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\identity.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\mail_delete.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\attach.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\back.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Images\msn_phone.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Images\Phone.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Phone_thumb.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\fax1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\fax0.png" />
+    <Resource Include="Images\fax2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\phone_mobile1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\fax.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\phone_mobile.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <COMReference Include="Microsoft.Office.Core">
+      <Guid>{2DF8D04C-5BFA-101B-BDE5-00AA0044DE52}</Guid>
+      <VersionMajor>2</VersionMajor>
+      <VersionMinor>5</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>primary</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="packages\AutoMapper.3.1.0\lib\net40\AutoMapper.Net4.dll">
+      <Link>AutoMapper.Net4.dll</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
