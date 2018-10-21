@@ -1,0 +1,3 @@
+[submodule "CommonToolsSubmodule"]
+	path = CommonToolsSubmodule
+	url = https://github.com/asWorks/SteinbachCommonTools.git
