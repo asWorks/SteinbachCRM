@@ -565,6 +565,30 @@
     <AppDesigner Include="Properties\" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="CommonToolsSubmodule\CommonTools\CommonTools.csproj">
+      <Project>{8e386df0-c97b-4483-9a9a-522a6ea5b97d}</Project>
+      <Name>CommonTools</Name>
+    </ProjectReference>
+    <ProjectReference Include="CommonToolsSubmodule\DAL\DAL.csproj">
+      <Project>{9f42497f-6d4d-415f-ba4c-bbab55023a32}</Project>
+      <Name>DAL</Name>
+    </ProjectReference>
+    <ProjectReference Include="CommonToolsSubmodule\DataTypes\DataTypes.csproj">
+      <Project>{7f5d0a1a-4c7d-4665-9441-859b57b6d4d1}</Project>
+      <Name>DataTypes</Name>
+    </ProjectReference>
+    <ProjectReference Include="CommonToolsSubmodule\libSendOutlookMail\asOutlookMail.csproj">
+      <Project>{7b1d422f-9d63-44e8-8ab2-72901f795ffe}</Project>
+      <Name>asOutlookMail</Name>
+    </ProjectReference>
+    <ProjectReference Include="CommonToolsSubmodule\PageControl\PageControl.csproj">
+      <Project>{64a6ca24-91e4-4f20-8f55-3a46675aff6b}</Project>
+      <Name>PageControl</Name>
+    </ProjectReference>
+    <ProjectReference Include="CommonToolsSubmodule\Steinbach_Service\SteinbachMail\SteinbachMail.csproj">
+      <Project>{d043804a-9089-4233-abb7-bb85a06fd5cf}</Project>
+      <Name>SteinbachMail</Name>
+    </ProjectReference>
     <ProjectReference Include="SteinbachCRM.DataService\SteinbachCRM.DataService.csproj">
       <Project>{786AE5C9-0B6A-4A4B-9B70-5DECC3EF433E}</Project>
       <Name>SteinbachCRM.DataService</Name>
