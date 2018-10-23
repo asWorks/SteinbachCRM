@@ -8,8 +8,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		Doku.htm = Doku.htm
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SteinbachCRM", "SteinbachCRM.csproj", "{76707497-F881-4E69-AFD0-A4F0FA76C334}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SteinbachCRM.DataService", "SteinbachCRM.DataService\SteinbachCRM.DataService.csproj", "{786AE5C9-0B6A-4A4B-9B70-5DECC3EF433E}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestOutlookAddin", "TestOutlookAddin\TestOutlookAddin.csproj", "{2B7792EA-7D61-4E10-9E9B-9C15B7F67E81}"
@@ -34,6 +32,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CommonTools", "CommonToolsS
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SteinbachMail", "CommonToolsSubmodule\Steinbach_Service\SteinbachMail\SteinbachMail.csproj", "{D043804A-9089-4233-ABB7-BB85A06FD5CF}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SteinbachCRM", "CRM\SteinbachCRM.csproj", "{76707497-F881-4E69-AFD0-A4F0FA76C334}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -44,16 +44,6 @@ Global
 		Release|x86 = Release|x86
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{76707497-F881-4E69-AFD0-A4F0FA76C334}.Debug|Any CPU.ActiveCfg = Debug|x86
-		{76707497-F881-4E69-AFD0-A4F0FA76C334}.Debug|Mixed Platforms.ActiveCfg = Debug|x86
-		{76707497-F881-4E69-AFD0-A4F0FA76C334}.Debug|Mixed Platforms.Build.0 = Debug|x86
-		{76707497-F881-4E69-AFD0-A4F0FA76C334}.Debug|x86.ActiveCfg = Debug|x86
-		{76707497-F881-4E69-AFD0-A4F0FA76C334}.Debug|x86.Build.0 = Debug|x86
-		{76707497-F881-4E69-AFD0-A4F0FA76C334}.Release|Any CPU.ActiveCfg = Release|x86
-		{76707497-F881-4E69-AFD0-A4F0FA76C334}.Release|Mixed Platforms.ActiveCfg = Release|x86
-		{76707497-F881-4E69-AFD0-A4F0FA76C334}.Release|Mixed Platforms.Build.0 = Release|x86
-		{76707497-F881-4E69-AFD0-A4F0FA76C334}.Release|x86.ActiveCfg = Release|x86
-		{76707497-F881-4E69-AFD0-A4F0FA76C334}.Release|x86.Build.0 = Release|x86
 		{786AE5C9-0B6A-4A4B-9B70-5DECC3EF433E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{786AE5C9-0B6A-4A4B-9B70-5DECC3EF433E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{786AE5C9-0B6A-4A4B-9B70-5DECC3EF433E}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
@@ -186,6 +176,16 @@ Global
 		{D043804A-9089-4233-ABB7-BB85A06FD5CF}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{D043804A-9089-4233-ABB7-BB85A06FD5CF}.Release|x86.ActiveCfg = Release|Any CPU
 		{D043804A-9089-4233-ABB7-BB85A06FD5CF}.Release|x86.Build.0 = Release|Any CPU
+		{76707497-F881-4E69-AFD0-A4F0FA76C334}.Debug|Any CPU.ActiveCfg = Debug|x86
+		{76707497-F881-4E69-AFD0-A4F0FA76C334}.Debug|Mixed Platforms.ActiveCfg = Debug|x86
+		{76707497-F881-4E69-AFD0-A4F0FA76C334}.Debug|Mixed Platforms.Build.0 = Debug|x86
+		{76707497-F881-4E69-AFD0-A4F0FA76C334}.Debug|x86.ActiveCfg = Debug|x86
+		{76707497-F881-4E69-AFD0-A4F0FA76C334}.Debug|x86.Build.0 = Debug|x86
+		{76707497-F881-4E69-AFD0-A4F0FA76C334}.Release|Any CPU.ActiveCfg = Release|x86
+		{76707497-F881-4E69-AFD0-A4F0FA76C334}.Release|Mixed Platforms.ActiveCfg = Release|x86
+		{76707497-F881-4E69-AFD0-A4F0FA76C334}.Release|Mixed Platforms.Build.0 = Release|x86
+		{76707497-F881-4E69-AFD0-A4F0FA76C334}.Release|x86.ActiveCfg = Release|x86
+		{76707497-F881-4E69-AFD0-A4F0FA76C334}.Release|x86.Build.0 = Release|x86
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

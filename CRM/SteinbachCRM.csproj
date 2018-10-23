@@ -42,18 +42,17 @@
     <ApplicationIcon>Icon_CRM1.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="AutoMapper, Version=3.1.0.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
-      <HintPath>packages\AutoMapper.3.1.0\lib\net40\AutoMapper.dll</HintPath>
+    <Reference Include="AutoMapper">
+      <HintPath>..\..\..\SteinbachProjects\SteinbachProjects\packages\AutoMapper.3.2.1\lib\net40\AutoMapper.dll</HintPath>
     </Reference>
-    <Reference Include="AutoMapper.Net4, Version=3.1.0.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
-      <HintPath>packages\AutoMapper.3.1.0\lib\net40\AutoMapper.Net4.dll</HintPath>
+    <Reference Include="AutoMapper.Net4">
+      <HintPath>..\..\..\SteinbachProjects\SteinbachProjects\packages\AutoMapper.3.2.1\lib\net40\AutoMapper.Net4.dll</HintPath>
     </Reference>
-    <Reference Include="C1.Data.Entity.4, Version=4.0.20142.111, Culture=neutral, PublicKeyToken=64e78d493ac08671, processorArchitecture=MSIL" />
-    <Reference Include="C1.LiveLinq.4, Version=4.0.20142.111, Culture=neutral, PublicKeyToken=28cd8b3517c57673, processorArchitecture=MSIL" />
+    <Reference Include="C1.Data.Entity.4, Version=4.0.20133.81, Culture=neutral, PublicKeyToken=291e60b76f98fb2b, processorArchitecture=MSIL" />
     <Reference Include="C1.WPF.4, Version=4.0.20113.210, Culture=neutral, PublicKeyToken=2aa4ec5576d6c3ce">
       <SpecificVersion>False</SpecificVersion>
     </Reference>
-    <Reference Include="C1.WPF.Data.Entity.4, Version=4.0.20142.111, Culture=neutral, PublicKeyToken=b90bf65cf3f9c151, processorArchitecture=MSIL" />
+    <Reference Include="C1.WPF.Data.Entity.4, Version=4.0.20133.81, Culture=neutral, PublicKeyToken=d7770d34acdc7c49, processorArchitecture=MSIL" />
     <Reference Include="C1.WPF.DataGrid.4, Version=4.0.20113.210, Culture=neutral, PublicKeyToken=2aa4ec5576d6c3ce">
       <SpecificVersion>False</SpecificVersion>
     </Reference>
@@ -69,15 +68,14 @@
     <Reference Include="C1.WPF.Schedule.4, Version=4.0.20113.210, Culture=neutral, PublicKeyToken=2aa4ec5576d6c3ce">
       <SpecificVersion>False</SpecificVersion>
     </Reference>
-    <Reference Include="Caliburn.Micro, Version=1.5.2.0, Culture=neutral, PublicKeyToken=8e5891231f2ed21f, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>packages\Caliburn.Micro.1.5.2\lib\net40\Caliburn.Micro.dll</HintPath>
+    <Reference Include="Caliburn.Micro, Version=1.5.1.0, Culture=neutral, PublicKeyToken=8e5891231f2ed21f, processorArchitecture=MSIL">
+      <HintPath>..\packages\Caliburn.Micro.1.5.1\lib\net45\Caliburn.Micro.dll</HintPath>
     </Reference>
     <Reference Include="EntityFramework">
-      <HintPath>packages\EntityFramework.6.0.2\lib\net40\EntityFramework.dll</HintPath>
+      <HintPath>..\..\..\SteinbachProjects\SteinbachProjects\packages\EntityFramework.6.0.0\lib\net40\EntityFramework.dll</HintPath>
     </Reference>
     <Reference Include="EntityFramework.SqlServer">
-      <HintPath>packages\EntityFramework.6.0.2\lib\net40\EntityFramework.SqlServer.dll</HintPath>
+      <HintPath>..\..\..\SteinbachProjects\SteinbachProjects\packages\EntityFramework.6.0.0\lib\net40\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
     <Reference Include="GrapeCity.ActiveReports.Chart.v8, Version=8.0.133.0, Culture=neutral, PublicKeyToken=cc4967777c49a3ff, processorArchitecture=MSIL">
       <Private>True</Private>
@@ -130,8 +128,8 @@
     <Reference Include="System.Drawing" />
     <Reference Include="System.ServiceModel" />
     <Reference Include="System.Windows.Forms" />
-    <Reference Include="System.Windows.Interactivity, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>packages\Caliburn.Micro.1.5.2\lib\net40\System.Windows.Interactivity.dll</HintPath>
+    <Reference Include="System.Windows.Interactivity, Version=4.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Caliburn.Micro.1.5.1\lib\net45\System.Windows.Interactivity.dll</HintPath>
     </Reference>
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
@@ -151,10 +149,6 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="AppBootstrapper.cs" />
-    <Compile Include="Backup\PersonenDatenView.xaml.cs">
-      <DependentUpon>PersonenDatenView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Backup\PersonenDatenViewModel.cs" />
     <Compile Include="Converter\TeilnehmerSI_StringConverter.cs" />
     <Compile Include="Events\ConfigureUIKunden.cs" />
     <Compile Include="Events\KundeChangedEvent.cs" />
@@ -364,10 +358,6 @@
     <Compile Include="Views\TestDateTime.xaml.cs">
       <DependentUpon>TestDateTime.xaml</DependentUpon>
     </Compile>
-    <Page Include="Backup\PersonenDatenView.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
     <Page Include="ReportViewer\AdressEtiketten.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -565,35 +555,35 @@
     <AppDesigner Include="Properties\" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="CommonToolsSubmodule\CommonTools\CommonTools.csproj">
+    <ProjectReference Include="..\CommonToolsSubmodule\CommonTools\CommonTools.csproj">
       <Project>{8e386df0-c97b-4483-9a9a-522a6ea5b97d}</Project>
       <Name>CommonTools</Name>
     </ProjectReference>
-    <ProjectReference Include="CommonToolsSubmodule\DAL\DAL.csproj">
+    <ProjectReference Include="..\CommonToolsSubmodule\DAL\DAL.csproj">
       <Project>{9f42497f-6d4d-415f-ba4c-bbab55023a32}</Project>
       <Name>DAL</Name>
     </ProjectReference>
-    <ProjectReference Include="CommonToolsSubmodule\DataTypes\DataTypes.csproj">
+    <ProjectReference Include="..\CommonToolsSubmodule\DataTypes\DataTypes.csproj">
       <Project>{7f5d0a1a-4c7d-4665-9441-859b57b6d4d1}</Project>
       <Name>DataTypes</Name>
     </ProjectReference>
-    <ProjectReference Include="CommonToolsSubmodule\libSendOutlookMail\asOutlookMail.csproj">
+    <ProjectReference Include="..\CommonToolsSubmodule\libSendOutlookMail\asOutlookMail.csproj">
       <Project>{7b1d422f-9d63-44e8-8ab2-72901f795ffe}</Project>
       <Name>asOutlookMail</Name>
     </ProjectReference>
-    <ProjectReference Include="CommonToolsSubmodule\PageControl\PageControl.csproj">
+    <ProjectReference Include="..\CommonToolsSubmodule\PageControl\PageControl.csproj">
       <Project>{64a6ca24-91e4-4f20-8f55-3a46675aff6b}</Project>
       <Name>PageControl</Name>
     </ProjectReference>
-    <ProjectReference Include="CommonToolsSubmodule\Steinbach_Service\SteinbachMail\SteinbachMail.csproj">
+    <ProjectReference Include="..\CommonToolsSubmodule\Steinbach_Service\SteinbachMail\SteinbachMail.csproj">
       <Project>{d043804a-9089-4233-abb7-bb85a06fd5cf}</Project>
       <Name>SteinbachMail</Name>
     </ProjectReference>
-    <ProjectReference Include="SteinbachCRM.DataService\SteinbachCRM.DataService.csproj">
+    <ProjectReference Include="..\SteinbachCRM.DataService\SteinbachCRM.DataService.csproj">
       <Project>{786AE5C9-0B6A-4A4B-9B70-5DECC3EF433E}</Project>
       <Name>SteinbachCRM.DataService</Name>
     </ProjectReference>
-    <ProjectReference Include="TapiLib\TapiLib.csproj">
+    <ProjectReference Include="..\TapiLib\TapiLib.csproj">
       <Project>{8B3E4F11-B6AA-46C5-B8F7-63CA443AD8A9}</Project>
       <Name>TapiLib</Name>
     </ProjectReference>
@@ -677,12 +667,11 @@
     </COMReference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="packages\AutoMapper.3.1.0\lib\net40\AutoMapper.Net4.dll">
-      <Link>AutoMapper.Net4.dll</Link>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
+    <Folder Include="Backup\" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Import Project="..\packages\AutoMapper.3.2.1\tools\AutoMapper.targets" Condition="Exists('..\packages\AutoMapper.3.2.1\tools\AutoMapper.targets')" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">

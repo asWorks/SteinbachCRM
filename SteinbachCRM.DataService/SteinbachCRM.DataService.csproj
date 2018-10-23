@@ -47,6 +47,12 @@
     <Compile Include="FirmaRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\CommonToolsSubmodule\DAL\DAL.csproj">
+      <Project>{9f42497f-6d4d-415f-ba4c-bbab55023a32}</Project>
+      <Name>DAL</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

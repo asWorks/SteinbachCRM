@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <!--
     This section defines project-level properties.
 
@@ -27,8 +27,9 @@
     <NoStandardLibraries>false</NoStandardLibraries>
     <RootNamespace>TestOutlookAddin</RootNamespace>
     <AssemblyName>TestOutlookAddin</AssemblyName>
-    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
-    <TargetFrameworkProfile>Client</TargetFrameworkProfile>
+    <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
+    <TargetFrameworkProfile>
+    </TargetFrameworkProfile>
     <DefineConstants>VSTO40</DefineConstants>
     <IsWebBootstrapper>False</IsWebBootstrapper>
     <FileUpgradeFlags>
@@ -116,6 +117,7 @@
     <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
     <DefineConstants>$(DefineConstants);DEBUG;TRACE</DefineConstants>
     <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <!--
     This section defines properties that are set when the "Release" configuration is selected.
@@ -140,6 +142,7 @@
     <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
     <DefineConstants>$(DefineConstants);TRACE</DefineConstants>
     <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <!--
     This section enables pre- and post-build steps. However, in VSTO use
@@ -150,15 +153,6 @@
     </PreBuildEvent>
     <PostBuildEvent>
     </PostBuildEvent>
-  </PropertyGroup>
-  <PropertyGroup>
-    <SignManifests>true</SignManifests>
-  </PropertyGroup>
-  <PropertyGroup>
-    <ManifestKeyFile>TestOutlookAddin_TemporaryKey.pfx</ManifestKeyFile>
-  </PropertyGroup>
-  <PropertyGroup>
-    <ManifestCertificateThumbprint>2AEA56E7237CD10F96C5A75330FC4A5D94BF08BD</ManifestCertificateThumbprint>
   </PropertyGroup>
   <!--
     This section specifies references for the project.
@@ -296,10 +290,25 @@
       <SubType>Designer</SubType>
     </Page>
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\CommonToolsSubmodule\CommonTools\CommonTools.csproj">
+      <Project>{8e386df0-c97b-4483-9a9a-522a6ea5b97d}</Project>
+      <Name>CommonTools</Name>
+    </ProjectReference>
+  </ItemGroup>
   <!-- Include the build rules for a C# project. -->
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignManifests>true</SignManifests>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ManifestKeyFile>TestOutlookAddin_TemporaryKey.pfx</ManifestKeyFile>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ManifestCertificateThumbprint>B3C85FCA75BFD0880F10244AED5F521161A0BB3C</ManifestCertificateThumbprint>
   </PropertyGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- Include additional build rules for an Office application add-in. -->
